@@ -44,7 +44,7 @@ function Nav(props) {
     }
 
     return (
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-md navbar-dark bg-primary">
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <Link to="/" className="nav-link">Home</Link>

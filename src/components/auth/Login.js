@@ -1,8 +1,5 @@
-import axios from 'axios';
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
-
-
 
 function Login(props) {
 
@@ -12,23 +9,6 @@ function Login(props) {
 
     const submit = (e) => {
         e.preventDefault();
-        // axios.get('http://localhost:8000/sanctum/csrf-cookie').then(res => {
-
-        //     axios.post('login',{
-        //     email : email,
-        //     password : password,
-        //     },{
-        //         withCredentials: true 
-        //     }).then( response => {
-        //         console.log(response);
-        //         setRedirect(true);
-        //     }).catch(error => {
-        //         console.log(error)
-        //     });
-
-        // }).catch(err => {
-        //     console.log(err)
-        // });
         fetch('http://localhost:8000/sanctum/csrf-cookie',{
             method: 'GET',
             mode: 'cors',

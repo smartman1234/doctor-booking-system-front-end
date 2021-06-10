@@ -24,7 +24,6 @@ function Reset(props) {
             })
         }).then( response => {
                     console.log(response);
-                    
                     setRedirect(true);
         }).catch(error => {
                     console.log(error);

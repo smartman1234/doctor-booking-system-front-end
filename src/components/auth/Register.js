@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
 
@@ -17,28 +16,7 @@ function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-        // axios.get('http://localhost:8000/sanctum/csrf-cookie').then(res => {
-
-        //     axios.post('register',{
-        //     name_en: name_en,
-        //     name_ar: name_ar,
-        //     email : email,
-        //     password : password,
-        //     password_confirm : passwordConfirm,
-        //     mobile : mobile,
-        //     date_of_birth : date_of_birth,
-        //     gender : gender,
-        //     }).then( response => {
-        //         console.log(response);
-        //         setRedirect(true);
-        //     }).catch(error => {
-        //         console.log(error)
-        //     });
-
-        // }).catch(err => {
-        //     console.log(err)
-        // });
-
+    
         fetch('http://localhost:8000/sanctum/csrf-cookie',{
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
@@ -98,19 +76,19 @@ function Register() {
                     onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
 
-            <input type="text" className="form-control" placeholder="mobile" required
-                onChange={(e) => setMobile(e.target.value)} 
-            />
-            <input type="date"  className="form-control" required
-                onChange={(e) => setDate(e.target.value)}
-            />
-            <select  className="form-control" required
-                onChange={(e) => setGender(e.target.value)}
-            >
-                    {options.map(o => (
-                        <option key={o} value={o}> {o} </option>
-                    ))}
-            </select>
+                <input type="text" className="form-control" placeholder="mobile" required
+                    onChange={(e) => setMobile(e.target.value)} 
+                />
+                <input type="date"  className="form-control" required
+                    onChange={(e) => setDate(e.target.value)}
+                />
+                <select  className="form-control" required
+                    onChange={(e) => setGender(e.target.value)}
+                >
+                        {options.map(o => (
+                            <option key={o} value={o}> {o} </option>
+                        ))}
+                </select>
 
                 <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
             </form>
