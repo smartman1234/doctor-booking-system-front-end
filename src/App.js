@@ -9,10 +9,12 @@ import Nav from './components/navbar/Nav';
 import { useEffect, useState } from 'react';
 import Forgot from './components/auth/Forgot';
 import Reset from './components/auth/Reset';
+import Profile from './components/Profile/Profile';
 
 function App() {
-  let [user, setUser] = useState('');
+  let [user, setUser] = useState([]);
   let [login, setLogin] = useState(false);
+  let [profile, setprofile] = useState(false);
   
   useEffect(() => {
     
@@ -24,29 +26,29 @@ function App() {
     }).then( response => response.json())
     .then(user => {
         console.log(user);
-        setUser(user.name_en);
+        setUser(user);
     }
     )
     .catch(error => {
                 console.log(error);
-                setUser('');
+                setUser([]);
     });
     
 
-},[login]);
+},[login,profile]);
 
   return (
-    <div className="App">
-      <BrowserRouter>
+    <BrowserRouter>
         <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
-        
-        <Route path="/" exact component={() => <Home user={user}/>}/>
+    <div className="container">
+        <Route path="/" exact component={() => <Home user={user} />}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>
         <Route path="/forgot" component={Forgot}/>
         <Route path="/reset/:token" component={Reset}/>
-      </BrowserRouter>
+        <Route path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
     </div>
+      </BrowserRouter>
   );
 }
 

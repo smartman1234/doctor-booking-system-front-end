@@ -28,11 +28,11 @@ function Login(props) {
                 .then( user => {
                             console.log(user);
                             setRedirect(true);
-                            props.setUser(user.name_en);
+                            props.setUser(user);
                             props.setLogin();
                 }).catch(error => {
                             console.log(error);
-                            props.setUser('');
+                            props.setUser([]);
                         });
             }).catch(error => {
                 console.log(error)

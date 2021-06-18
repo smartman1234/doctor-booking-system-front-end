@@ -37,6 +37,9 @@ function Nav(props) {
         links = (
             <ul className="navbar-nav my-2 my-lg-0">
                 <li className="nav-item">
+                    <Link to="/profile" className="nav-link">Profile</Link>
+                </li>
+                <li className="nav-item">
                     <Link to="/login" onClick={logout} className="nav-link">Logout</Link>
                 </li>
             </ul>

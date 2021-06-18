@@ -2,13 +2,9 @@ import React, { useEffect, useState } from 'react';
 function Home(props) {
     
     return (
-        <div className="container">
-            {props.user ? 'Hi ' + props.user : 'You are not logged in'}
-
-                
-        </div>
-
-        
+        <React.Fragment>
+            {props.user ? 'Hi ' + props.user.name_en : 'You are not logged in'}       
+        </React.Fragment>     
     );
 }
 
