@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { useAlert } from 'react-alert';
+
 function Profile(props) {
+
+    const alert = useAlert();
     
     const [profileImg,setProfileImg] = useState('');
 
@@ -16,6 +21,8 @@ function Profile(props) {
     const [image,setImage] = useState("");
     const [redirect,setRedirect] = useState(false);
 
+    const errorNotify = (error) => toast.error(error);
+    const SuccessNotify = (msg) => toast.success(msg,{autoclose:8000});
 
     const imageHandler = (e) => {
         const reader = new FileReader();
@@ -29,6 +36,7 @@ function Profile(props) {
       };
 
     const submit = (e) => {
+        //SuccessNotify("worked");
         e.preventDefault();
         var formdata = new FormData();
         formdata.append('name_en',name_en);
@@ -46,11 +54,13 @@ function Profile(props) {
             // headers: {'Content-Type': 'application/json','X-Requested-With':'XMLHttpRequest'},
             body: formdata
         }).then( response => {
-                    console.log(response);
-                    setRedirect(true);
-                    props.setprofile();
+            console.log("response",response);
+            // setRedirect(true);
+            props.setprofile();
+            alert.success("success");
         }).catch(error => {
-                    console.log(error)
+            console.log("error",error);
+            alert.error("error");
             });
         
     }
@@ -73,6 +83,7 @@ function Profile(props) {
     if (props.user) {
     return (
         <React.Fragment>
+                <ToastContainer /> 
                 <form className="form-signin" onSubmit={submit}>
                 <h1 className="h3 mb-3 font-weight-normal">Manage Profile</h1>
                 
@@ -91,12 +102,12 @@ function Profile(props) {
                     onChange={(e) => setEmail(e.target.value)}
                 />
   
-                <input type="password"  className="form-control" placeholder="Password" required
+                <input type="password"  className="form-control" placeholder="Password" autoComplete="on" required 
                     
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <input type="password"  className="form-control" placeholder="Confirm Password" required
+                <input type="password"  className="form-control" placeholder="Confirm Password" autoComplete="on" required
                     onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
 
@@ -126,6 +137,7 @@ function Profile(props) {
 
                 <button className="btn btn-lg btn-primary btn-block" >Update Profile</button>
                 </form>
+                
         </React.Fragment>        
     )
     }
