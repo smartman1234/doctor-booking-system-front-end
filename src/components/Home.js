@@ -30,6 +30,22 @@ function Home(props) {
         console.log(error);
       });
   }
+
+  function search(key) {
+
+    fetch('http://127.0.0.1:8000/api/search/' + key, {
+        method: 'GET',
+    }).then( response => response.json())
+    .then(res => {
+        console.log(res);
+        setData(res);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+}
+
   const alert = useAlert();
   const notify = () => {
     // SuccessNotify("hello word");
@@ -58,8 +74,11 @@ function Home(props) {
   return (
     <React.Fragment>
       {props.user ? "Hi " + props.user.name_en : "You are not logged in"}
-      <button onClick={notify}>Notify!</button>
+      <button onClick={notify}>Notify!</button> <br/>
 
+      <input type="text" placeholder="Doctor Name"
+            onChange={(e) => search(e.target.value)}
+        />
       {doctorCard}
 
       <div className="mt-3">
