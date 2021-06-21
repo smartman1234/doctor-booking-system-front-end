@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 function Register() {
     const options = ['male','female'];
@@ -56,49 +56,121 @@ function Register() {
 
     return (
         <React.Fragment>
-            <form className="form-signin" onSubmit={submit}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Sign up</h1>
-                
-                <input type="text"  className="form-control" placeholder="name_en" required
-                    onChange={(e) => setName_en(e.target.value)}
-                />
+            <div className="login-box">
+                <div className="login-logo">
+                    <span>
+                        <b>Book</b>Doc
+                    </span>
+                </div>
+                <div className="login-box-body">
+                    <p className="login-box-msg">Sign up to enjoy our services</p>
+                    <form className="form-signin" onSubmit={submit}>
 
-                <input type="text"  className="form-control" placeholder="name_ar" required
-                    onChange={(e) => setName_ar(e.target.value)}
-                />
+                        <div className="input-group mb-3">
+                            <input type="text" className="form-control" placeholder="Name in English" required
+                                onChange={(e) => setName_en(e.target.value)}
+                            />
+                            <div className="input-group-append">
+                                <div className="input-group-text">
+                                    <span className="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
 
-                <input type="email" className="form-control" placeholder="email" required
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-  
-                <input type="password"  className="form-control" placeholder="Password" required
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                        <div className="input-group mb-3">
+                            <input type="text" className="form-control" placeholder="Name in Arabic" required
+                                onChange={(e) => setName_ar(e.target.value)}
+                            />
+                            <div className="input-group-append">
+                                <div className="input-group-text">
+                                    <span className="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
 
-                <input type="password"  className="form-control" placeholder="Confirm Password" required
-                    onChange={(e) => setPasswordConfirm(e.target.value)}
-                />
+                        <div className="input-group mb-3">
+                            <input type="email" className="form-control" placeholder="Email" required
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <div className="input-group-append">
+                                <div className="input-group-text">
+                                    <span className="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
 
-                <input type="text" className="form-control" placeholder="mobile" required
-                    onChange={(e) => setMobile(e.target.value)} 
-                />
-                <input type="date"  className="form-control" required
-                    onChange={(e) => setDate(e.target.value)}
-                />
-                <select  className="form-control" required
-                    onChange={(e) => setGender(e.target.value)}
-                >
-                        {options.map(o => (
-                            <option key={o} value={o}> {o} </option>
-                        ))}
-                </select>
+                        <div className="input-group mb-3">
+                            <input type="password" className="form-control" placeholder="Password" required
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <div className="input-group-append">
+                                <div className="input-group-text">
+                                    <span className="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
 
-                <input type="file" className="form-control-file"
-                    onChange={(e) => setImage(e.target.files[0])}
-                /> <br/>
+                        <div className="input-group mb-3">
+                            <input type="password" className="form-control" placeholder="Confirm Password" required
+                                onChange={(e) => setPasswordConfirm(e.target.value)}
+                            />
+                            <div className="input-group-append">
+                                <div className="input-group-text">
+                                    <span className="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
 
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-            </form>
+                        <div className="input-group mb-3">
+                            <input type="test" className="form-control" placeholder="Phonr Number" required
+                                onChange={(e) => setMobile(e.target.value)}
+                            />
+                            <div className="input-group-append">
+                                <div className="input-group-text">
+                                    <span className="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="input-group mb-3">
+                            <input type="date" className="form-control" placeholder="Date Of Birth" required
+                                onChange={(e) => setDate(e.target.value)}
+                            />
+                            <div className="input-group-append">
+                                <div className="input-group-text">
+                                    <span className="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="input-group mb-3">
+                            <select className="form-control" required
+                                onChange={(e) => setGender(e.target.value)} >
+                                {options.map(o => (
+                                    <option key={o} value={o}> {o} </option>
+                                ))}
+                            </select>
+                            <div className="input-group-append">
+                                <div className="input-group-text">
+                                    <span className="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="input-group mb-3">
+                            <input type="file" className="form-control-file"
+                                onChange={(e) => setImage(e.target.files[0])}
+                            />
+                        </div>
+
+                        <button className="btn btn-primary btn-block btn-flat" type="submit">Sign Up</button>
+
+                    </form>
+                    <Link to="/login" className="login">Have an account <i class="fa fa-arrow-right"></i></Link>
+
+                </div>
+            </div>
+
         </React.Fragment>
     );
 }
