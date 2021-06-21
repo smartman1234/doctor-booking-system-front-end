@@ -197,3 +197,21 @@ body {
 .login-box .login-box-body .register:hover {
   opacity: 1;
 }
+
+/* profile page*/
+
+.profile .card .card-header {
+  background-color: rgb(0, 112, 205); /* rgb(0, 112, 205) rgb(59, 146, 223) */
+  color: #fff;
+}
+
+.profile .card .card-header h5 {
+  color: #fff;
+}
+
+.profile .btn-primary {
+  background-color: rgb(0, 112, 205);
+}
+
+
+/*end profile page*/
