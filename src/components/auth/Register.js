@@ -72,7 +72,7 @@ function Register() {
                             />
                             <div className="input-group-append">
                                 <div className="input-group-text">
-                                    <span className="fas fa-envelope"></span>
+                                    <span className="fas fa-signature"></span>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@ function Register() {
                             />
                             <div className="input-group-append">
                                 <div className="input-group-text">
-                                    <span className="fas fa-envelope"></span>
+                                    <span className="fas fa-signature"></span>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ function Register() {
                             />
                             <div className="input-group-append">
                                 <div className="input-group-text">
-                                    <span className="fas fa-lock"></span>
+                                    <span className="fas fa-phone"></span>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,7 @@ function Register() {
                             />
                             <div className="input-group-append">
                                 <div className="input-group-text">
-                                    <span className="fas fa-lock"></span>
+                                    <span className="fas fa-calendar-week"></span>
                                 </div>
                             </div>
                         </div>
@@ -152,15 +152,20 @@ function Register() {
                             </select>
                             <div className="input-group-append">
                                 <div className="input-group-text">
-                                    <span className="fas fa-lock"></span>
+                                    <span className="fas fa-venus-mars"></span>
                                 </div>
                             </div>
                         </div>
 
                         <div className="input-group mb-3">
-                            <input type="file" className="form-control-file"
-                                onChange={(e) => setImage(e.target.files[0])}
-                            />
+                            
+                            <div class="custom-file">
+                                <input type="file" className="custom-file-input" id="validatedCustomFile" required
+                                    onChange={(e) => setImage(e.target.files[0])}
+                                />                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                               <div class="invalid-feedback">Example invalid custom file feedback</div>
+                            </div>
+
                         </div>
 
                         <button className="btn btn-primary btn-block btn-flat" type="submit">Sign Up</button>
