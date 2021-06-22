@@ -20,7 +20,7 @@ import Reset from './components/auth/Reset';
 import Profile from './components/Profile/Profile';
 import SearchBar from './components/searchbar/SearchBar';
 import HomeSite from './components/patient/HomeSite';
-import ProtectedRoute from './components/ProtectedRoutetectedRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   let [user, setUser] = useState([]);
