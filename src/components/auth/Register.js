@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Header from '../patient/Header';
+import Footer from '../patient/Footer';
 
 function Register() {
     const [profileImg,setProfileImg] = useState('');
@@ -187,7 +189,7 @@ function Register() {
                                 <input type="file" className="custom-file-input" id="validatedCustomFile" 
                                     onChange={imageHandler}
                                 />                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                               <div class="invalid-feedback">Example invalid custom file feedback</div>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
                             </div>
 
                             {profileImage}
@@ -197,7 +199,7 @@ function Register() {
                         <button className="btn btn-primary btn-block btn-flat" type="submit">Sign Up</button>
 
                     </form>
-                    <Link to="/login" className="login">Have an account <i class="fa fa-arrow-right"></i></Link>
+                    <Link to="/login" className="login">Have an account <i className="fa fa-arrow-right"></i></Link>
 
                 </div>
             </div>
