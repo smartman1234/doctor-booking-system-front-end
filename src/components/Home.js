@@ -63,7 +63,7 @@ function Home(props) {
           <img className="img-thumbnail" src={"http://127.0.0.1:8000/storage/" + doctor.image}/>
         </div>
         <div class="col-md-7 col-sm-9 py-4 px-0 data">
-          <h3>{doctor.name_en}</h3>
+          <h1>{doctor.name_en}</h1>
           <h6><i class="fa fa-graduation-cap"></i>{doctor.degree.name_en}</h6>
           <h6><i class="fa fa-stethoscope"></i>{doctor.specialist.name_en}</h6>
           <h6><i class="fa fa-stethoscope"></i>
@@ -155,35 +155,37 @@ function Home(props) {
   }
   return (
     <React.Fragment>
-      {props.user ? "Hi " + props.user.name_en : "You are not logged in"}
-      <button onClick={notify}>Notify!</button> <br/>
+      <div className="container">
+        {props.user ? "Hi " + props.user.name_en : "You are not logged in"}
+        <button onClick={notify}>Notify!</button> <br/>
 
-      <input type="text" placeholder="Doctor Name"
-            onChange={(e) => search(e.target.value)}
-        />
+        <input type="text" placeholder="Doctor Name"
+              onChange={(e) => search(e.target.value)}
+          />
 
-      <div className="search-control">
-      <div className="row">
-        <div className="col-md-3">
-          filter
+        <div className="search-control">
+          <div className="row">
+            <div className="col-md-3">
+              filter
+            </div>
+            <div className="col-md-9">
+              {doctorCard}
+              <div className="mt-3">
+                <Pagination
+                  activePage={current_page}
+                  itemsCountPerPage={per_page}
+                  totalItemsCount={total}
+                  onChange={(pageNumber) => getData(pageNumber)}
+                  itemClass="page-item"
+                  linkClass="page-link"
+                  firstPageText="First"
+                  lastPageText="Last"
+                />
+            </div>
+            </div>
+          </div>
         </div>
-        <div className="col-md-9">
-          {doctorCard}
-        </div>
-      </div>
-      </div>
 
-      <div className="mt-3">
-        <Pagination
-          activePage={current_page}
-          itemsCountPerPage={per_page}
-          totalItemsCount={total}
-          onChange={(pageNumber) => getData(pageNumber)}
-          itemClass="page-item"
-          linkClass="page-link"
-          firstPageText="First"
-          lastPageText="Last"
-        />
       </div>
       
     </React.Fragment>

@@ -240,7 +240,7 @@ body {
   border-radius: 50%;
 }
 
-.search-control .search-result .data h3{
+.search-control .search-result .data h1{
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 15px;
 }
