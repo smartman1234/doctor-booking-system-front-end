@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Header from '../patient/Header';
+import Footer from '../patient/Footer';
 
 function Register() {
+    const [profileImg,setProfileImg] = useState('');
+
     const options = ['male','female'];
     const [name_en,setName_en] = useState("");
     const [name_ar,setName_ar] = useState("");
@@ -13,6 +17,17 @@ function Register() {
     const [gender,setGender] = useState(options[0]);
     const [image,setImage] = useState("");
     const [redirect,setRedirect] = useState(false);
+
+    const imageHandler = (e) => {
+        const reader = new FileReader();
+        reader.onload = () =>{
+          if(reader.readyState === 2){
+            setProfileImg(reader.result);
+          }
+        }
+        reader.readAsDataURL(e.target.files[0]);
+        setImage(e.target.files[0]);
+      };
 
 
     const submit = (e) => {
@@ -48,6 +63,17 @@ function Register() {
             console.log(error)
         });
         
+    }
+
+    var profileImage;
+    if(profileImg === ''){
+        profileImage = (
+            <img style={{width:100}} src={"http://127.0.0.1:8000/storage/patients/default.png"}/>
+            );
+    }else{
+        profileImage = (
+            <img style={{width:100}} src={profileImg}/>
+            );
     }
 
     if(redirect) {
@@ -160,18 +186,20 @@ function Register() {
                         <div className="input-group mb-3">
                             
                             <div class="custom-file">
-                                <input type="file" className="custom-file-input" id="validatedCustomFile" required
-                                    onChange={(e) => setImage(e.target.files[0])}
+                                <input type="file" className="custom-file-input" id="validatedCustomFile" 
+                                    onChange={imageHandler}
                                 />                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                               <div class="invalid-feedback">Example invalid custom file feedback</div>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
                             </div>
+
+                            {profileImage}
 
                         </div>
 
                         <button className="btn btn-primary btn-block btn-flat" type="submit">Sign Up</button>
 
                     </form>
-                    <Link to="/login" className="login">Have an account <i class="fa fa-arrow-right"></i></Link>
+                    <Link to="/login" className="login">Have an account <i className="fa fa-arrow-right"></i></Link>
 
                 </div>
             </div>

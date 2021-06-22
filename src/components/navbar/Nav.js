@@ -37,7 +37,8 @@ function Nav(props) {
         links = (
             <ul className="navbar-nav my-2 my-lg-0">
                 <li className="nav-item">
-                    <Link to="/profile" className="nav-link">Profile</Link>
+                <img style={{ width: 50, height: 50 }} alt="profile pic" src={"http://127.0.0.1:8000/storage/patients/" + props.user.image}/>
+                    <Link style={{ display: "inline-block" }} to="/profile" className="nav-link">Profile</Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/login" onClick={logout} className="nav-link">Logout</Link>
@@ -51,6 +52,9 @@ function Nav(props) {
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <Link to="/" className="nav-link">Home</Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/site" className="nav-link">Site</Link>
                 </li>
             </ul>
 

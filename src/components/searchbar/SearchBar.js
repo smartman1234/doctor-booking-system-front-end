@@ -16,8 +16,8 @@ class SearchBar extends React.Component {
       lastPage_cities: "",
       index_districts: 1,
       lastPage_districts: "",
-      doctorName:"",
-      doctorNamePlaceHolder:"Doctor Name",
+      doctorName: "",
+      doctorNamePlaceHolder: "Doctor Name",
       chooseSpecialty: "Choose specialty",
       chooseSpecialtyID: "",
       chooseCity: "Choose city",
@@ -81,7 +81,7 @@ class SearchBar extends React.Component {
       index_cities: 1,
       lastPage_cities: "",
       index_districts: 1,
-      doctorName:"",
+      doctorName: "",
       lastPage_districts: "",
       chooseSpecialty: "Choose specialty",
       chooseSpecialtyID: "",
@@ -226,18 +226,17 @@ class SearchBar extends React.Component {
 
   handleSubmit(event) {
     let searchParam = [];
-    searchParam["specialty"] = this.state.specialty != "" ? this.state.specialty : "";
+    searchParam["specialty"] =
+      this.state.specialty != "" ? this.state.specialty : "";
     searchParam["city"] = this.state.city != "" ? this.state.city : "";
     searchParam["district"] = this.state.disc != "" ? this.state.disc : "";
-    searchParam["name"] = this.state.doctorName != "" ? this.state.doctorName : "";
+    searchParam["name"] =
+      this.state.doctorName != "" ? this.state.doctorName : "";
 
     console.log(searchParam);
-    alert(
-      "Search : " + this.state.specialty + this.state.city + this.state.disc
-    );
-
-    const el1 = document.querySelector('.test');
-    el1.value = '';
+   
+    const el1 = document.querySelector(".test");
+    el1.value = "";
     this.init();
     this.search(searchParam);
 
@@ -253,11 +252,11 @@ class SearchBar extends React.Component {
     console.log(this.state.index_specialists);
   };
 
-  test=(event)=>{
-    event.target.value = '';
-  }
+  test = (event) => {
+    event.target.value = "";
+  };
   searchByName = (event) => {
-      this.setState({doctorName:event.target.value})
+    this.setState({ doctorName: event.target.value });
   };
   handlePreClick = () => {
     if (this.state.index_cities > 1) {
@@ -315,75 +314,74 @@ class SearchBar extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col">
-              <div className="row row-cols-1">
-                <label className="col">Select a specialty</label>
+              <div className="row">
+                <label className="col-12 mb-3">Select a specialty</label>
 
-                <div className="col">
-                  <i className="m-1 fas fa-stethoscope fa-lg"></i>
-                  <div className="col dropdown">
-                    <button
-                      onClick={this.handleClick}
-                      className="btn btn-secondary text-truncate dropdown-toggle"
-                      style={{ "max-width": "170px" }}
-                      type="button"
-                    >
-                      {this.state.chooseSpecialty}
-                    </button>
-                    <div
-                      className={
-                        "position-absolute d-" +
-                        (this.state.dis == "none" ? "none" : "block")
-                      }
-                      style={mystyle}
-                    >
-                      <div className="row bg-white p-2 w-100">
-                        {this.state.specialists.map((specialist) => (
-                          <a
-                            className="col-12 btn btn-link"
-                            onClick={this.handleSpecialistsClick}
-                            key={specialist.value}
-                            name={specialist.value}
-                            id={specialist.id}
+                <i className="col-1 fas fa-stethoscope fa-lg"></i>
+                <div className="col-10 dropdown w-100">
+                  <button
+                    onClick={this.handleClick}
+                    className="btn btn-secondary text-truncate dropdown-toggle"
+                    style={{ "max-width": "170px" }}
+                    type="button"
+                  >
+                    {this.state.chooseSpecialty}
+                  </button>
+                  <div
+                    className={
+                      "position-absolute d-" +
+                      (this.state.dis == "none" ? "none" : "block")
+                    }
+                    style={mystyle}
+                  >
+                    <div className="row bg-white p-2 w-100">
+                      {this.state.specialists.map((specialist) => (
+                        <a
+                          className="col-12 btn btn-link"
+                          onClick={this.handleSpecialistsClick}
+                          key={specialist.value}
+                          name={specialist.value}
+                          id={specialist.id}
+                        >
+                          {specialist.display}
+                        </a>
+                      ))}
+
+                      <div className="col-12">
+                        <div className="row justify-content-between">
+                          <span
+                            onClick={this.handlePreClick}
+                            className="btn btn-light btn-lg col-2"
                           >
-                            {specialist.display}
-                          </a>
-                        ))}
-
-                        <div className="col-12">
-                          <div className="row justify-content-between">
-                            <span
-                              onClick={this.handlePreClick}
-                              className="btn btn-light btn-lg col-2"
-                            >
-                              &lt;
-                            </span>
-                            <span className="col-4">
-                              <small>
-                                Page {this.state.index_specialists}/
-                                {this.state.lastPage_specialists}
-                              </small>
-                            </span>
-                            <span
-                              onClick={this.handleNextClick}
-                              className="btn btn-light btn-lg col-2"
-                            >
-                              &gt;
-                            </span>
-                          </div>
+                            &lt;
+                          </span>
+                          <span className="col-4">
+                            <small>
+                              Page {this.state.index_specialists}/
+                              {this.state.lastPage_specialists}
+                            </small>
+                          </span>
+                          <span
+                            onClick={this.handleNextClick}
+                            className="btn btn-light btn-lg col-2"
+                          >
+                            &gt;
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                {/* </div> */}
               </div>
             </div>
             <div className="col">
               <div className="row">
-                <label className="col-10">In this city</label>
+                <label className="col-12 mb-3">In this city</label>
 
-                <div className="col">
-                  <i class="m-1 fas fa-map-marker-alt fa-lg"></i>
-                  <div className="col dropdown">
+                
+                  <i class="col-1 fas fa-map-marker-alt fa-lg"></i>
+                  <div className="col-10 dropdown w-100">
                     <button
                       onClick={this.handleCityToggleClick}
                       className="btn btn-secondary text-truncate dropdown-toggle"
@@ -437,16 +435,15 @@ class SearchBar extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div>
+                
               </div>
             </div>
             <div className="col">
               <div className="row">
-                <label className="col-10">In this area</label>
+                <label className="col-12 mb-3">In this area</label>
 
-                <div className="col">
-                  <i class="m-1 fas fa-map-marker-alt fa-lg"></i>
-                  <div className="col dropdown">
+                  <i class="col-1 fas fa-map-marker-alt fa-lg"></i>
+                  <div className="col-10 dropdown w-100">
                     <button
                       onClick={this.handleDistrictToggleClick}
                       className="btn btn-secondary text-truncate dropdown-toggle"
@@ -500,23 +497,23 @@ class SearchBar extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div>
+               
               </div>
             </div>
             <div className="col">
-              <div className="row row-cols-1">
-                <label className="col">Or search by name</label>
+              <div className="row justify-content-between">
+                <label className="col-12 mb-3">Or search by name</label>
 
-                <div className="col">
-                  <i class="m-1 fas fa-user-md fa-lg"></i>
+               
+                  <i class="col-1 fas fa-user-md fa-lg"></i>
                   <input
                     type="text"
-                    className="w-75 test"
+                    className="col-10 w-75 test p-2"
                     placeholder={this.state.doctorNamePlaceHolder}
                     onChange={this.searchByName}
                     onSubmit={this.test}
                   />
-                </div>
+              
               </div>
             </div>
 
