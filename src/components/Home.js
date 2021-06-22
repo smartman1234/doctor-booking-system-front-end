@@ -4,7 +4,6 @@ import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 function Home(props) {
   const [data, setData] = useState([]);
-  //const [profileImg,setProfileImg] = useState();
   const [current_page,setCurrent_page] = useState(0);
  const [per_page,setPer_page] = useState(0);
  const [total,setTotal] = useState(0);
@@ -70,6 +69,13 @@ function Home(props) {
                         <li>{address.address_en}</li>
                         <li>{address.district.name_en}</li>
                         <li>{address.district.city.name_en}</li>
+                        <li>{address.doctor_times.map(time => {
+                          return (<ol key={time.id}>
+                                  <li>{time.from}</li>
+                                  <li>{time.to}</li>
+                                  <li>{time.day}</li>
+                                  </ol>);
+                        })}</li>
                         </ol>
                         ); 
                     })}</div>
