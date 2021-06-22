@@ -259,7 +259,7 @@ class SearchBar extends React.Component {
     this.setState({ doctorName: event.target.value });
   };
   handlePreClick = () => {
-    if (this.state.index_cities > 1) {
+    if (this.state.index_specialists > 1) {
       let indexVal = this.state.index_specialists - 1;
       this.setState({ index_specialists: indexVal });
       this.getSpecialistsAPI(indexVal);
@@ -305,7 +305,7 @@ class SearchBar extends React.Component {
 
   render() {
     const mystyle = {
-      "max-width": "350px",
+      "max-width": "2000px",
       "max-height": "350px",
       "z-index": "2",
     };
@@ -337,7 +337,7 @@ class SearchBar extends React.Component {
                     <div className="row bg-white p-2 w-100">
                       {this.state.specialists.map((specialist) => (
                         <a
-                          className="col-12 btn btn-link"
+                          className="col-12 btn btn-link text-wrap"
                           onClick={this.handleSpecialistsClick}
                           key={specialist.value}
                           name={specialist.value}
