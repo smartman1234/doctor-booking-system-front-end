@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 function Nav(props) {
-
+    const cookies = new Cookies();
+    const isAuthenticated = cookies.get("jwt");
     const logout = () => {
 
         fetch('http://localhost:8000/api/logout', {
@@ -19,7 +21,7 @@ function Nav(props) {
 
     let links;
 
-    if(props.user === '')
+    if(typeof isAuthenticated === "undefined")
     {
         links = (
             <ul className="navbar-nav my-2 my-lg-0">
@@ -29,9 +31,7 @@ function Nav(props) {
                 <li className="nav-item">
                     <Link to="/register" className="nav-link">Register</Link>
                 </li>
-            </ul>
-            
-            
+            </ul> 
         );
     }else {
         links = (
