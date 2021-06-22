@@ -19,8 +19,8 @@ import Forgot from './components/auth/Forgot';
 import Reset from './components/auth/Reset';
 import Profile from './components/Profile/Profile';
 import SearchBar from './components/searchbar/SearchBar';
-
 import HomeSite from './components/patient/HomeSite';
+import ProtectedRoute from './components/ProtectedRoutetectedRoute';
 
 function App() {
   let [user, setUser] = useState([]);
@@ -57,13 +57,13 @@ function App() {
     <BrowserRouter>
         <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
         <SearchBar sendDataToParent={sendDataToParent} />
-        <Route path="/" exact component={() => <Home user={user} />}/>
+        <ProtectedRoute path="/" exact component={() => <Home user={user} />}/>
         <Route path="/site" exact component={() => <HomeSite />}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>
         <Route path="/forgot" component={Forgot}/>
         <Route path="/reset/:token" component={Reset}/>
-        <Route path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
+        <ProtectedRoute path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
       </BrowserRouter>
   );
 }
