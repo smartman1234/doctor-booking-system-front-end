@@ -82,7 +82,6 @@ function Register() {
 
     return (
         <React.Fragment>
-            <Header/>
             <div className="login-box">
                 <div className="login-logo">
                     <span>
