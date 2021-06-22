@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import Forgot from './components/auth/Forgot';
 import Reset from './components/auth/Reset';
 import Profile from './components/Profile/Profile';
+import SearchBar from './components/searchbar/SearchBar';
 
 import HomeSite from './components/patient/HomeSite';
 
@@ -25,7 +26,12 @@ function App() {
   let [user, setUser] = useState([]);
   let [login, setLogin] = useState(false);
   let [profile, setprofile] = useState(false);
-  
+  //start
+  const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log("Index => ",index);
+    setUser(index);
+  };
+  //end
   useEffect(() => {
     
     fetch('http://localhost:8000/api/patientUser', {
@@ -50,7 +56,7 @@ function App() {
   return (
     <BrowserRouter>
         <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
-    {/* <div className="container"> */}
+        <SearchBar sendDataToParent={sendDataToParent} />
         <Route path="/" exact component={() => <Home user={user} />}/>
         <Route path="/site" exact component={() => <HomeSite />}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
@@ -58,7 +64,6 @@ function App() {
         <Route path="/forgot" component={Forgot}/>
         <Route path="/reset/:token" component={Reset}/>
         <Route path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
-    {/* </div> */}
       </BrowserRouter>
   );
 }
