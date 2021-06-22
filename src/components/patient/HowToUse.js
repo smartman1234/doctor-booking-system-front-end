@@ -6,7 +6,6 @@ function HowToUse() {
 
         <section className="section steps" data-aos="fade-up">
           <div className="container">
-
             <div className="row justify-content-center mb-5">
               <div className="col-md-8 text-center mb-5">
                 <h2 className="text-uppercase heading border-bottom mb-4"> How To Use </h2>
