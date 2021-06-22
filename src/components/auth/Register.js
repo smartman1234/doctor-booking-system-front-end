@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Header from '../patient/Header';
+import Footer from '../patient/Footer';
 
 function Register() {
     const options = ['male','female'];
@@ -56,6 +58,7 @@ function Register() {
 
     return (
         <React.Fragment>
+            <Header/>
             <div className="login-box">
                 <div className="login-logo">
                     <span>
@@ -159,11 +162,11 @@ function Register() {
 
                         <div className="input-group mb-3">
                             
-                            <div class="custom-file">
+                            <div className="custom-file">
                                 <input type="file" className="custom-file-input" id="validatedCustomFile" required
                                     onChange={(e) => setImage(e.target.files[0])}
-                                />                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                               <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                />                                <label className="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                               <div className="invalid-feedback">Example invalid custom file feedback</div>
                             </div>
 
                         </div>
@@ -171,7 +174,7 @@ function Register() {
                         <button className="btn btn-primary btn-block btn-flat" type="submit">Sign Up</button>
 
                     </form>
-                    <Link to="/login" className="login">Have an account <i class="fa fa-arrow-right"></i></Link>
+                    <Link to="/login" className="login">Have an account <i className="fa fa-arrow-right"></i></Link>
 
                 </div>
             </div>
