@@ -83,60 +83,104 @@ function Profile(props) {
     if (props.user) {
     return (
         <React.Fragment>
-                <ToastContainer /> 
-                <form className="form-signin" onSubmit={submit}>
-                <h1 className="h3 mb-3 font-weight-normal">Manage Profile</h1>
-                
-                <input type="text"  className="form-control" placeholder="name_en" required
-                    onChange={(e) => setName_en(e.target.value)}
-                    defaultValue={props.user.name_en}
-                />
+                <ToastContainer />
 
-                <input type="text"  className="form-control" placeholder="name_ar" required
-                    onChange={(e) => setName_ar(e.target.value)}
-                    defaultValue={props.user.name_ar}
-                />
+                <div className="container my-4 profile">
+                    <h3 className="mb-4 font-weight-normal">Manage Profile</h3>
+                    <div className="card">
+                        <div className="card-header">
+                            <h5 className="card-title mb-0"><i className="fa fa-user-edit"></i> Edit Info</h5>
+                        </div>
+                        <div className="card-body">
+                            <form className="form-signin" onSubmit={submit}>
 
-                <input type="email" className="form-control" placeholder="email" required
-                    defaultValue={props.user.email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-  
-                <input type="password"  className="form-control" placeholder="Password" autoComplete="on" required 
-                    
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                                <div className="row">
 
-                <input type="password"  className="form-control" placeholder="Confirm Password" autoComplete="on" required
-                    onChange={(e) => setPasswordConfirm(e.target.value)}
-                />
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Name in English</label>
+                                        <input type="text" className="form-control" required
+                                            onChange={(e) => setName_en(e.target.value)}
+                                            defaultValue={props.user.name_en}
+                                        />
+                                    </div>
 
-                <input type="text" className="form-control" placeholder="mobile" required
-                    onChange={(e) => setMobile(e.target.value)} 
-                    defaultValue={props.user.mobile}
-                />
-                <input type="date"  className="form-control" required
-                    onChange={(e) => setDate(e.target.value)}
-                    defaultValue={props.user.date_of_birth}
-                />
-                <select  className="form-control" required
-                    onChange={(e) => setGender(e.target.value)}
-                    defaultValue={props.user.gender}
-                >
-                        {options.map(o => (
-                            <option key={o} value={o}> {o} </option>
-                        ))}
-                </select>
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Name in Arabic</label>
+                                        <input type="text" className="form-control" required
+                                            onChange={(e) => setName_ar(e.target.value)}
+                                            defaultValue={props.user.name_ar}
+                                        />
+                                    </div>
 
-                <input type="file" className="form-control-file"
-                
-                    onChange={imageHandler}
-                />
-                {profileImage}
-                <br/>
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Email</label>
+                                        <input type="email" className="form-control" required
+                                            defaultValue={props.user.email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </div>
 
-                <button className="btn btn-lg btn-primary btn-block" >Update Profile</button>
-                </form>
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Password</label>
+                                        <input type="password"  className="form-control" autoComplete="on" required
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Confirm Password</label>
+                                        <input type="password"  className="form-control" autoComplete="on" required
+                                            onChange={(e) => setPasswordConfirm(e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Mobile</label>
+                                        <input type="text" className="form-control" required
+                                            onChange={(e) => setMobile(e.target.value)} 
+                                            defaultValue={props.user.mobile}
+                                        />
+                                    </div>
+
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Date of brith</label>
+                                        <input type="date" className="form-control" required
+                                            onChange={(e) => setDate(e.target.value)}
+                                            defaultValue={props.user.date_of_birth}
+                                        />
+                                    </div>
+
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Gender</label>
+                                        <select className="form-control" required
+                                            onChange={(e) => setGender(e.target.value)}
+                                            defaultValue={props.user.gender}
+                                        >
+                                            {options.map(o => (
+                                                <option key={o} value={o}> {o} </option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <div className="form-group col-lg-4 col-md-6">
+                                        <label>Image</label>
+                                        <input type="file" className="form-control-file"
+                                            onChange={imageHandler}
+                                        />
+                                    </div>
+
+                                </div>
+                                
+                                
+                                {profileImage}
+                                <br/>
+
+                                <button className="btn btn-lg btn-primary btn-block" >Update Profile</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        
                 
         </React.Fragment>        
     )

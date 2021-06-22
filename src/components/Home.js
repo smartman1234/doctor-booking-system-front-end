@@ -20,7 +20,7 @@ function Home(props) {
     })
       .then((response) => response.json())
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setData(res.data);
         setCurrent_page(res.current_page);
         setPer_page(res.per_page);
@@ -46,6 +46,8 @@ function Home(props) {
 
 }
 
+    
+
   const alert = useAlert();
   const notify = () => {
     // SuccessNotify("hello word");
@@ -57,7 +59,31 @@ function Home(props) {
                 <div className="card mb-4" key={doctor.id}>
                     <div className="card-header">{doctor.name_en}</div>
                     <div className="card-header">{doctor.name_ar}</div>
+                    <div className="card-header">{doctor.gender}</div>
+                    <div className="card-header">{doctor.country.name_en}</div>
+                    <div className="card-header">{doctor.degree.name_en}</div>
+                    <div className="card-header">{doctor.specialist.name_en}</div>
+                    <div className="card-header">{doctor.addresses.map(address => {
+                      return (
+                        <ol key={address.id}>
+                        <li>{address.address_en}</li>
+                        <li>{address.district.name_en}</li>
+                        <li>{address.district.city.name_en}</li>
+                        <li>{address.doctor_times.map(time => {
+                          return (<ol key={time.id}>
+                                  <li>{time.from}</li>
+                                  <li>{time.to}</li>
+                                  <li>{time.day}</li>
+                                  </ol>);
+                        })}</li>
+                        </ol>
+                        ); 
+                    })}</div>
+                    <div className="card-header">{doctor.subspecialists.map(subspecialist => {
+                      return (<li key={subspecialist.id}>{subspecialist.name_en}</li>); 
+                    })}</div>
                     <div className="card-body">
+                    <img style={{width:100}} src={"http://127.0.0.1:8000/storage/" + doctor.image}/>
                     <h5 className="card-title">{doctor.mobile}</h5>
                         <p className="card-text">
                             {doctor.session_time}
