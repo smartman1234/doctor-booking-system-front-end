@@ -10,12 +10,18 @@ import { useEffect, useState } from 'react';
 import Forgot from './components/auth/Forgot';
 import Reset from './components/auth/Reset';
 import Profile from './components/Profile/Profile';
+import SearchBar from './components/searchbar/SearchBar';
 
 function App() {
   let [user, setUser] = useState([]);
   let [login, setLogin] = useState(false);
   let [profile, setprofile] = useState(false);
-  
+  //start
+  const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log("Index => ",index);
+    setUser(index);
+  };
+  //end
   useEffect(() => {
     
     fetch('http://localhost:8000/api/patientUser', {
@@ -39,8 +45,10 @@ function App() {
 
   return (
     <BrowserRouter>
+        
         <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
     <div className="container">
+        <SearchBar sendDataToParent={sendDataToParent} />
         <Route path="/" exact component={() => <Home user={user} />}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>

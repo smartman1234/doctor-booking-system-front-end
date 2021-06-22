@@ -7,44 +7,44 @@ function Home(props) {
   const [current_page,setCurrent_page] = useState(0);
  const [per_page,setPer_page] = useState(0);
  const [total,setTotal] = useState(0);
-  useEffect(() => {
-    getData();
-    return () => {
-        setData([]); // This worked for me
-      };
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  //   return () => {
+  //       setData([]); // This worked for me
+  //     };
+  // }, []);
 
-  function getData(pageNumber) {
-    fetch(`http://127.0.0.1:8000/api/doctors?page=${pageNumber}`, {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(res);
-        setData(res.data);
-        setCurrent_page(res.current_page);
-        setPer_page(res.per_page);
-        setTotal(res.total);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // function getData(pageNumber) {
+  //   fetch(`http://127.0.0.1:8000/api/doctors?page=${pageNumber}`, {
+  //     method: "GET",
+  //   })
+  //     .then((response) => response.json())
+  //     .then((res) => {
+  //       console.log(res);
+  //       setData(res.data);
+  //       setCurrent_page(res.current_page);
+  //       setPer_page(res.per_page);
+  //       setTotal(res.total);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
-  function search(key) {
+//   function search(key) {
 
-    fetch('http://127.0.0.1:8000/api/search/' + key, {
-        method: 'GET',
-    }).then( response => response.json())
-    .then(res => {
-        console.log(res);
-        setData(res);
-    })
-    .catch(error => {
-        console.log(error);
-    });
+//     fetch('http://127.0.0.1:8000/api/search/' + key, {
+//         method: 'GET',
+//     }).then( response => response.json())
+//     .then(res => {
+//         console.log(res);
+//         setData(res);
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     });
 
-}
+// }
 
   const alert = useAlert();
   const notify = () => {
@@ -52,8 +52,8 @@ function Home(props) {
     alert.error("Wait The Admin To Accept You");
   };
   var doctorCard;
-  if (data) {
-  doctorCard = data.map((doctor) => { return (
+  if (props.user.data) {
+  doctorCard = props.user.data.map((doctor) => { return (
                 <div className="card mb-4" key={doctor.id}>
                     <div className="card-header">{doctor.name_en}</div>
                     <div className="card-header">{doctor.name_ar}</div>
@@ -75,10 +75,6 @@ function Home(props) {
     <React.Fragment>
       {props.user ? "Hi " + props.user.name_en : "You are not logged in"}
       <button onClick={notify}>Notify!</button> <br/>
-
-      <input type="text" placeholder="Doctor Name"
-            onChange={(e) => search(e.target.value)}
-        />
       {doctorCard}
 
       <div className="mt-3">
@@ -86,7 +82,7 @@ function Home(props) {
           activePage={current_page}
           itemsCountPerPage={per_page}
           totalItemsCount={total}
-          onChange={(pageNumber) => getData(pageNumber)}
+          // onChange={getData()}
           itemClass="page-item"
           linkClass="page-link"
           firstPageText="First"
