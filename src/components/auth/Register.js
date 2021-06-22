@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Header from '../patient/Header';
-import Footer from '../patient/Footer';
 
 function Register() {
     const [profileImg,setProfileImg] = useState('');
