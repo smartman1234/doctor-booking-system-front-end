@@ -13,10 +13,11 @@ import Home from '../Home';
 function HomeSite({sendDoctorDataParentHome}) {
 
     const [doctorData, setDoctorData] = React.useState([]); // the lifted state
-    const sendDoctorDataParent = (index) => {
+    const sendDoctorDataParent = (index,searchParams) => {
         // the callback. Use a better name
         console.log("Parent | sendDoctorDataParent => ", index);
-        sendDoctorDataParentHome(index);
+        console.log("Parent | sendSearchParamsParent => ", searchParams);
+        sendDoctorDataParentHome(index,searchParams);
         setDoctorData(index);
       };
         Aos.init()

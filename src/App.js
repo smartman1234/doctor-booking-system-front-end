@@ -23,15 +23,19 @@ import SearchBar from './components/searchbar/SearchBar';
 import HomeSite from './components/patient/HomeSite';
 
 function App() {
+  let [searchParams, setSearchParams] = useState([]);
+
   let [user, setUser] = useState([]);
   let [login, setLogin] = useState(false);
   let [profile, setprofile] = useState(false);
   const [doctorData, setDoctorData] = useState([]); // the lifted state
-    const sendDoctorDataParentHome = (index) => {
+    const sendDoctorDataParentHome = (index,searchParams) => {
         // the callback. Use a better name
         console.log("ParentHome | sendDoctorDataParentHome => ", index);
+        console.log("ParentHome | sendSearchParamsParentHome => ", searchParams);
         // setDoctorData(index);
         setUser(index);
+        setSearchParams(searchParams);
       };
   //start
   const sendDataToParent = (index) => { // the callback. Use a better name
@@ -65,7 +69,7 @@ function App() {
       
         <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
         
-        <Route path="/" exact component={() => <Home user={user} />}/>
+        <Route path="/" exact component={() => <Home user={user} searchParams={searchParams} />}/>
         <Route path="/site" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>

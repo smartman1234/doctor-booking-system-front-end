@@ -10,6 +10,8 @@ function Search({sendDoctorDataParent}) {
   const [departmentID, setDepartmentID] = React.useState(null); // the lifted state
   const [doctorName, setDoctorName] = React.useState(null); // the lifted state
 
+  const [searchParams, setSearchParams] = React.useState([]); // the lifted state
+
   const [doctorData, setDoctorData] = React.useState([]); // the lifted state
 
   const [_dis, setDistricts] = React.useState(null); // the lifted state
@@ -56,6 +58,8 @@ function Search({sendDoctorDataParent}) {
     // const el1 = document.querySelector(".test");
     // el1.value = "";
     // this.init();
+    // setSearchParams([cityID,districtID,departmentID,doctorName]);
+    // console.log("searchParams => ",searchParams);
     search(searchParam);
 
     event.preventDefault();
@@ -73,7 +77,7 @@ function Search({sendDoctorDataParent}) {
       .then((res) => {
         console.log("res from server => ",res);
         setRedirect(true);
-        sendDoctorDataParent(res);
+        sendDoctorDataParent(res,key);
         setDoctorData(res);
 
         
