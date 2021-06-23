@@ -26,6 +26,13 @@ function App() {
   let [user, setUser] = useState([]);
   let [login, setLogin] = useState(false);
   let [profile, setprofile] = useState(false);
+  const [doctorData, setDoctorData] = useState([]); // the lifted state
+    const sendDoctorDataParentHome = (index) => {
+        // the callback. Use a better name
+        console.log("ParentHome | sendDoctorDataParentHome => ", index);
+        // setDoctorData(index);
+        setUser(index);
+      };
   //start
   const sendDataToParent = (index) => { // the callback. Use a better name
     console.log("Index => ",index);
@@ -59,7 +66,7 @@ function App() {
         <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
         
         <Route path="/" exact component={() => <Home user={user} />}/>
-        <Route path="/site" exact component={() => <HomeSite />}/>
+        <Route path="/site" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>
         <Route path="/forgot" component={Forgot}/>
