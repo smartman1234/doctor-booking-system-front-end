@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import 'react-dropdown/style.css';
-import logo from './design/medi/img/doc_boc1.png'; 
+import logo from './design/medi/img/logo.png'; 
 import Languages from './Languages';
 import OurSystem from './OurSystem';
 
@@ -25,7 +25,7 @@ function Navbar() {
                             <Link className="nav-link mt-2" to="/" >Home </Link>
                         </li>
                         <li className="nav-item">
-                            <span className="nav-link"> <OurSystem /> </span>
+                            <a className="nav-link mt-2" href="http://localhost:8000/doctor/">Doctors System</a>
                         </li>
                         <li className="dropdown nav-item">
                         <span className="nav-link"> <i className="fa fa-globe"></i> <Languages /> </span>

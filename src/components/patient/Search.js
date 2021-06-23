@@ -99,7 +99,7 @@ function Search({sendDoctorDataParent}) {
           <div className="row">
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label>
-                <i className="fa fa-search-location"></i>City
+                <i className="fa fa-search-location"></i> City
               </label>
               <div className="nice-select" tabindex="0">
                 <span className="current"></span>
@@ -108,7 +108,7 @@ function Search({sendDoctorDataParent}) {
             </div>
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label>
-                <i className="fa fa-search-location"></i>District
+                <i className="fa fa-search-location"></i> District
               </label>
 
               <div className="nice-select" tabindex="0">
@@ -121,7 +121,7 @@ function Search({sendDoctorDataParent}) {
             </div>
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label for="department">
-                <i className="fa fa-list"></i>Department
+                <i className="fa fa-list"></i> Department
               </label>
 
               <div className="nice-select" tabindex="0">
@@ -131,9 +131,9 @@ function Search({sendDoctorDataParent}) {
                 />
               </div>
             </div>
-            <div className="input-form col-lg-3 col-md-8 col-sm-10">
+            <div className="input-form col-lg col-md-8 col-sm-10">
               <label>
-                <i className="fa fa-user-md"></i>Doctor
+                <i className="fa fa-user-md"></i> Doctor
               </label>
               <input
                 id="doctor"
