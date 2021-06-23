@@ -4,11 +4,9 @@ import Navbar from './Navbar';
 import Search from './Search';
 import Carousel from './Carousel';
 import WhyChooseUs from './WhyChooseUs';
-import Services from './Services';
 import HowToUse from './HowToUse';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import Home from '../Home';
 
 function HomeSite({sendDoctorDataParentHome}) {
 
@@ -27,7 +25,6 @@ function HomeSite({sendDoctorDataParentHome}) {
             <Carousel />
             <Search sendDoctorDataParent={sendDoctorDataParent}/>
             <WhyChooseUs />
-            <Services />
             <HowToUse />
             <Footer />
         </React.Fragment>
