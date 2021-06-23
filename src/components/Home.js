@@ -35,6 +35,7 @@ function Home(props) {
     alert.error("Wait The Admin To Accept You");
   };
   var doctorCard;
+
   if (data) {
     doctorCard = data.map((doctor) => {
       return (
@@ -86,12 +87,14 @@ function Home(props) {
         </div>
       );
     });
+
   } else {
     doctorCard = <div className="alert alert-danger">No doctors</div>;
   }
   return (
     <React.Fragment>
       {props.user ? "Hi " + props.user.name_en : "You are not logged in"}
+
       <button onClick={notify}>Notify!</button> <br />
       {doctorCard}
       <div className="mt-3">
@@ -106,6 +109,7 @@ function Home(props) {
           lastPageText="Last"
         />
       </div>
+
     </React.Fragment>
   );
 }

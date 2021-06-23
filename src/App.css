@@ -216,3 +216,88 @@ body {
 
 
 /*end profile page*/
+
+/* search card */
+
+.search-control .search-result {
+  background-color: #fff;
+  border: 1px solid #f2f2f2;
+  border-radius: 15px;
+  box-shadow: 2px 5px 10px #eee;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-control .search-result:hover {
+  box-shadow: 2px 5px 10px #ddd;
+}
+
+.search-control .search-result .px-4 {
+  padding-left: 1.5rem !important;
+}
+
+.search-control .search-result img {
+  width: 100%;
+  border: 1px dashed #999;
+  border-radius: 50%;
+}
+
+.search-control .search-result .data h1{
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
+}
+
+.search-control .search-result .data h6 {
+  margin: 15px 0;
+}
+
+.search-control .search-result .data i {
+  width: 20px;
+  color: #007bff;
+  margin: 0 8px 0 2px;
+  padding: 0 0 4px;
+  border-bottom: 3px solid #f00;
+  text-align: center;
+}
+
+.search-control .search-result .rating-and-booking {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-control .search-result .rating-and-booking .rating i {
+  position: relative;
+  color: #ffb624;
+}
+
+.search-control .search-result .rating-and-booking .rating span {
+  position: absolute;
+  top: 35%;
+  left: 32%;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.search-control .search-result .rating-and-booking .booking a {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.search-control .search-result .rating-and-booking .booking span {
+  color: rgba(0, 0, 0, 0.2);
+  display: block;
+}
+
+@media(max-width:576px) {
+  .search-control .search-result .col-sm-3{
+    display: flex;
+    justify-content: center;
+  }
+  .search-control .search-result img {
+    width: 200px;
+  }
+  .search-control .search-result .data {
+    margin: 0 30px;
+  }
+}
