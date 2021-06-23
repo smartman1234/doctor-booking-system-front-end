@@ -13,7 +13,7 @@ import { BrowserRouter, Route} from 'react-router-dom';
 import Login from './components/auth/Login';
 import Home from './components/Home';
 import Register from './components/auth/Register';
-import Nav from './components/navbar/Nav';
+import Navbar from './components/navbar/Navbar';
 import { useEffect, useState } from 'react';
 import Forgot from './components/auth/Forgot';
 import Reset from './components/auth/Reset';
@@ -67,7 +67,7 @@ function App() {
   return (
     <BrowserRouter>
       
-        <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
+        <Navbar user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
         
         <Route path="/" exact component={() => <Home user={user} searchParams={searchParams} />}/>
         <Route path="/site" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
