@@ -39,52 +39,59 @@ function Home(props) {
   if (data) {
     doctorCard = data.map((doctor) => {
       return (
-        <div className="card mb-4" key={doctor.id}>
-          <div className="card-header">{doctor.name_en}</div>
-          <div className="card-header">{doctor.name_ar}</div>
-          <div className="card-header">{doctor.gender}</div>
-          <div className="card-header">{doctor.country.name_en}</div>
-          <div className="card-header">{doctor.degree.name_en}</div>
-          <div className="card-header">{doctor.specialist.name_en}</div>
-          <div className="card-header">
-            {doctor.addresses.map((address) => {
-              return (
-                <ol key={address.id}>
-                  <li>{address.address_en}</li>
-                  <li>{address.district.name_en}</li>
-                  <li>{address.district.city.name_en}</li>
-                  <li>
-                    {address.doctor_times.map((time) => {
-                      return (
-                        <ol key={time.id}>
-                          <li>{time.from}</li>
-                          <li>{time.to}</li>
-                          <li>{time.day}</li>
-                        </ol>
-                      );
-                    })}
-                  </li>
-                </ol>
-              );
-            })}
-          </div>
-          <div className="card-header">
-            {doctor.subspecialists.map((subspecialist) => {
-              return <li key={subspecialist.id}>{subspecialist.name_en}</li>;
-            })}
-          </div>
-          <div className="card-body">
-            <img
-              style={{ width: 100 }}
-              src={"http://127.0.0.1:8000/storage/" + doctor.image}
-            />
-            <h5 className="card-title">{doctor.mobile}</h5>
-            <p className="card-text">{doctor.session_time}</p>
-            <a href="#" class="btn btn-primary">
-              Book
-            </a>
+        <div className="search-result mb-4">
+      <div className="row m-0">
+        <div className="col-sm-3 py-4 px-4">
+          <img className="img-thumbnail" src={"http://127.0.0.1:8000/storage/" + doctor.image}/>
+        </div>
+        <div class="col-md-7 col-sm-9 py-4 px-0 data">
+          <h3>{doctor.name_en}</h3>
+          <h6><i class="fa fa-graduation-cap"></i>{doctor.degree.name_en}</h6>
+          <h6><i class="fa fa-stethoscope"></i>{doctor.specialist.name_en}</h6>
+          <h6><i class="fa fa-stethoscope"></i>
+            {doctor.subspecialists.map(subspecialist => {
+                return (<span>{subspecialist.name_en}</span>); 
+              })}
+          </h6>
+          {doctor.addresses.map(address => {
+            return (
+              <React.Fragment>
+                <h6>
+                  <i class="fa fa-search-location"></i>
+                  {address.district.city.name_en} - 
+                  {address.district.name_en} - 
+                  {address.address_en}
+                </h6>
+                <h6>
+                  <i class="fa fa-money-bill-wave"></i>
+                  {address.fees}
+                </h6>
+              </React.Fragment>
+              ); 
+          })}
+        </div>
+
+        <div className="col-md-2 py-4 px-4">
+          <div className="rating-and-booking">
+              <div>
+                <div className="rating mb-3 text-center">
+                    <i className="fas fa-star fa-3x">
+                        <span>{doctor.rate}</span>
+                    </i>
+
+                </div>
+                <div className="booking">
+                    <div className="text-center">
+                        <a href="" className="btn">Book</a>
+                    </div>
+                </div>
+              </div>
           </div>
         </div>
+
+
+      </div>
+    </div>
       );
     });
 
@@ -96,19 +103,28 @@ function Home(props) {
       {props.user ? "Hi " + props.user.name_en : "You are not logged in"}
 
       <button onClick={notify}>Notify!</button> <br />
-      {doctorCard}
-      <div className="mt-3">
-        <Pagination
-          activePage={current_page}
-          itemsCountPerPage={per_page}
-          totalItemsCount={total}
-          onChange={(pageNumber) => getData(pageNumber)}
-          itemClass="page-item"
-          linkClass="page-link"
-          firstPageText="First"
-          lastPageText="Last"
-        />
-      </div>
+      <div className="search-control container">
+          <div className="row">
+            <div className="col-md-3">
+              filter
+            </div>
+            <div className="col-md-9">
+              {doctorCard}
+              <div className="mt-3">
+              <Pagination
+                activePage={current_page}
+                itemsCountPerPage={per_page}
+                totalItemsCount={total}
+                onChange={(pageNumber) => getData(pageNumber)}
+                itemClass="page-item"
+                linkClass="page-link"
+                firstPageText="First"
+                lastPageText="Last"
+              />
+              </div>
+            </div>
+          </div>
+        </div>
 
     </React.Fragment>
   );
