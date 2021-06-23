@@ -1,13 +1,49 @@
-import React from 'react'
-import { Select } from 'semantic-ui-react'
+import React, { useState, useEffect } from "react";
+import { Select } from "semantic-ui-react";
 
 const departments = [
-  { key: 'gg', value: 'gg', text: 'Dept1' },
-  { key: 'hh', value: 'hh', text: 'Dept2' }
-]
+  { key: "gg", value: "gg", text: "Dept1" },
+  { key: "hh", value: "hh", text: "Dept2" },
+];
 
-const Departments = () => (
-  <Select placeholder='Our Systems' style={{ border: "none" }} options={departments} />
-)
+const Departments = () => {
+  const onChangeHandler = (e, data) => {
+    console.log(data.value);
+  };
+  const [departments, setData] = useState([]);
+  useEffect(() => {
+    getDepartmentsAPI();
+  }, []);
 
-export default Departments
+  function getDepartmentsAPI() {
+    fetch(`http://127.0.0.1:8000/api/specialists`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        console.log("Res => ", res);
+        let departments = res.map((department) => {
+          return {
+            key: department["id"],
+            value: department["id"],
+            text: department["name_en"],
+          };
+        });
+        setData(departments);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  return (
+    <Select
+      placeholder="Our Systems"
+      style={{ border: "none" }}
+      options={departments}
+      onChange={onChangeHandler}
+    />
+  );
+};
+
+export default Departments;

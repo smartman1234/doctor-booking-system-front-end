@@ -5,6 +5,30 @@ import Districts from './Districts';
 import OurSystem from './OurSystem';
 
 function Search() {
+
+  const [cityID, setCityID] = React.useState(null); // the lifted state
+  const [districtID, setDistrictID] = React.useState(null); // the lifted state
+  const [_dis, setDistricts] = React.useState(null); // the lifted state
+  
+
+  const sendCityIDToParent = (index,data) => { // the callback. Use a better name
+    console.log("Parent | setCityID => ",index);
+    console.log("Parent | _districts => ",data);
+    setCityID(index);
+    setDistricts(data);
+  };
+
+  // const sendDistrictsToParent = (index) =>{
+  //   console.log("Parent | setDistricts => ",index);
+  //   setDistricts(index);
+  // }
+
+  
+
+  const sendDistrictIDToParent = (index) => { // the callback. Use a better name
+    console.log("Parent | setDistrictID => ",index);
+    setDistrictID(index);
+  };
     return (
         <React.Fragment>
             
@@ -14,14 +38,14 @@ function Search() {
                   <div className="select-form col-lg col-md-4 col-sm-12">
                     <label><i className="fa fa-search-location"></i>City</label>
                     <div className="nice-select" tabindex="0"><span className="current"></span>
-                      <Cities/>
+                      <Cities sendCityIDToParent={sendCityIDToParent} />
                     </div>
                   </div>
                   <div className="select-form col-lg col-md-4 col-sm-12">
                     <label><i className="fa fa-search-location"></i>District</label>
                     
                     <div className="nice-select" tabindex="0"><span className="current"></span>
-                      <Districts />
+                      <Districts _dis={_dis} sendDistrictIDToParent={sendDistrictIDToParent}/>
                     </div>
                 </div>
                 <div className="select-form col-lg col-md-4 col-sm-12">

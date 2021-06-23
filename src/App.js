@@ -55,9 +55,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="container"> 
+      
         <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
-        <SearchBar sendDataToParent={sendDataToParent} />
+        
         <Route path="/" exact component={() => <Home user={user} />}/>
         <Route path="/site" exact component={() => <HomeSite />}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
@@ -65,7 +65,7 @@ function App() {
         <Route path="/forgot" component={Forgot}/>
         <Route path="/reset/:token" component={Reset}/>
         <Route path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
-    </div>
+
       </BrowserRouter>
   );
 }
