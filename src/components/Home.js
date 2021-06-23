@@ -105,8 +105,46 @@ function Home(props) {
       <button onClick={notify}>Notify!</button> <br />
       <div className="search-control container">
           <div className="row">
-            <div className="col-md-3">
-              filter
+            <div className="col-md-3 my-3">
+              <div className="search-filter">
+
+                <div className="search-filter-header px-3 py-2">
+                  <div className="row">
+                    <div className="col-10 my-1">
+                        <i className="fa fa-filter"></i> Filters
+                    </div>
+                    <div className="col-2 text-right">
+                        <button className="btn d-lg-none p-0" data-toggle="collapse" data-target="#search-filter-body" aria-expanded="false" aria-controls="search-filter-body">
+                            <i className="fa fa-plus pull-right"></i>
+                        </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="search-filter-body" className="collapse search-filter-body px-3 py-2">
+                  
+                  <p className="my-2 cat"><i className="fa fa-venus-mars"></i> Gender</p>
+                  <div class="cat-data ml-4 pl-2">
+                    links here
+                  </div>
+
+                  <hr/>
+
+                  <p class="my-2 cat"><i class="fa fa-graduation-cap"></i> Degree</p>
+                  <div class="cat-data ml-4 pl-2">
+                    links here
+                  </div>
+
+                  <hr/>
+
+                  <p class="my-2 cat"><i class="fa fa-stethoscope"></i> SubDepartment</p>
+                  <div class="cat-data ml-4 pl-2">
+                    links here
+                  </div>
+
+                </div>
+
+              </div>
             </div>
             <div className="col-md-9">
               {doctorCard}
