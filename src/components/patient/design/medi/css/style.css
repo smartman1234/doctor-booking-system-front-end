@@ -996,7 +996,7 @@ form .strength span {
   border-radius: 50%;
 }
 
-.search-control .search-result .data h3{
+.search-control .search-result .data h2{
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 15px;
 }
@@ -1008,7 +1008,7 @@ form .strength span {
 .search-control .search-result .data i {
   width: 20px;
   color: #007bff;
-  margin: 0 2px;
+  margin: 0 8px 0 2px;
   padding: 0 0 4px;
   border-bottom: 3px solid #f00;
   text-align: center;
@@ -1024,12 +1024,13 @@ form .strength span {
 .search-control .search-result .rating-and-booking .rating i {
   position: relative;
   color: #ffb624;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-control .search-result .rating-and-booking .rating span {
   position: absolute;
-  top: 35%;
-  left: 32%;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -1056,6 +1057,7 @@ form .strength span {
     margin: 0 30px;
   }
 }
+
 
 /* end search page */
 
