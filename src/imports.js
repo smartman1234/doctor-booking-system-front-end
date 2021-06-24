@@ -12,6 +12,7 @@ import HomeSite from './components/patient/HomeSite';
 import ProtectedRoute from './components/ProtectedRoute';
 import Card from './components/DoctorCard/Card';
 import SearchBar from './components/searchbar/SearchBar';
+import MainHome from './components/HomeTest/MainHome';
 
 export {
     BrowserRouter,
@@ -29,5 +30,6 @@ export {
     HomeSite,
     Card,
     ProtectedRoute,
+    MainHome,
     SearchBar,
 }

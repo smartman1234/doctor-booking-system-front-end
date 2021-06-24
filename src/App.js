@@ -1,30 +1,3 @@
-<<<<<<< HEAD
-import './components/patient/design/medi/css/bootstrap.css';
-import './components/patient/design/medi/css/animate.css';
-import './components/patient/design/medi/css/bootstrap-datepicker.css';
-import './components/patient/design/medi/css/jquery.timepicker.css';
-import './components/patient/design/medi/css/nice-select.css';
-import './components/patient/design/medi/fonts/ionicons/css/ionicons.min.css';
-import './components/patient/design/medi/fonts/fontawesome/css/all.min.css';
-import './components/patient/design/medi/fonts/flaticon/font/flaticon.css';
-import './components/patient/design/medi/css/style.css';
-
-import './App.css';
-import { BrowserRouter, Route} from 'react-router-dom';
-import Login from './components/auth/Login';
-import Home from './components/Home';
-import MainHome from './components/HomeTest/MainHome';
-
-import Register from './components/auth/Register';
-import Nav from './components/navbar/Nav';
-import { useEffect, useState } from 'react';
-import Forgot from './components/auth/Forgot';
-import Reset from './components/auth/Reset';
-import Profile from './components/Profile/Profile';
-import SearchBar from './components/searchbar/SearchBar';
-
-import HomeSite from './components/patient/HomeSite';
-=======
 import './cssfile';
 import {
   BrowserRouter,
@@ -43,8 +16,8 @@ import {
   ProtectedRoute,
   Card,
   SearchBar,
+  MainHome
 } from './imports';
->>>>>>> d34cc48944bf3c48fd7976887c121234e0d1f3a6
 
 function App() {
   let [searchParams, setSearchParams] = useState([]);
@@ -95,7 +68,7 @@ function App() {
         <Navbar user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
         <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
         {/* <Route path="/home" component={() => <Home user={user} searchParams={searchParams} />}/> */}
-        <Route path="/" exact component={() => <MainHome user={user} searchParams={searchParams} />}/>
+        <Route path="/home" exact component={() => <MainHome user={user} searchParams={searchParams} />}/>
 
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>

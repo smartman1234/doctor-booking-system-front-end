@@ -70,9 +70,9 @@ function MainHome(props) {
 
   return (
     <React.Fragment>
-      <React.Fragment>
-        <Search sendDoctorDataParent={sendDoctorDataParent} />
-      </React.Fragment>
+      {/* <React.Fragment> */}
+        {/* <Search sendDoctorDataParent={sendDoctorDataParent} /> */}
+      {/* </React.Fragment> */}
       <SubHome data={data} searchPrams={searchPrams}  genderFilterSearch={genderFilterSearch}
       degreeFilterSearch={degreeFilterSearch} sebSpecFilterSearch={sebSpecFilterSearch}/>
     </React.Fragment>

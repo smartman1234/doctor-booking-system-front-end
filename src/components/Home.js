@@ -134,15 +134,7 @@ function Home(props) {
   }
   return (
     <React.Fragment>
-      <label>Sort by:</label>
-          <Select
-            className="m-4"
-            title="sort"
-            placeholder="Sort by :"
-            style={{ border: "none" }}
-            options={sortOptions}
-            onChange={onChangeHandler}
-          />
+     
       {props.user ? "Hi " + props.user.name_en : "You are not logged in"}
       <button onClick={notify}>Notify!</button> <br />
       <div className="search-control container">

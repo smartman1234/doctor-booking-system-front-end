@@ -3,6 +3,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 import { Select } from "semantic-ui-react";
+import SearchBar from "../searchbar/SearchBar";
+import Search from "../patient/Search";
 function SubHome(props) {
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -221,12 +223,13 @@ function SubHome(props) {
   }
   return (
     <React.Fragment>
+     
       <label>Sort by:</label>
       <Select
         className="m-4"
         title="sort"
         placeholder="Sort by :"
-        style={{ border: "none" }}
+        style={{ border: "solid 1px" }}
         options={sortOptions}
         onChange={onChangeHandler}
       />
@@ -275,7 +278,7 @@ function SubHome(props) {
                   <i class="fa fa-graduation-cap"></i> Degree
                 </p>
                 <Select
-                  placeholder="Gender"
+                  placeholder="Degree"
                   style={{ border: "solid 1px" }}
                   options={degree}
                   onChange={onChangeHandlerDegree}
@@ -286,7 +289,7 @@ function SubHome(props) {
                   <i class="fa fa-stethoscope"></i> SubDepartment
                 </p>
                 <Select
-                  placeholder="Gender"
+                  placeholder="Sub Department"
                   style={{ border: "solid 1px" }}
                   options={subSpecialist}
                   onChange={onChangeHandlerSubSpecialist}
