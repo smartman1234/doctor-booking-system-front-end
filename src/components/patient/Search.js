@@ -76,6 +76,7 @@ function Search({sendDoctorDataParent}) {
       .then((response) => response.json())
       .then((res) => {
         console.log("res from server => ",res);
+        console.log("res from server - size => ",res.data.length);
         setRedirect(true);
         sendDoctorDataParent(res,key);
         setDoctorData(res);

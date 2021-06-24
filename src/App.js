@@ -41,7 +41,7 @@ function App() {
   };
   //end
   useEffect(() => {
-    
+    setUser([]);
     fetch('http://localhost:8000/api/patientUser', {
         method: 'GET',
         mode: 'cors',

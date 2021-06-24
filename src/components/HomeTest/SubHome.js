@@ -29,16 +29,16 @@ function SubHome(props) {
     { key: "f", value: "female", text: "Female" },
   ];
 
-  let testOptions = [
-    { key: "deg", value: "null", text: "Degree" }
-  ];
+  let testOptions = [{ key: "deg", value: "null", text: "Degree" }];
 
   useEffect(() => {
-    // getData(1);
+    console.log("useEffect ...");
     getDoctorDegreeAPI();
     getDoctorSubSpecialistAPI();
     init();
   }, []);
+
+  
 
   function getDoctorSubSpecialistAPI() {
     fetch(`http://127.0.0.1:8000/api/sub-specialist`, {
@@ -48,9 +48,8 @@ function SubHome(props) {
       .then((res) => {
         console.log("Res => ", res);
         var subspecialist = [
-
-            { key: "sus", value: "null", text: "Sub Department" }
-        ]
+          { key: "sus", value: "null", text: "Sub Department" },
+        ];
         let _subspecialist = res.map((subspecialist) => {
           return {
             key: subspecialist["id"],
@@ -58,8 +57,8 @@ function SubHome(props) {
             text: subspecialist["name_en"],
           };
         });
-        _subspecialist.forEach((i)=>subspecialist.push(i));
-       
+        _subspecialist.forEach((i) => subspecialist.push(i));
+
         setSubSpecialist(subspecialist);
       })
 
@@ -75,22 +74,17 @@ function SubHome(props) {
       .then((response) => response.json())
       .then((res) => {
         console.log("Res => ", res);
-        var degree = [
+        var degree = [{ key: "deg", value: "null", text: "Degree" }];
 
-            { key: "deg", value: "null", text: "Degree" }
-        ]
-        
         let deg = res.map((degree) => {
           return {
             key: degree["id"],
             value: degree["id"],
             text: degree["name_en"],
           };
-          
         });
 
-        
-        deg.forEach((i)=>degree.push(i));
+        deg.forEach((i) => degree.push(i));
         setDegree(degree);
       })
 
@@ -115,9 +109,14 @@ function SubHome(props) {
       forceUpdate();
     }
   };
+  const getData = (data,path) => {
+    console.log("page . => ",data);
+    console.log("page . path => ",path);
+    props.getDataForPagination(data,path);
+  }
+
 
   const onChangeHandlerGender = (e, data) => {
-
     props.genderFilterSearch(data.value);
     if (data.value == "male") {
       console.log("Male ...");
@@ -127,11 +126,11 @@ function SubHome(props) {
   };
 
   const onChangeHandlerSubSpecialist = (e, data) => {
-      props.sebSpecFilterSearch(data.value);
+    props.sebSpecFilterSearch(data.value);
     console.log("subSpecialist ...", data.value);
   };
   const onChangeHandlerDegree = (e, data) => {
-    props.degreeFilterSearch(data.value)
+    props.degreeFilterSearch(data.value);
     console.log("Degree ...", data.value);
   };
   function init() {
@@ -142,6 +141,7 @@ function SubHome(props) {
     setPer_page(props.data.per_page);
     setTotal(props.data.total);
     setSearchParams(props.searchPrams);
+    forceUpdate();
   }
 
   const alert = useAlert();
@@ -149,9 +149,8 @@ function SubHome(props) {
     alert.error("Wait The Admin To Accept You");
   };
   var doctorCard;
-
-  if (props.data.data) {
-    doctorCard = props.data.data.map((doctor) => {
+  const card = (cardData) => {
+    return cardData.map((doctor) => {
       return (
         <React.Fragment>
           {doctor.addresses.map((address) => {
@@ -218,21 +217,17 @@ function SubHome(props) {
         </React.Fragment>
       );
     });
-  } else {
-    doctorCard = <div className="alert alert-danger">No doctors</div>;
+  };
+  if (props.data.data) {
+    if (props.data.data.length > 0) doctorCard = card(props.data.data);
+    else {
+      doctorCard = (
+        <div className="alert alert-danger text-center">No doctors</div>
+      );
+    }
   }
   return (
     <React.Fragment>
-     
-      <label>Sort by:</label>
-      <Select
-        className="m-4"
-        title="sort"
-        placeholder="Sort by :"
-        style={{ border: "solid 1px" }}
-        options={sortOptions}
-        onChange={onChangeHandler}
-      />
       {props.user ? "Hi " + props.user.name_en : "You are not logged in"}
       <button onClick={notify}>Notify!</button> <br />
       <div className="search-control container">
@@ -298,13 +293,22 @@ function SubHome(props) {
             </div>
           </div>
           <div className="col-md-9">
+            <label>Sort by:</label>
+            <Select
+              className="m-4"
+              title="sort"
+              placeholder="Sort by :"
+              style={{ border: "solid 1px" }}
+              options={sortOptions}
+              onChange={onChangeHandler}
+            />
             {doctorCard}
             <div className="mt-3">
               <Pagination
-                activePage={current_page}
-                itemsCountPerPage={per_page}
-                totalItemsCount={total}
-                // onChange={(pageNumber) => getData(pageNumber)}
+                activePage={props.data.current_page}
+                itemsCountPerPage={props.data.per_page}
+                totalItemsCount={props.data.total}
+                onChange={(pageNumber) => getData(pageNumber,props.data.path)}
                 itemClass="page-item"
                 linkClass="page-link"
                 firstPageText="First"

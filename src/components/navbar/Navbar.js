@@ -68,7 +68,7 @@ function Navbar(props) {
                     <div className="collapse navbar-collapse" id="navbarsExample05">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link mt-2" to="/home" >Home </Link>
+                            <Link className="nav-link mt-2" to="/" >Home </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link mt-2" href="http://localhost:8000/doctor/">Doctors System</a>

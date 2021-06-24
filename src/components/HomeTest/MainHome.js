@@ -8,6 +8,7 @@ import Search from "../patient/Search";
 function MainHome(props) {
   const [data, setData] = useState([]);
   const [searchPrams, setSearchParams] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
   const [genderFilter, setGenderFilter] = useState('null');
   const [degreeFilter, setDegreeFilter] = useState('null');
   const [subSpecFilter, setSubSpecFilter] = useState('null');
@@ -22,7 +23,12 @@ function MainHome(props) {
     setSearchParams(searchParams);
   };
 
-
+  const getDataForPagination = (pageNumber,path) => {
+    console.log("Parent Home | getDataForPagination => ", pageNumber);
+    console.log("Parent Home | getDataForPagination_path => ", path);
+    setPageNumber(pageNumber,path);
+    pagination(pageNumber,path,searchPrams,genderFilter,degreeFilter,subSpecFilter);
+  }
   const genderFilterSearch = (_genderFilter) => {
  
     console.log("Parent Home | genderFilter => ", _genderFilter);
@@ -42,6 +48,10 @@ function MainHome(props) {
     filterSearch(searchPrams,genderFilter,degreeFilter,_sebSpecFilter);
   };
   useEffect(() => {
+    console.log("Main Home useEffect....");
+    console.log("Main Home props.user =>",props.user);
+    console.log("Main Home props.searchParams =>",props.searchParams);
+
     setData(props.user);
     setSearchParams(props.searchParams);
   },[]);
@@ -67,6 +77,26 @@ function MainHome(props) {
       });
   }
 
+  const pagination = (pNumber,path,key,gender_Filter,degree_Filter,subSpec_Filter) => {
+    fetch(
+      `${path}?name=${key["name"]}&specialty=${key["specialty"]}&city=${key["city"]}&district=${key["district"]}&gender=${gender_Filter}&degree=${degree_Filter}&sub_department=${subSpec_Filter}&page=${pNumber}`,
+      {
+        method: "GET",
+        
+      }
+    )
+      .then((response) => response.json())
+      .then((res) => {
+        console.log("res from server .. filter .. => ",res);
+        setData(res);
+
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
 
   return (
     <React.Fragment>
@@ -74,7 +104,8 @@ function MainHome(props) {
         {/* <Search sendDoctorDataParent={sendDoctorDataParent} /> */}
       {/* </React.Fragment> */}
       <SubHome data={data} searchPrams={searchPrams}  genderFilterSearch={genderFilterSearch}
-      degreeFilterSearch={degreeFilterSearch} sebSpecFilterSearch={sebSpecFilterSearch}/>
+      degreeFilterSearch={degreeFilterSearch} sebSpecFilterSearch={sebSpecFilterSearch}
+      getDataForPagination={getDataForPagination}/>
     </React.Fragment>
   );
 }
