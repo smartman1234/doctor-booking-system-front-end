@@ -38,8 +38,6 @@ function SubHome(props) {
     init();
   }, []);
 
-  
-
   function getDoctorSubSpecialistAPI() {
     fetch(`http://127.0.0.1:8000/api/sub-specialist`, {
       method: "GET",
@@ -109,12 +107,11 @@ function SubHome(props) {
       forceUpdate();
     }
   };
-  const getData = (data,path) => {
-    console.log("page . => ",data);
-    console.log("page . path => ",path);
-    props.getDataForPagination(data,path);
-  }
-
+  const getData = (data, path) => {
+    console.log("page . => ", data);
+    console.log("page . path => ", path);
+    props.getDataForPagination(data, path);
+  };
 
   const onChangeHandlerGender = (e, data) => {
     props.genderFilterSearch(data.value);
@@ -261,6 +258,7 @@ function SubHome(props) {
                   <i className="fa fa-venus-mars"></i> Gender
                 </p>
                 <Select
+                  className="w-100 text-center"
                   placeholder="Gender"
                   style={{ border: "solid 1px" }}
                   options={genderOptions}
@@ -273,6 +271,7 @@ function SubHome(props) {
                   <i class="fa fa-graduation-cap"></i> Degree
                 </p>
                 <Select
+                  className="w-100 text-center"
                   placeholder="Degree"
                   style={{ border: "solid 1px" }}
                   options={degree}
@@ -284,6 +283,7 @@ function SubHome(props) {
                   <i class="fa fa-stethoscope"></i> SubDepartment
                 </p>
                 <Select
+                  className="w-100 text-center"
                   placeholder="Sub Department"
                   style={{ border: "solid 1px" }}
                   options={subSpecialist}
@@ -308,7 +308,7 @@ function SubHome(props) {
                 activePage={props.data.current_page}
                 itemsCountPerPage={props.data.per_page}
                 totalItemsCount={props.data.total}
-                onChange={(pageNumber) => getData(pageNumber,props.data.path)}
+                onChange={(pageNumber) => getData(pageNumber, props.data.path)}
                 itemClass="page-item"
                 linkClass="page-link"
                 firstPageText="First"
