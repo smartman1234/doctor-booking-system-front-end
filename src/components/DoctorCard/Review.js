@@ -14,6 +14,9 @@ function Review(props) {
         formdata.append('patient_id', 1);
         fetch(`http://127.0.0.1:8000/api/feedbacks`, {
             method: 'POST',
+            headers: {'Content-Type': 'application/json','X-Requested-With':'XMLHttpRequest'},
+            credentials: 'include',
+
             body: formdata
         }).then( response => {
             console.log("response",response);

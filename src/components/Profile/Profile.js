@@ -19,10 +19,7 @@ function Profile(props) {
     const [date_of_birth,setDate] = useState("");
     const [gender,setGender] = useState(options[0]);
     const [image,setImage] = useState("");
-    const [redirect,setRedirect] = useState(false);
-
-    const errorNotify = (error) => toast.error(error);
-    const SuccessNotify = (msg) => toast.success(msg,{autoclose:8000});
+    const [errors,setErrors] = useState({});
 
     const imageHandler = (e) => {
         const reader = new FileReader();
@@ -36,31 +33,72 @@ function Profile(props) {
     };
 
     const submit = (e) => {
-        //SuccessNotify("worked");
         e.preventDefault();
         var formdata = new FormData();
-        formdata.append('name_en',name_en);
-        formdata.append('name_ar',name_ar);
-        formdata.append('email',email);
+        if(name_en != "")
+        {
+            formdata.append('name_en',name_en);
+        }else{
+            formdata.append('name_en',props.user.name_en);
+        }
+
+        if(name_ar != "")
+        {
+            formdata.append('name_ar',name_ar);
+        }else{
+            formdata.append('name_ar',props.user.name_ar);
+        }
+
+        if(email != "")
+        {
+            formdata.append('email',email);
+        }else{
+            formdata.append('email',props.user.email);
+        }
+
+        if(mobile != "")
+        {
+            formdata.append('mobile',mobile);
+        }else{
+            formdata.append('mobile',props.user.mobile);
+        }
+
+        if(date_of_birth != "")
+        {
+            formdata.append('date_of_birth',date_of_birth);
+        }else{
+            formdata.append('date_of_birth',props.user.date_of_birth);
+        }
+
+        if(image != "")
+        {
+            formdata.append('image',image);
+        }else{
+            formdata.append('image',props.user.image);
+        }
+        
         formdata.append('password',password);
         formdata.append('password_confirm',passwordConfirm);
-        formdata.append('mobile',mobile);
-        formdata.append('date_of_birth',date_of_birth);
         formdata.append('gender',gender);
-        formdata.append('image',image);
-
+        
         fetch(`http://127.0.0.1:8000/api/update/${props.user.id}?_method=PUT`, {
             method: 'POST',
-            // headers: {'Content-Type': 'application/json','X-Requested-With':'XMLHttpRequest'},
+            headers: {'X-Requested-With':'XMLHttpRequest'},
             body: formdata
-        }).then( response => {
-            console.log("response",response);
-            // setRedirect(true);
-            props.setprofile();
-            alert.success("success");
+        }).then((response) => response.json())
+        .then( response => {
+            console.log("response.errors",response.errors);
+            if(response.status === 200){
+                setErrors({});
+                alert.success(response.message);
+                props.setprofile();
+            }else{
+                setErrors(response.errors);
+                alert.error(response.message); 
+            }
         }).catch(error => {
             console.log("error",error);
-            alert.error("error");
+            alert.error(error);
             });
         
     }
@@ -76,15 +114,18 @@ function Profile(props) {
     }
     
 
-    if(redirect) {
-        return <Redirect to="/" />
+    var validationErrors;
+    if(JSON.stringify(errors) != JSON.stringify({}))
+    {
+        console.log("errors",errors)
+        validationErrors = (<ul className="alert alert-danger">
+        {Object.keys(errors).map(function(key) { return <li key={errors[key]}>{errors[key][0]}</li>})}
+        </ul>);
     }
     
     if (props.user) {
     return (
         <React.Fragment>
-                <ToastContainer />
-
                 <div className="container my-4 profile">
                     <h3 className="mb-4 font-weight-normal">Manage Profile</h3>
                     <div className="card">
@@ -92,6 +133,7 @@ function Profile(props) {
                             <h5 className="card-title mb-0"><i className="fa fa-user-edit"></i> Edit Info</h5>
                         </div>
                         <div className="card-body">
+                            {validationErrors}
                             <form className="form-signin" onSubmit={submit}>
 
                                 <div className="row">
@@ -101,7 +143,9 @@ function Profile(props) {
                                         <input type="text" className="form-control" required
                                             onChange={(e) => setName_en(e.target.value)}
                                             defaultValue={props.user.name_en}
+                                            
                                         />
+                                        
                                     </div>
 
                                     <div className="form-group col-lg-4 col-md-6">

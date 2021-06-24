@@ -4,23 +4,32 @@ import Navbar from './Navbar';
 import Search from './Search';
 import Carousel from './Carousel';
 import WhyChooseUs from './WhyChooseUs';
-import Services from './Services';
 import HowToUse from './HowToUse';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-function HomeSite() {
+function HomeSite({sendDoctorDataParentHome}) {
+
+    const [doctorData, setDoctorData] = React.useState([]); // the lifted state
+    const sendDoctorDataParent = (index,searchParams) => {
+        // the callback. Use a better name
+        console.log("Parent | sendDoctorDataParent => ", index);
+        console.log("Parent | sendSearchParamsParent => ", searchParams);
+        sendDoctorDataParentHome(index,searchParams);
+        setDoctorData(index);
+      };
         Aos.init()
         return (
         <React.Fragment>
-            <Navbar />
+            {/* <Navbar /> */}
             <Carousel />
-            <Search />
+            <Search sendDoctorDataParent={sendDoctorDataParent}/>
             <WhyChooseUs />
-            <Services />
             <HowToUse />
             <Footer />
         </React.Fragment>
+
+        
     );
 }
 

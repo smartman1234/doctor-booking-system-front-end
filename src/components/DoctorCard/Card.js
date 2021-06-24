@@ -3,7 +3,6 @@ import Review from './Review';
 import Reviews from './Reviews';
 import TimeTable from './TimeTable';
 import DoctorInfo from './DoctorInfo';
-import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 function DoctorCard(props) {

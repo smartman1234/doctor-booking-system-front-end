@@ -13,6 +13,8 @@ function Reviews(props) {
     function getFeedbacks(docID) {    
         fetch(`http://localhost:8000/api/feedbacks/${docID}`,{
             method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
         })
         .then((response) => response.json())
         .then((res) => {

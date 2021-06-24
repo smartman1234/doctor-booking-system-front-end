@@ -1,21 +1,21 @@
-import { address } from "faker";
 import React, { useEffect, useState } from "react";
-// function getTimeTables(docID,) {    
-//     fetch(`http://localhost:8000/api/available-time/${docID}/${city}/${address}`,{
-//         method: 'GET',
-//         headers: {'Content-Type': 'application/json'},
-//         credentials: 'include'
-//     })
-//     .then((response) => {
-//         return response.json();
-//       })
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     });
-// }
+function getTimeTables(docID, addressID) {    
+    fetch(`http://localhost:8000/api/available-time/${docID}/${addressID}`,{
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include'
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
+
 function TimeTable(props) {
     
     // useEffect(() => {
@@ -27,7 +27,7 @@ function TimeTable(props) {
             <div class="container">
                 <div class="card mb-5">
                     <div class="card-header">
-                        <h5 class="card-title mb-0"><i class="fa fa-calendar-alt"></i> ddd</h5>
+                        <h5 class="card-title mb-0"><i class="fa fa-calendar-alt"></i> Time Slots</h5>
                     </div>
                     <div class="card-body">
                         <div class="booking-slider owl-carousel">
