@@ -54,7 +54,7 @@ function Nav(props) {
                     <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/site" className="nav-link">Site</Link>
+                    <Link to="/home" className="nav-link">Site</Link>
                 </li>
             </ul>
 
