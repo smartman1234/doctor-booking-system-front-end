@@ -9,24 +9,23 @@ function Home(props) {
   const [total, setTotal] = useState(0);
   useEffect(() => {
     getData(1);
-    
   }, []);
 
   function getData(pageNumber) {
     fetch(`http://127.0.0.1:8000/api/doctors?page=${pageNumber}`, {
       method: "GET",
     })
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(res);
-        setData(res.data);
-        setCurrent_page(res.current_page);
-        setPer_page(res.per_page);
-        setTotal(res.total);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .then((response) => response.json())
+    .then((res) => {
+      console.log(res);
+      setData(res.data);
+      setCurrent_page(res.current_page);
+      setPer_page(res.per_page);
+      setTotal(res.total);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   const alert = useAlert();
@@ -88,8 +87,6 @@ function Home(props) {
               </div>
           </div>
         </div>
-
-
       </div>
     </div>
       );

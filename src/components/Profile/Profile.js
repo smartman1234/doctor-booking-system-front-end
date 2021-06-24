@@ -33,7 +33,7 @@ function Profile(props) {
         }
         reader.readAsDataURL(e.target.files[0]);
         setImage(e.target.files[0]);
-      };
+    };
 
     const submit = (e) => {
         //SuccessNotify("worked");
