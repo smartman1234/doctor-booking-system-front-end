@@ -13,7 +13,7 @@ import { BrowserRouter, Route} from 'react-router-dom';
 import Login from './components/auth/Login';
 import Home from './components/Home';
 import Register from './components/auth/Register';
-import Nav from './components/navbar/Nav';
+import Navbar from './components/navbar/Navbar';
 import { useEffect, useState } from 'react';
 import Forgot from './components/auth/Forgot';
 import Reset from './components/auth/Reset';
@@ -23,9 +23,20 @@ import SearchBar from './components/searchbar/SearchBar';
 import HomeSite from './components/patient/HomeSite';
 
 function App() {
+  let [searchParams, setSearchParams] = useState([]);
+
   let [user, setUser] = useState([]);
   let [login, setLogin] = useState(false);
   let [profile, setprofile] = useState(false);
+  const [doctorData, setDoctorData] = useState([]); // the lifted state
+    const sendDoctorDataParentHome = (index,searchParams) => {
+        // the callback. Use a better name
+        console.log("ParentHome | sendDoctorDataParentHome => ", index);
+        console.log("ParentHome | sendSearchParamsParentHome => ", searchParams);
+        // setDoctorData(index);
+        setUser(index);
+        setSearchParams(searchParams);
+      };
   //start
   const sendDataToParent = (index) => { // the callback. Use a better name
     console.log("Index => ",index);
@@ -56,10 +67,10 @@ function App() {
   return (
     <BrowserRouter>
       
-        <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
+        <Navbar user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
         
-        <Route path="/" exact component={() => <Home user={user} />}/>
-        <Route path="/site" exact component={() => <HomeSite />}/>
+        <Route path="/" exact component={() => <Home user={user} searchParams={searchParams} />}/>
+        <Route path="/site" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>
         <Route path="/forgot" component={Forgot}/>

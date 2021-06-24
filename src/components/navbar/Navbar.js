@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import 'react-dropdown/style.css';
-import logo from './design/medi/img/logo.png'; 
-import Languages from './Languages';
+import logo from '../patient/design/medi/img/logo.png'; 
+import Languages from '../patient/Languages';
 import Cookies from 'universal-cookie';
 
 
@@ -41,7 +41,7 @@ function Navbar(props) {
         links = (
             <ul className="navbar-nav my-2 my-lg-0">
                 <li className="nav-item">
-                {/* <img style={{ width: 40, height: 40 }} alt="profile pic" src={"http://127.0.0.1:8000/storage/patients/" + props.user.image}/> */}
+                <img style={{ width: 40, height: 40 }} className="rounded-circle" alt="profile pic" src={"http://127.0.0.1:8000/storage/patients/" + props.user.image}/>
                     <Link style={{ display: "inline-block" }} to="/profile" className="nav-link">Profile</Link>
                 </li>
                 <li className="nav-item">
@@ -58,9 +58,9 @@ function Navbar(props) {
             
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
-                <a className="navbar-brand" href="/home">
+                <Link className="navbar-brand" to="/site">
                     <img src={logo} alt="doctor-booking" />
-                </a>
+                </Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>

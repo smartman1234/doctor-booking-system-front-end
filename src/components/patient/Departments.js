@@ -6,9 +6,10 @@ const departments = [
   { key: "hh", value: "hh", text: "Dept2" },
 ];
 
-const Departments = () => {
+const Departments = ({sendDepartmentIDToParent}) => {
   const onChangeHandler = (e, data) => {
     console.log(data.value);
+    sendDepartmentIDToParent(data.value)
   };
   const [departments, setData] = useState([]);
   useEffect(() => {
