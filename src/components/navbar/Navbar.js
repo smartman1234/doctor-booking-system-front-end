@@ -58,7 +58,7 @@ function Navbar(props) {
             
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
-                <Link className="navbar-brand" to="/site">
+                <Link className="navbar-brand" to="/">
                     <img src={logo} alt="doctor-booking" />
                 </Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,7 @@ function Navbar(props) {
                     <div className="collapse navbar-collapse" id="navbarsExample05">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link mt-2" to="/" >Home </Link>
+                            <Link className="nav-link mt-2" to="/home" >Home </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link mt-2" href="http://localhost:8000/doctor/">Doctors System</a>

@@ -87,7 +87,7 @@ function Search({sendDoctorDataParent}) {
       });
   }
   if(redirect) {
-    return <Redirect to="/" />
+    return <Redirect to="/home" />
 }
   return (
     <React.Fragment>
@@ -101,7 +101,7 @@ function Search({sendDoctorDataParent}) {
               <label>
                 <i className="fa fa-search-location"></i> City
               </label>
-              <div className="nice-select" tabindex="0">
+              <div className="nice-select" tabIndex="0">
                 <span className="current"></span>
                 <Cities sendCityIDToParent={sendCityIDToParent} />
               </div>
@@ -111,7 +111,7 @@ function Search({sendDoctorDataParent}) {
                 <i className="fa fa-search-location"></i> District
               </label>
 
-              <div className="nice-select" tabindex="0">
+              <div className="nice-select" tabIndex="0">
                 <span className="current"></span>
                 <Districts
                   _dis={_dis}
@@ -120,11 +120,11 @@ function Search({sendDoctorDataParent}) {
               </div>
             </div>
             <div className="select-form col-lg col-md-4 col-sm-12">
-              <label for="department">
+              <label htmlFor="department">
                 <i className="fa fa-list"></i> Department
               </label>
 
-              <div className="nice-select" tabindex="0">
+              <div className="nice-select" tabIndex="0">
                 <span className="current"></span>
                 <Departments
                   sendDepartmentIDToParent={sendDepartmentIDToParent}
