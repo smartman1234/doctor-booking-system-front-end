@@ -7,9 +7,11 @@ function Home(props) {
   const [current_page, setCurrent_page] = useState(0);
   const [per_page, setPer_page] = useState(0);
   const [total, setTotal] = useState(0);
-  useEffect(() => {
-    getData(1);
-    
+  useEffect((pageNumber) => {
+    getData(pageNumber);
+    return () => {
+      setData([]); 
+    };
   }, []);
 
   function getData(pageNumber) {
@@ -39,32 +41,32 @@ function Home(props) {
   if (data) {
     doctorCard = data.map((doctor) => {
       return (
-        <React.Fragment>
+        <React.Fragment key={doctor.id}>
           {doctor.addresses.map(address => {
             return (
-              <React.Fragment>
-                <div className="search-result mb-4">
+              <React.Fragment key={address.id}>
+                <div className="search-result mb-4" >
                   <div className="row m-0">
                     <div className="col-sm-3 py-4 px-4">
                       <img className="img-thumbnail" src={"http://127.0.0.1:8000/storage/" + doctor.image}/>
                     </div>
-                    <div class="col-md-7 col-sm-9 py-4 px-0 data">
+                    <div className="col-md-7 col-sm-9 py-4 px-0 data">
                       <h2>{doctor.name_en}</h2>
-                      <h6><i class="fa fa-graduation-cap"></i>{doctor.degree.name_en}</h6>
-                      <h6><i class="fa fa-stethoscope"></i>{doctor.specialist.name_en}</h6>
-                      <h6><i class="fa fa-stethoscope"></i>
+                      <h6><i className="fa fa-graduation-cap"></i>{doctor.degree.name_en}</h6>
+                      <h6><i className="fa fa-stethoscope"></i>{doctor.specialist.name_en}</h6>
+                      <h6><i className="fa fa-stethoscope"></i>
                         {doctor.subspecialists.map(subspecialist => {
-                            return (<span>{subspecialist.name_en}</span>); 
+                            return (<span key={subspecialist.id}>{subspecialist.name_en}</span>); 
                           })}
                       </h6>
                       <h6>
-                        <i class="fa fa-search-location"></i>
+                        <i className="fa fa-search-location"></i>
                         {address.district.city.name_en} - 
                         {address.district.name_en} - 
                         {address.address_en}
                       </h6>
                       <h6>
-                        <i class="fa fa-money-bill-wave"></i>
+                        <i className="fa fa-money-bill-wave"></i>
                         {address.fees}
                       </h6>
                     </div>
