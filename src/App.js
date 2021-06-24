@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import './components/patient/design/medi/css/bootstrap.css';
 import './components/patient/design/medi/css/animate.css';
 import './components/patient/design/medi/css/bootstrap-datepicker.css';
@@ -23,6 +24,27 @@ import Profile from './components/Profile/Profile';
 import SearchBar from './components/searchbar/SearchBar';
 
 import HomeSite from './components/patient/HomeSite';
+=======
+import './cssfile';
+import {
+  BrowserRouter,
+  Route,
+  useEffect,
+  useState,
+  Login,
+  Home,
+  Register,
+  Nav,
+  Navbar,
+  Forgot,
+  Reset,
+  Profile,
+  HomeSite,
+  ProtectedRoute,
+  Card,
+  SearchBar,
+} from './imports';
+>>>>>>> d34cc48944bf3c48fd7976887c121234e0d1f3a6
 
 function App() {
   let [searchParams, setSearchParams] = useState([]);
@@ -69,18 +91,19 @@ function App() {
   return (
     <BrowserRouter>
       
-        <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
+
+        <Navbar user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
+        <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
+        {/* <Route path="/home" component={() => <Home user={user} searchParams={searchParams} />}/> */}
         <Route path="/" exact component={() => <MainHome user={user} searchParams={searchParams} />}/>
-        
-        {/* <Route path="/" exact component={() => <Home user={user} searchParams={searchParams} />}/> */}
-        <Route path="/site" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
+
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>
         <Route path="/forgot" component={Forgot}/>
         <Route path="/reset/:token" component={Reset}/>
-        <Route path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
-
-      </BrowserRouter>
+        <ProtectedRoute path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
+        <Route path="/doctor" component={Card}/>
+    </BrowserRouter>
   );
 }
 

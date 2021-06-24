@@ -34,6 +34,10 @@ h1, h2, h3, h4, h5 {
   display: none;
 }
 
+.ui.selection.dropdown {
+  min-width: 8em !important;
+}
+
 /* Header */
 header {
   position: relative;
@@ -426,7 +430,7 @@ header .navbar .dropdown-menu a {
 .home-search form.search-box .select-form label {
   position: absolute;
   top: 5px;
-  left: 20px;
+  left: 25px;
   z-index: 1;
   color: #007bff;
 }
@@ -466,6 +470,7 @@ header .navbar .dropdown-menu a {
   width: 12px;
   margin-top: -7px;
   right: 20px;
+  z-index: 10;
 }
 
 .home-search form.search-box .select-form .nice-select.open .list {
@@ -480,6 +485,13 @@ header .navbar .dropdown-menu a {
   }
 }
 
+.home-search form.search-box .select-form .nice-select > div {
+  width: 100%;
+}
+
+.home-search form.search-box .select-form .nice-select i {
+  display: none;
+}
 
 .section {
   padding: 5em 0;
@@ -545,6 +557,7 @@ header .navbar .dropdown-menu a {
 .heading.border-bottom {
   position: relative;
   padding-bottom: 30px;
+  border-bottom: none !important;
 }
 
 .heading.border-bottom:before {
@@ -585,7 +598,6 @@ header .navbar .dropdown-menu a {
   color: #fff;
   border-radius:50%;
   display: inline-block;
-  padding: 4px;
   width: 25px;
   height: 25px;
   font-size: 15px;

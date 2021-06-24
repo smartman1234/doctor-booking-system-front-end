@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
-
+import { useAlert } from 'react-alert';
 function Register() {
+    const alert = useAlert();
     const [profileImg,setProfileImg] = useState('');
 
     const options = ['male','female'];
@@ -15,6 +16,7 @@ function Register() {
     const [gender,setGender] = useState(options[0]);
     const [image,setImage] = useState("");
     const [redirect,setRedirect] = useState(false);
+    const [errors,setErrors] = useState({});
 
     const imageHandler = (e) => {
         const reader = new FileReader();
@@ -33,7 +35,7 @@ function Register() {
     
         fetch('http://localhost:8000/sanctum/csrf-cookie',{
             method: 'GET',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'X-Requested-With':'XMLHttpRequest'},
             credentials: 'include'
         }).then(res => {
 
@@ -49,11 +51,18 @@ function Register() {
             formdata.append('image',image);
         fetch('http://localhost:8000/api/register', {
             method: 'POST',
-            // headers: {'Content-Type': 'application/json','X-Requested-With':'XMLHttpRequest'},
+            headers: {'X-Requested-With':'XMLHttpRequest'},
             body: formdata
-        }).then( response => {
+        }).then((response) => response.json()).then( response => {
                     console.log(response);
-                    setRedirect(true);
+                    if(response.status === 201){
+                        setRedirect(true);
+                        setErrors({});
+                        alert.success(response.message);
+                    }else{
+                        setErrors(response.errors);
+                        alert.error(response.message); 
+                    }
         }).catch(error => {
                     console.log(error)
                 });
@@ -78,6 +87,15 @@ function Register() {
         return <Redirect to="/login" />
     }
 
+    var validationErrors;
+    if(JSON.stringify(errors) != JSON.stringify({}))
+    {
+        console.log("errors",errors)
+        validationErrors = (<ul className="alert alert-danger">
+        {Object.keys(errors).map(function(key) { return <li key={errors[key]}>{errors[key][0]}</li>})}
+        </ul>);
+    }
+
     return (
         <React.Fragment>
             <div className="login-box">
@@ -88,6 +106,7 @@ function Register() {
                 </div>
                 <div className="login-box-body">
                     <p className="login-box-msg">Sign up to enjoy our services</p>
+                    {validationErrors}
                     <form className="form-signin" onSubmit={submit}>
 
                         <div className="input-group mb-3">
