@@ -12,6 +12,8 @@ import './App.css';
 import { BrowserRouter, Route} from 'react-router-dom';
 import Login from './components/auth/Login';
 import Home from './components/Home';
+import MainHome from './components/HomeTest/MainHome';
+
 import Register from './components/auth/Register';
 import Nav from './components/navbar/Nav';
 import { useEffect, useState } from 'react';
@@ -68,8 +70,9 @@ function App() {
     <BrowserRouter>
       
         <Nav user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
+        <Route path="/" exact component={() => <MainHome user={user} searchParams={searchParams} />}/>
         
-        <Route path="/" exact component={() => <Home user={user} searchParams={searchParams} />}/>
+        {/* <Route path="/" exact component={() => <Home user={user} searchParams={searchParams} />}/> */}
         <Route path="/site" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>
