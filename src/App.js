@@ -33,6 +33,8 @@ function App() {
         // setDoctorData(index);
         setUser(index);
         setSearchParams(searchParams);
+        localStorage.setItem('data', JSON.stringify(index));
+    localStorage.setItem('searchParams', searchParams['specialty']);
       };
   //start
   const sendDataToParent = (index) => { // the callback. Use a better name
