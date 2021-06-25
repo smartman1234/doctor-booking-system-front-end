@@ -16,7 +16,6 @@ function Review(props) {
             method: 'POST',
             headers: {'Content-Type': 'application/json','X-Requested-With':'XMLHttpRequest'},
             credentials: 'include',
-
             body: formdata
         }).then( response => {
             console.log("response",response);
