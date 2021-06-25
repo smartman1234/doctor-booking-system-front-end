@@ -12,7 +12,7 @@ function MainHome(props) {
   const [genderFilter, setGenderFilter] = useState('null');
   const [degreeFilter, setDegreeFilter] = useState('null');
   const [subSpecFilter, setSubSpecFilter] = useState('null');
-
+  const [subSpecialist, setSubSpecialist] = useState([]);
   const [doctorData, setDoctorData] = useState([]); // the lifted state
   const sendDoctorDataParent = (index, searchParams) => {
     // the callback. Use a better name
@@ -52,10 +52,39 @@ function MainHome(props) {
     console.log("Main Home props.user =>",props.user);
     console.log("Main Home props.searchParams =>",props.searchParams);
 
-    setData(props.user);
     setSearchParams(props.searchParams);
+    setData(props.user);
+
+    getDoctorSubSpecialistAPI(props.searchParams);
   },[]);
 
+  function getDoctorSubSpecialistAPI(s) {
+    console.log("getDoctorSubSpecialistAPI -> search",s['specialty']);
+    fetch(`http://127.0.0.1:8000/api/sub-specialist/${s['specialty']}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        console.log("Res => ", res);
+        var subspecialist = [
+          { key: "sus", value: "null", text: "Sub Department" },
+        ];
+        let _subspecialist = res.map((subspecialist) => {
+          return {
+            key: subspecialist["id"],
+            value: subspecialist["id"],
+            text: subspecialist["name_en"],
+          };
+        });
+        _subspecialist.forEach((i) => subspecialist.push(i));
+
+        setSubSpecialist(subspecialist);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   const filterSearch = (key,gender_Filter,degree_Filter,subSpec_Filter) => {
     fetch(
@@ -103,7 +132,7 @@ function MainHome(props) {
       {/* <React.Fragment> */}
         {/* <Search sendDoctorDataParent={sendDoctorDataParent} /> */}
       {/* </React.Fragment> */}
-      <SubHome data={data} searchPrams={searchPrams}  genderFilterSearch={genderFilterSearch}
+      <SubHome data={data} searchPrams={searchPrams} subSpecialist={subSpecialist} genderFilterSearch={genderFilterSearch}
       degreeFilterSearch={degreeFilterSearch} sebSpecFilterSearch={sebSpecFilterSearch}
       getDataForPagination={getDataForPagination}/>
     </React.Fragment>

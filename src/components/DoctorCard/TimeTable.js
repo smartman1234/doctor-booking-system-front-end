@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
-‏
-function TimeTable(props) {
+import { useAlert } from 'react-alert';
 
-const alert = useAlert(‏);
+function TimeTable(props) {
+    // const alert = useAlert(‏);
+
 
     const submit = (e) => {
         e.preventDefault();
