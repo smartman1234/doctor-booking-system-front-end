@@ -3,7 +3,6 @@ import { ToastContainer, toast } from "react-toastify";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 import { Select } from "semantic-ui-react";
-import SearchBar from "../searchbar/SearchBar";
 import Search from "../patient/Search";
 import { Link } from 'react-router-dom';
 

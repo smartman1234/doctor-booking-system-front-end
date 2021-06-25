@@ -54,7 +54,7 @@ function Navbar(props) {
 
     return (
         <React.Fragment>
-            <header role="banner" data-aos="fade-up">
+            <header role="banner">
             
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">

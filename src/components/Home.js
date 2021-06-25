@@ -163,21 +163,21 @@ function Home(props) {
                 <p className="my-2 cat">
                   <i className="fa fa-venus-mars"></i> Gender
                 </p>
-                <div class="cat-data ml-4 pl-2">links here</div>
+                <div className="cat-data ml-4 pl-2">links here</div>
 
                 <hr />
 
-                <p class="my-2 cat">
-                  <i class="fa fa-graduation-cap"></i> Degree
+                <p className="my-2 cat">
+                  <i className="fa fa-graduation-cap"></i> Degree
                 </p>
-                <div class="cat-data ml-4 pl-2">links here</div>
+                <div className="cat-data ml-4 pl-2">links here</div>
 
                 <hr />
 
-                <p class="my-2 cat">
-                  <i class="fa fa-stethoscope"></i> SubDepartment
+                <p className="my-2 cat">
+                  <i className="fa fa-stethoscope"></i> SubDepartment
                 </p>
-                <div class="cat-data ml-4 pl-2">links here</div>
+                <div className="cat-data ml-4 pl-2">links here</div>
               </div>
             </div>
           </div>
