@@ -52,16 +52,18 @@ function MainHome(props) {
     console.log("Main Home useEffect....");
     console.log("Main Home props.user =>",props.user);
     console.log("Main Home props.searchParams =>",props.searchParams);
-
+    
     setSearchParams(props.searchParams);
     setData(props.user);
 
-    getDoctorSubSpecialistAPI(props.searchParams);
+    getDoctorSubSpecialistAPI(localStorage.getItem("searchParams"));
+
+    
   },[]);
 
   function getDoctorSubSpecialistAPI(s) {
     console.log("getDoctorSubSpecialistAPI -> search",s['specialty']);
-    fetch(`http://127.0.0.1:8000/api/sub-specialist/${s['specialty']}`, {
+    fetch(`http://127.0.0.1:8000/api/sub-specialist/${s}`, {
       method: "GET",
     })
       .then((response) => response.json())
