@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 function TimeTable(props) {
-
-    
+    // const alert = useAlert(‏);
 
     const submit = (index) =>(e)=> {
         e.preventDefault();
@@ -131,80 +130,7 @@ function TimeTable(props) {
                     </div>
                     <div class="card-body">
                         <div class="booking-slider owl-carousel row">
-
-                                {/* {JSON.stringify(times_table)} */}
-
-        
-
-                                {cards}
-
-
-
-                   
-
-{/* <div class="slider-item">
-<div class="px-lg-5 py-3">
-    <div class="slider-item-content px-lg-5">
-
-            <span>From :00</span> <span>To {{$timeTable->to}}:00</span>
-        <p class="lead">
-           {{(Config::get('app.locale') == "en") ? $timeTable->day->name_en : $timeTable->day->name_ar}{"}"} , {{$timeTable->date}}
-
-        </p> 
-        
-
-        <div class="time">
-        
-
-        @for($i=1;$i<=$timeTable->session_number;$i++)
-          
-          
-
-            <a class="btn mb-3" data-toggle="modal" data-target="#timeModal{{$timeTable->id}}{{$i}}">
-                {{$time}}
-            </a>
-
-
-            
-        @endfor
-        </div>
-    </div>
-</div>
-</div> */}
-
- 
-                    
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
+                            {cards} 
                         </div>
                     </div>
                 </div>
