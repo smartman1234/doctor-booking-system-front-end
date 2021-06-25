@@ -226,24 +226,28 @@ function SubHome(props) {
       doctorCard = card(props.data.data);
     } 
 
-    else if(data){
-      console.log("Data ...")
-      doctorCard = card(data);
-    }
+    // else if(data){
+    //   console.log("Data ...")
+    //   doctorCard = card(data);
+    // }
     else {
       doctorCard = (
         <div className="alert alert-danger text-center">No doctors</div>
       );
     }
   }else {
-    if(JSON.parse(localStorage.getItem("data")).data.length > 0){
-      doctorCard = card(JSON.parse(localStorage.getItem("data")).data);
-    }else{
-
-      doctorCard = (
-        <div className="alert alert-danger text-center">No doctors</div>
-        );
+    if(localStorage.getItem("data"))
+    {
+      if(JSON.parse(localStorage.getItem("data")).data.length > 0){
+        doctorCard = card(JSON.parse(localStorage.getItem("data")).data);
+      }else{
+  
+        doctorCard = (
+          <div className="alert alert-danger text-center">No doctors</div>
+          );
       }
+    }
+    
   }
 
   // const myComponentStyle = {  marginTop: 15, marginBottom: '-4px !important' }

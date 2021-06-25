@@ -32,30 +32,25 @@ function App() {
 
   let [searchParams, setSearchParams] = useState([]);
 
-  let [user, setUser] = useState([]);
+  let [user, setUser] = useState({});
+  let [doctorData, setDoctorData] = useState([]); 
   let [login, setLogin] = useState(false);
   let [profile, setprofile] = useState(false);
-  const [doctorData, setDoctorData] = useState([]); 
+  
     const sendDoctorDataParentHome = (index,searchParams) => {
         // the callback. Use a better name
         console.log("ParentHome | sendDoctorDataParentHome => ", index);
         console.log("ParentHome | sendSearchParamsParentHome => ", searchParams);
         // setDoctorData(index);
-        setUser(index);
+        setDoctorData(index);
         setSearchParams(searchParams);
         localStorage.setItem('data', JSON.stringify(index));
     localStorage.setItem('searchParams', searchParams['specialty']);
       };
   //start
-  const sendDoctorDataParent = (index) => { // the callback. Use a better name
-        console.log("Parent | sendDoctorDataParent => ", index);
-        console.log("Parent | sendSearchParamsParent => ", searchParams);
-        sendDoctorDataParentHome(index,searchParams);
-        setDoctorData(index);
-  };
+  
   //end
   useEffect(() => {
-    setUser([]);
     fetch('http://localhost:8000/api/patientUser', {
         method: 'GET',
         mode: 'cors',
@@ -81,7 +76,7 @@ function App() {
         
         <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome} t={t}/>}/>
         {/* <Route path="/home" component={() => <Home user={user} searchParams={searchParams} />}/> */}
-        <Route path="/home" exact component={() => <MainHome user={user} sendDoctorDataParent={sendDoctorDataParent} searchParams={searchParams}  t={t}/>}/>
+        <Route path="/home" exact component={() => <MainHome user={doctorData}  searchParams={searchParams}  t={t}/>}/>
         
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)} t={t}/>}/>
         <Route path="/register" component={() => <Register t={t}/>}/>

@@ -15,13 +15,15 @@ function MainHome(props) {
   const [subSpecFilter, setSubSpecFilter] = useState('null');
   const [subSpecialist, setSubSpecialist] = useState([]);
   const [doctorData, setDoctorData] = useState([]); // the lifted state
+
   const sendDoctorDataParent = (index, searchParams) => {
     // the callback. Use a better name
     console.log("Parent | sendDoctorDataParent => ", index);
     console.log("Parent | sendSearchParamsParent => ", searchParams);
 
-    setDoctorData(index);
+    setData(index);
     setSearchParams(searchParams);
+    getDoctorSubSpecialistAPI(localStorage.getItem("searchParams"));
   };
 
   const getDataForPagination = (pageNumber,path) => {
@@ -62,7 +64,7 @@ function MainHome(props) {
   },[]);
 
   function getDoctorSubSpecialistAPI(s) {
-    console.log("getDoctorSubSpecialistAPI -> search",s['specialty']);
+    //console.log("getDoctorSubSpecialistAPI -> search",s['specialty']);
     fetch(`http://127.0.0.1:8000/api/sub-specialist/${s}`, {
       method: "GET",
     })
@@ -133,7 +135,7 @@ function MainHome(props) {
   return (
     <React.Fragment>
       <title>Home</title>
-      <div className="search-bar"><Search sendDoctorDataParent={props.sendDoctorDataParent} t={props.t}/></div>
+      {/* <div className="search-bar"><Search sendDoctorDataParent={sendDoctorDataParent} t={props.t}/></div> */}
       
       <SubHome data={data} searchPrams={searchPrams} subSpecialist={subSpecialist} genderFilterSearch={genderFilterSearch}
       degreeFilterSearch={degreeFilterSearch} sebSpecFilterSearch={sebSpecFilterSearch}
