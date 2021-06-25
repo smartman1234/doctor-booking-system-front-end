@@ -6,8 +6,9 @@ import { Select } from "semantic-ui-react";
 //   { key: "ff", value: "ff", text: "Itay" },
 // ];
 
-const Districts = ({ _dis,sendDistrictIDToParent}) => {
+const Districts = ({ _dis,sendDistrictIDToParent,t}) => {
 
+  
 
   const onChangeHandler = (e, data) => {
     console.log(data.value);
@@ -21,7 +22,7 @@ const Districts = ({ _dis,sendDistrictIDToParent}) => {
   });
   return (
     <Select
-      placeholder="Our Systems"
+      placeholder={t('Districts.districtName')}
       style={{ border: "none" }}
       options={districts}
       onChange={onChangeHandler}

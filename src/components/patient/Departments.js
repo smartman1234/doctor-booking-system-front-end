@@ -6,7 +6,7 @@ const departments = [
   { key: "hh", value: "hh", text: "Dept2" },
 ];
 
-const Departments = ({sendDepartmentIDToParent}) => {
+const Departments = ({sendDepartmentIDToParent,t}) => {
   const onChangeHandler = (e, data) => {
     console.log(data.value);
     sendDepartmentIDToParent(data.value)
@@ -39,7 +39,7 @@ const Departments = ({sendDepartmentIDToParent}) => {
   }
   return (
     <Select
-      placeholder="Our Systems"
+      placeholder={t('Departments.departmentName')}
       style={{ border: "none" }}
       options={departments}
       onChange={onChangeHandler}

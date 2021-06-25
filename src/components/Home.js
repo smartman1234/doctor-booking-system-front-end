@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 import { Select } from "semantic-ui-react";
+import Search from './patient/Search';
 function Home(props) {
 
   const [, updateState] = React.useState();
@@ -134,6 +135,9 @@ function Home(props) {
   }
   return (
     <React.Fragment>
+      
+        
+     
       <label>Sort by:</label>
           <Select
             className="m-4"
@@ -210,6 +214,7 @@ function Home(props) {
           </div>
         </div>
       </div>
+      
     </React.Fragment>
   );
 }

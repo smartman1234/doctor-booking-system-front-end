@@ -65,15 +65,15 @@ function Login(props) {
             <div className="login-box">
                 <div className="login-logo">
                     <a>
-                        <b>Book</b>Doc
+                        <b>{props.t('Register.book')}</b>{props.t('Register.doctor')}
                     </a>
                 </div>
                 <div className="login-box-body">
-                    <p className="login-box-msg">Sign in to start your session</p>
+                    <p className="login-box-msg">{props.t('Login.signIn')}</p>
                     {validationErrors}
                     <form className="form-signin" onSubmit={submit}>
                         <div className="input-group mb-3">
-                            <input type="email" className="form-control" placeholder="Email" required
+                            <input type="email" className="form-control" placeholder={props.t('Register.email')} required
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -84,7 +84,7 @@ function Login(props) {
                         </div>
 
                         <div className="input-group mb-3">
-                            <input type="password" className="form-control" placeholder="Password" required
+                            <input type="password" className="form-control" placeholder={props.t('Register.password')} required
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -98,17 +98,17 @@ function Login(props) {
                             <div className="col-8">
                                 <div className="icheck-primary">
                                     <input type="checkbox" id="remember" name="rememberme" value="1" />
-                                    <label htmlFor="remember">Remember Me</label>
+                                    <label htmlFor="remember">{props.t('Login.remember')}</label>
                                 </div>
                             </div>
                         </div>
 
-                        <button className="btn btn-primary btn-block btn-flat" type="submit">Sign in</button>
+                        <button className="btn btn-primary btn-block btn-flat" type="submit">{props.t('Login.signIn')}</button>
 
                     </form>
 
                     <div className="mb-3">
-                        <Link to="/forgot" className="forget">Forgot Password?</Link>
+                        <Link to="/forgot" className="forget">{props.t('Login.forgotPassword')}?</Link>
                     </div>
 
                     <div className="hr-container">
@@ -125,7 +125,7 @@ function Login(props) {
                         </div>
                     </div>
 
-                    <Link to="/register" className="register">Create new account <i class="fa fa-arrow-right"></i></Link>
+                    <Link to="/register" className="register">{props.t('Login.account')}<i class="fa fa-arrow-right"></i></Link>
 
                 </div>
             </div>

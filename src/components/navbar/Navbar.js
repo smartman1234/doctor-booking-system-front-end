@@ -30,10 +30,10 @@ function Navbar(props) {
         links = (
             <ul className="navbar-nav my-2 my-lg-0">
                 <li className="nav-item">
-                    <Link to="/login" className="nav-link mt-2">Login</Link>
+                    <Link to="/login" className="nav-link mt-2">{props.t('Navbar.login')}</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/register" className="nav-link mt-2">Register</Link>
+                    <Link to="/register" className="nav-link mt-2">{props.t('Navbar.register')}</Link>
                 </li>
             </ul> 
         );
@@ -42,10 +42,10 @@ function Navbar(props) {
             <ul className="navbar-nav my-2 my-lg-0">
                 <li className="nav-item">
                 <img style={{ width: 40, height: 40 }} className="rounded-circle" alt="profile pic" src={"http://127.0.0.1:8000/storage/patients/" + props.user.image}/>
-                    <Link style={{ display: "inline-block" }} to="/profile" className="nav-link">Profile</Link>
+                    <Link style={{ display: "inline-block" }} to="/profile" className="nav-link">{props.t('Navbar.profile')}</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/login" onClick={logout} className="nav-link">Logout</Link>
+                    <Link to="/login" onClick={logout} className="nav-link">{props.t('Navbar.logout')}</Link>
                 </li>
                 
             </ul>
@@ -68,13 +68,13 @@ function Navbar(props) {
                     <div className="collapse navbar-collapse" id="navbarsExample05">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link mt-2" to="/home" >Home </Link>
+                            <Link className="nav-link mt-2" to="/home" >{props.t('Navbar.home')}</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link mt-2" href="http://localhost:8000/doctor/">Doctors System</a>
+                            <a className="nav-link mt-2" href="http://localhost:8000/doctor/">{props.t('Navbar.doctors')}</a>
                         </li>
                         <li className="dropdown nav-item">
-                        <span className="nav-link"> <i className="fa fa-globe"></i> <Languages /> </span>
+                        <span className="nav-link"> <i className="fa fa-globe"></i> <Languages sendLangToParent={props.sendLangToParent} t={props.t}/> </span>
                         </li>                        
                     </ul>
                     {links}

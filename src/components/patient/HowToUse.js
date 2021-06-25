@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function HowToUse() {
+function HowToUse({t}) {
     return (
         <React.Fragment>
 
@@ -8,8 +8,8 @@ function HowToUse() {
           <div className="container">
             <div className="row justify-content-center mb-5">
               <div className="col-md-8 text-center mb-5">
-                <h2 className="text-uppercase heading border-bottom mb-4"> How To Use </h2>
-                <p className="mb-0 lead"> How To Use Description </p>
+                <h2 className="text-uppercase heading border-bottom mb-4">{t('HowToUse.use')}  </h2>
+                <p className="mb-0 lead">{t('HowToUse.useDesc')}  </p>
               </div>
             </div>
 
@@ -18,8 +18,8 @@ function HowToUse() {
                 <div className="media d-block media-feature text-center">
                   <span className="icon fa fa-search my-4"></span>
                   <div className="media-body">
-                    <h3 className="mt-0 text-black"><span className="number">1</span> Search </h3>
-                    <p> Search For Expert Doctor and Filter The Result in Different Way. </p>
+                    <h3 className="mt-0 text-black"><span className="number">1</span>{t('HowToUse.search')}  </h3>
+                    <p>{t('HowToUse.searchExpert')}  </p>
                   </div>
                 </div>
               </div>
@@ -27,8 +27,8 @@ function HowToUse() {
                 <div className="media d-block media-feature text-center">
                   <span className="icon fa fa-user-md my-4"></span>
                   <div className="media-body">
-                    <h3 className="mt-0 text-black"><span className="number">2</span> Choose </h3>
-                    <p> Compare and Choose How suitable For You and Choose The Best Time For You. </p>
+                    <h3 className="mt-0 text-black"><span className="number">2</span>{t('HowToUse.choose')}  </h3>
+                    <p> {t('HowToUse.chooseSuitable')} </p>
                   </div>
                 </div>
               </div>
@@ -36,8 +36,8 @@ function HowToUse() {
                 <div className="media d-block media-feature text-center">
                   <span className="icon fa fa-calendar-alt my-4"></span>
                   <div className="media-body">
-                    <h3 className="mt-0 text-black"><span className="number">3</span> Book An Appointment </h3>
-                    <p> Book An Appointment and Go to the Doctor and But Your Rate. </p>
+                    <h3 className="mt-0 text-black"><span className="number">3</span>{t('HowToUse.book')}  </h3>
+                    <p>{t('HowToUse.bookAppointment')} </p>
                   </div>
                 </div>
               </div>

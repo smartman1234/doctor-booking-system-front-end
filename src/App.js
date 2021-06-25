@@ -21,8 +21,18 @@ import Profile from './components/Profile/Profile';
 import SearchBar from './components/searchbar/SearchBar';
 
 import HomeSite from './components/patient/HomeSite';
+import { useTranslation } from 'react-i18next';
+import i18n from './i18n';
 
 function App() {
+
+  const { t } = useTranslation();
+
+  const sendLangToParent = (lang) => {
+        i18n.changeLanguage(lang)
+        //console.log("lang in app", lang);
+  };
+
   let [searchParams, setSearchParams] = useState([]);
 
   let [user, setUser] = useState([]);
@@ -66,13 +76,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      
-        <Navbar user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
+        <Navbar user={user} setUser={setUser} setLogin={() => setLogin(false)} sendLangToParent={sendLangToParent} t={t}/>  
         
-        <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
+        <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome} t={t}/>}/>
         <Route path="/home" component={() => <Home user={user} searchParams={searchParams} />}/>
-        <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
-        <Route path="/register" component={Register}/>
+        <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)} t={t}/>}/>
+        <Route path="/register" component={() => <Register t={t}/>}/>
         <Route path="/forgot" component={Forgot}/>
         <Route path="/reset/:token" component={Reset}/>
         <Route path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
