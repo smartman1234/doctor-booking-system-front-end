@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
-
 function TimeTable(props) {
-    const alert = useAlert();
-    const submit = (e) => {
+    // const alert = useAlert(‏);
+
+    const submit = (index) =>(e)=> {
         e.preventDefault();
+        console.log('index', index);
         let formdata = {};
-        formdata.address_id = document.querySelector(".address_id").value;
-        formdata.doctor_id  = document.querySelector(".doctor_id").value;
-        formdata.patient_id = document.querySelector(".patient_id").value;
-        formdata.day = document.querySelector(".day").value;
-        formdata.time = document.querySelector(".time").value;
-        formdata.fees = document.querySelector(".fees").value;
+        formdata.address_id = document.getElementById("address_id"+index).value;
+        formdata.doctor_id  = document.getElementById("doctor_id"+index).value;
+        formdata.patient_id = document.getElementById("patient_id"+index).value;
+        formdata.day        = document.getElementById("day"+index).value;
+        formdata.time       = document.getElementById("time"+index).value;
+        formdata.fees       = document.getElementById("fees"+index).value;
 
         fetch(`http://127.0.0.1:8000/api/book/store`, {
             method: 'POST',
@@ -21,11 +22,19 @@ function TimeTable(props) {
             },
 
             body: JSON.stringify(formdata)
+
         }).then((response) => response.json())
         .then( response => {
+            setIsRendered(false);
+
             console.log("response.errors",response.errors);
-            if(response.status === 200){
+            console.log('====================================')
+
+            setIsRendered(true);
+            console.log('====================================')
+            if(response.status === 201){
                 alert.success(response.message);
+
 
             }else{
             }
@@ -36,7 +45,6 @@ function TimeTable(props) {
     }
 
     function getTimeTables(docID, addressID) {   
-
 
         fetch(`http://localhost:8000/api/available-time/${docID}/${addressID}`,{
             method: 'GET',
@@ -56,12 +64,11 @@ function TimeTable(props) {
     }
 
     const [times, setTimes] = useState([{}]);
+    const [is_rendered, setIsRendered] = useState(false);
 
-
-    
     useEffect(() => {
         getTimeTables(props.id,1);  
-    }, []);  
+    }, [is_rendered]);  
 
     let times_table = times;
 
@@ -78,31 +85,33 @@ function TimeTable(props) {
                     <b>Fees:</b>{item.fees? item.fees : ''}
                 </h5>
 
-                
-
             {/* time slots */}
-            {item.time_slot ? 
-                item.time_slot.map(i => {
-                    return ( <h5><b>{i.starts}</b>
-                    
-                    <div class="time">
-                        <form className="" onSubmit={submit}>
-                            <input type="hidden" id="doctor_id" name="doctor_id" value={props.id} />
-                            <input type="hidden" id="address_id" name="address_id" value={item.doctor_address_id} />
-                            <input type="hidden" id="time" name="time" value={i.starts} />
-                            <input type="hidden" id="day" name="day" value={item.day} />
-                            <input type="hidden" id="fees" name="fees" value={item.fees} />
-                            <input type="hidden" id="patient_id" name="patient_id" value={1} />
-                            <button className="btn mb-3 btn-sm" >book</button>
-                        </form>
-                    </div>
+            {
 
-                    </h5> );})  
+            item.time_slot ? 
+                item.time_slot.map((i, index) => { 
+
+                    if(!item.blocked_times.includes(i.starts)){
+
+                        return ( <h5><b>{i.starts}</b>
+                        
+                        <div class="time">
+                            <form className="" onSubmit={submit(index)}>
+                                <input type="hidden" id="index"  name="index" value={index} />
+                                <input type="hidden" id={"doctor_id"+index}  name="doctor_id" value={props.id} />
+                                <input type="hidden" id={"address_id"+index} name="address_id" value={item.doctor_address_id} />
+                                <input type="hidden" id={"time"+index}       name="time" value={i.starts} />
+                                <input type="hidden" id={"day"+index}        name="day" value={item.day} />
+                                <input type="hidden" id={"fees"+index}       name="fees" value={item.fees} />
+                                <input type="hidden" id={"patient_id"+index} name="patient_id" value={1} />
+                                <button className="btn mb-3 btn-sm" >book</button>
+                            </form>
+                        </div>
+
+                        </h5> )} ; 
+                    })      
                 :''
             }
-                
-            
-                
             </div>
         </div>
         </div>
@@ -121,80 +130,7 @@ function TimeTable(props) {
                     </div>
                     <div class="card-body">
                         <div class="booking-slider owl-carousel row">
-
-                                {/* {JSON.stringify(times_table)} */}
-
-        
-
-                                {cards}
-
-
-
-                   
-
-{/* <div class="slider-item">
-<div class="px-lg-5 py-3">
-    <div class="slider-item-content px-lg-5">
-
-            <span>From :00</span> <span>To {{$timeTable->to}}:00</span>
-        <p class="lead">
-           {{(Config::get('app.locale') == "en") ? $timeTable->day->name_en : $timeTable->day->name_ar}{"}"} , {{$timeTable->date}}
-
-        </p> 
-        
-
-        <div class="time">
-        
-
-        @for($i=1;$i<=$timeTable->session_number;$i++)
-          
-          
-
-            <a class="btn mb-3" data-toggle="modal" data-target="#timeModal{{$timeTable->id}}{{$i}}">
-                {{$time}}
-            </a>
-
-
-            
-        @endfor
-        </div>
-    </div>
-</div>
-</div> */}
-
- 
-                    
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
+                            {cards} 
                         </div>
                     </div>
                 </div>
