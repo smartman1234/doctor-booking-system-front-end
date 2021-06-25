@@ -6,7 +6,7 @@ function Reviews(props) {
     const [reviews, setReviews] = useState([]);
     
     useEffect(() => {
-        getFeedbacks(1);
+        getFeedbacks(props.id);
      }, []);
     
     //Return All Feedback on Doctor

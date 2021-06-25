@@ -1,22 +1,38 @@
 import React,{useState} from "react";
+import Cookies from 'universal-cookie';
+
 
 function Review(props) { 
+    // const cookies = new Cookies();
+    // console.log(cookies.get("jwt").substr(1) );
+    // let token = cookies.get("jwt").substr(1);
+    // jwt_decode(token, { header: true });
+    // // const token = cookies.get("jwt");
+    // // var decoded = jwt_decode(token);
+    // console.log('====decode====')
+    // console.log(token);
+    // console.log('====decode====')
     const [rate, setRate] = useState("");
     const [comment, setComment] = useState("");
 
     //Send Rate and Comment of Patient on Doctor
     const submit = (e) => {
         e.preventDefault();
-        var formdata = new FormData();
-        formdata.append('rate', rate);
-        formdata.append('comment', comment);
-        formdata.append('doc_id', 1);        
-        formdata.append('patient_id', 1);
+        let formdata = {};
+        formdata.rate = rate;
+        formdata.comment = comment;
+        formdata.patient_id = 1;
+        formdata.doc_id = props.id;
+
         fetch(`http://127.0.0.1:8000/api/feedbacks`, {
+
             method: 'POST',
-            headers: {'Content-Type': 'application/json','X-Requested-With':'XMLHttpRequest'},
-            credentials: 'include',
-            body: formdata
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify(formdata)
         }).then( response => {
             console.log("response",response);
         }).catch(error => {
@@ -27,7 +43,7 @@ function Review(props) {
     return (
         <React.Fragment>
             <section class="store-rate-comment">
-                <div id="ratingModal" class={props.show ? "modal fade" : " "} aria-hidden="true" role="dialog" >
+                <div id="ratingModal"  aria-hidden="true" role="dialog" >
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 function DoctorInfo (props) { 
+    console.log(props.id);
     const [doctor_info,setDoctorInfo] = useState([{}]);
     useEffect(() => {
-        getDoctorInfo(1);
+        getDoctorInfo(props.id);
     }, []);
 
     //Get Doctor Info
@@ -54,8 +55,8 @@ function DoctorInfo (props) {
                                             <React.Fragment>
                                                 <h6>
                                                     <i class="fa fa-search-location"></i>
-                                                    {address.district.city.name_en} - 
-                                                    {address.district.name_en} - 
+                                                    {address.district? address.district.city.name_en : ''} - 
+                                                    {address.district? address.district.name_en : ''} - 
                                                     {address.address_en}
                                                 </h6>
                                                 <h6>
@@ -92,11 +93,11 @@ function DoctorInfo (props) {
     }
     return (
         <React.Fragment>
-            <section class="booking-doctor-info py-5">
-                <div class="container">
-                    <div class="doctor-info">
-                        <div class="row m-0">
-                            <div class="col-lg-2 col-md-3 col-sm-4 py-4 px-4">
+            <section className="booking-doctor-info py-5">
+                <div className="container">
+                    <div className="doctor-info">
+                        <div className="row m-0">
+                            <div className="col-lg-2 col-md-3 col-sm-4 py-4 px-4">
                                 {data}
                             </div>
                         </div>
