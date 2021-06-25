@@ -35,7 +35,7 @@ function App() {
   let [user, setUser] = useState([]);
   let [login, setLogin] = useState(false);
   let [profile, setprofile] = useState(false);
-  const [doctorData, setDoctorData] = useState([]); // the lifted state
+  const [doctorData, setDoctorData] = useState([]); 
     const sendDoctorDataParentHome = (index,searchParams) => {
         // the callback. Use a better name
         console.log("ParentHome | sendDoctorDataParentHome => ", index);
@@ -45,9 +45,11 @@ function App() {
         setSearchParams(searchParams);
       };
   //start
-  const sendDataToParent = (index) => { // the callback. Use a better name
-    console.log("Index => ",index);
-    setUser(index);
+  const sendDoctorDataParent = (index) => { // the callback. Use a better name
+        console.log("Parent | sendDoctorDataParent => ", index);
+        console.log("Parent | sendSearchParamsParent => ", searchParams);
+        sendDoctorDataParentHome(index,searchParams);
+        setDoctorData(index);
   };
   //end
   useEffect(() => {
@@ -59,7 +61,7 @@ function App() {
         credentials: 'include',
     }).then( response => response.json())
     .then(user => {
-        console.log(user);
+        //console.log(user);
         setUser(user);
     }
     )
@@ -77,7 +79,7 @@ function App() {
         
         <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome} t={t}/>}/>
         {/* <Route path="/home" component={() => <Home user={user} searchParams={searchParams} />}/> */}
-        <Route path="/home" exact component={() => <MainHome user={user} searchParams={searchParams}  t={t}/>}/>
+        <Route path="/home" exact component={() => <MainHome user={user} sendDoctorDataParent={sendDoctorDataParent} searchParams={searchParams}  t={t}/>}/>
         
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)} t={t}/>}/>
         <Route path="/register" component={() => <Register t={t}/>}/>

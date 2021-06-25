@@ -19,6 +19,7 @@ function DoctorCard(props) {
     }
     return (  
         <React.Fragment>
+            <title>Doctors</title>
             <DoctorInfo id={id}/>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal" onClick={handleShow}>Launch demo modal</button>   
             <Review show={show} id={id}/>

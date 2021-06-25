@@ -62,6 +62,7 @@ function Login(props) {
 
     return (
         <React.Fragment>
+            <title>Login</title>
             <div className="login-box">
                 <div className="login-logo">
                     <a>

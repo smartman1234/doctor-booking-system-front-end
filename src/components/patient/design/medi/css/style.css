@@ -329,7 +329,7 @@ header .navbar .dropdown-menu a {
   position: relative;
   margin-top: -400px;     /*-400*/
   margin-bottom: 350px !important;    /*350*/
-  z-index: 2;
+  z-index: 1;
 }
 
 .subhome-tico{

@@ -41,7 +41,7 @@ function Navbar(props) {
         links = (
             <ul className="navbar-nav my-2 my-lg-0">
                 <li className="nav-item">
-                <img style={{ width: 40, height: 40 }} className="rounded-circle" alt="profile pic" src={"http://127.0.0.1:8000/storage/patients/" + props.user.image}/>
+                <img style={{ width: 40, height: 40 }} className="rounded-circle" alt="profile pic" src={"http://127.0.0.1:8000/storage/" + props.user.image}/>
                     <Link style={{ display: "inline-block" }} to="/profile" className="nav-link">{props.t('Navbar.profile')}</Link>
                 </li>
                 <li className="nav-item">
@@ -54,8 +54,7 @@ function Navbar(props) {
 
     return (
         <React.Fragment>
-            <header role="banner" data-aos="fade-up">
-            
+            <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
                 <Link className="navbar-brand" to="/">

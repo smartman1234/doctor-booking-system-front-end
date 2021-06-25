@@ -21,6 +21,7 @@ function HomeSite({sendDoctorDataParentHome,t}) {
         Aos.init()
         return (
         <React.Fragment>
+            <title>BookDoc</title>
             {/* <Navbar /> */}
             <Carousel t={t}/>
             <Search sendDoctorDataParent={sendDoctorDataParent} t={t}/>

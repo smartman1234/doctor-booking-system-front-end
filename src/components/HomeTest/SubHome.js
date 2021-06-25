@@ -237,7 +237,8 @@ function SubHome(props) {
 
       {/* <Search  style={{  marginTop: 15, marginBottom: '-4px !important' }}/> */}
       <div className="search-control container">
-      <Search t={props.t}/>
+        
+      
         <div className="row">
           <div className="col-md-3 my-3">
             <div className="search-filter">

@@ -88,8 +88,7 @@ function Search({sendDoctorDataParent,t}) {
   return (
     <React.Fragment>
       <section
-        className="container home-search home-page-search mb-5"
-        data-aos="fade-up">
+        className="container home-search home-page-search mb-5">
         <form action="#" method="get" className="search-box">
           <div className="row">
             <div className="select-form col-lg col-md-4 col-sm-12">
