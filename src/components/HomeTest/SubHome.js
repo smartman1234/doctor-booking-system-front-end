@@ -139,6 +139,7 @@ function SubHome(props) {
   function init() {
     console.log("res from subhome => ", props.data);
     console.log("searchPrams from subhome => ", props.searchPrams);
+ 
     setData(props.data.data);
     setCurrent_page(props.data.current_page);
     setPer_page(props.data.per_page);
@@ -220,14 +221,29 @@ function SubHome(props) {
       );
     });
   };
-  if (props.data.data) {
-    if (props.data.data.length > 0) doctorCard = card(props.data.data);
+  if (props.data.data !== undefined) {
+    if (props.data.data.length > 0){
+      doctorCard = card(props.data.data);
+    } 
 
+    else if(data){
+      console.log("Data ...")
+      doctorCard = card(data);
+    }
     else {
       doctorCard = (
         <div className="alert alert-danger text-center">No doctors</div>
       );
     }
+  }else {
+    if(JSON.parse(localStorage.getItem("data")).data.length > 0){
+      doctorCard = card(JSON.parse(localStorage.getItem("data")).data);
+    }else{
+
+      doctorCard = (
+        <div className="alert alert-danger text-center">No doctors</div>
+        );
+      }
   }
 
   // const myComponentStyle = {  marginTop: 15, marginBottom: '-4px !important' }
