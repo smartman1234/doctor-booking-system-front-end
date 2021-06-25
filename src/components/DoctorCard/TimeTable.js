@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 function TimeTable(props) {
     // const alert = useAlert(‏);
+    console.log('==========time table user==========')
+    console.log(props.user.id);
+    console.log('==========time table user==========')
 
     const submit = (index) =>(e)=> {
         e.preventDefault();
@@ -9,7 +12,7 @@ function TimeTable(props) {
         let formdata = {};
         formdata.address_id = document.getElementById("address_id"+index).value;
         formdata.doctor_id  = document.getElementById("doctor_id"+index).value;
-        formdata.patient_id = document.getElementById("patient_id"+index).value;
+        formdata.patient_id = props.user.id
         formdata.day        = document.getElementById("day"+index).value;
         formdata.time       = document.getElementById("time"+index).value;
         formdata.fees       = document.getElementById("fees"+index).value;
@@ -33,9 +36,8 @@ function TimeTable(props) {
             setIsRendered(true);
             console.log('====================================')
             if(response.status === 201){
+                props.setAppointment(); 
                 alert.success(response.message);
-
-
             }else{
             }
         }).catch(error => {
@@ -72,7 +74,10 @@ function TimeTable(props) {
 
     let times_table = times;
 
-    let cards =  times_table.map(item =>  {
+    let x = 1;
+
+    let cards =  times_table.map((item) =>  {
+        x++;
         return (    
             <div class="slider-item col-4">
         <div class="px-lg-5 py-3">
@@ -96,21 +101,23 @@ function TimeTable(props) {
                         return ( <h5><b>{i.starts}</b>
                         
                         <div class="time">
-                            <form className="" onSubmit={submit(index)}>
-                                <input type="hidden" id="index"  name="index" value={index} />
-                                <input type="hidden" id={"doctor_id"+index}  name="doctor_id" value={props.id} />
-                                <input type="hidden" id={"address_id"+index} name="address_id" value={item.doctor_address_id} />
-                                <input type="hidden" id={"time"+index}       name="time" value={i.starts} />
-                                <input type="hidden" id={"day"+index}        name="day" value={item.day} />
-                                <input type="hidden" id={"fees"+index}       name="fees" value={item.fees} />
-                                <input type="hidden" id={"patient_id"+index} name="patient_id" value={1} />
+                            <form className="" onSubmit={submit(index+item.day)}>
+                                <input type="hidden" id="index"  name="index" value={index+item.day} />
+                                <input type="hidden" id={"doctor_id"+index+item.day}  name="doctor_id" value={props.id} />
+                                <input type="hidden" id={"address_id"+index+item.day} name="address_id" value={item.doctor_address_id} />
+                                <input type="hidden" id={"time"+index+item.day}       name="time" value={i.starts} />
+                                <input type="hidden" id={"day"+index+item.day}        name="day" value={item.day} />
+                                <input type="hidden" id={"fees"+index+item.day}       name="fees" value={item.fees} />
+                                
                                 <button className="btn mb-3 btn-sm" >book</button>
                             </form>
                         </div>
 
-                        </h5> )} ; 
+                        </h5> )  } ; 
                     })      
                 :''
+
+                
             }
             </div>
         </div>

@@ -7,12 +7,21 @@ import DoctorInfo from './DoctorInfo';
 // import "bootstrap/dist/css/bootstrap.css";
 
 function DoctorCard(props) {
+    // const [user, setUser] = useState({});
+
+
+    // useEffect(() => {
+    //     setUser(props.user);
+    // },[]);
+
     const [show, setShow] = useState(false);
     const { id } = useParams();
 
-    console.log('----------------')
-    console.log(id);
-    console.log('----------------')
+    console.log('---------card user-------')
+
+    console.log(props.user);   //obj
+    
+    console.log('---------card user-------')
 
     const handleShow = () => {
         show? setShow(false): setShow(true)
@@ -22,7 +31,7 @@ function DoctorCard(props) {
             <DoctorInfo id={id}/>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal" onClick={handleShow}>Launch demo modal</button>   
             <Review show={show} id={id}/>
-            <TimeTable id={id}/>
+            <TimeTable id={id} setAppointment={props.setAppointment} user={props.user}  />
             <Reviews id={id}/>
         </React.Fragment>
     )
