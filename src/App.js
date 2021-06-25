@@ -16,6 +16,7 @@ import {
   ProtectedRoute,
   Card,
   SearchBar,
+  MainHome
 } from './imports';
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
   };
   //end
   useEffect(() => {
-    
+    setUser([]);
     fetch('http://localhost:8000/api/patientUser', {
         method: 'GET',
         mode: 'cors',
@@ -64,7 +65,9 @@ function App() {
     <BrowserRouter>
         <Navbar user={user} setUser={setUser} setLogin={() => setLogin(false)}/>  
         <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome}/>}/>
-        <Route path="/home" component={() => <Home user={user} searchParams={searchParams} />}/>
+        {/* <Route path="/home" component={() => <Home user={user} searchParams={searchParams} />}/> */}
+        <Route path="/home" exact component={() => <MainHome user={user} searchParams={searchParams} />}/>
+
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
         <Route path="/register" component={Register}/>
         <Route path="/forgot" component={Forgot}/>

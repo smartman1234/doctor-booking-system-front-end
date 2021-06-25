@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-
-
+import { useAlert } from "react-alert";
+‏
 function TimeTable(props) {
+
+const alert = useAlert(‏);
 
     const submit = (e) => {
         e.preventDefault();
-       
         let formdata = {};
         formdata.address_id = document.querySelector(".address_id").value;
         formdata.doctor_id  = document.querySelector(".doctor_id").value;
@@ -27,6 +28,7 @@ function TimeTable(props) {
             console.log("response.errors",response.errors);
             if(response.status === 200){
                 alert.success(response.message);
+
             }else{
             }
         }).catch(error => {
@@ -87,12 +89,12 @@ function TimeTable(props) {
                     
                     <div class="time">
                         <form className="" onSubmit={submit}>
-                            <input type="hidden" class="doctor_id" name="doctor_id" value={props.id} />
-                            <input type="hidden" class="address_id" name="address_id" value={item.doctor_address_id} />
-                            <input type="hidden" class="time" name="time" value={i.starts} />
-                            <input type="hidden" class="day" name="day" value={item.day} />
-                            <input type="hidden" class="fees" name="fees" value={item.fees} />
-                            <input type="hidden" class="patient_id" name="patient_id" value={1} />
+                            <input type="hidden" id="doctor_id" name="doctor_id" value={props.id} />
+                            <input type="hidden" id="address_id" name="address_id" value={item.doctor_address_id} />
+                            <input type="hidden" id="time" name="time" value={i.starts} />
+                            <input type="hidden" id="day" name="day" value={item.day} />
+                            <input type="hidden" id="fees" name="fees" value={item.fees} />
+                            <input type="hidden" id="patient_id" name="patient_id" value={1} />
                             <button className="btn mb-3 btn-sm" >book</button>
                         </form>
                     </div>
