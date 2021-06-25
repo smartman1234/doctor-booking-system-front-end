@@ -722,6 +722,9 @@ header .navbar .dropdown-menu a {
   background: #f2f2f2;
   background: #283E56;
   color: rgba(255, 255, 255, 0.7);
+}.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+	background-color: red;
 }
 
 .site-footer img {
@@ -1243,4 +1246,10 @@ form .strength span {
 
 .modal-rating .rating:hover>input:checked~label:before {
   opacity: 0.4
+}
+
+.table-test>tbody>tr:nth-child(odd)>td,
+.table-test>tbody>tr:nth-child(odd)>th {
+	background-color: rgb(3, 145, 240);
+  color: white
 }

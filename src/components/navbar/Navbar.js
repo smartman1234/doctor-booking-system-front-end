@@ -45,7 +45,10 @@ function Navbar(props) {
                     <Link style={{ display: "inline-block" }} to="/profile" className="nav-link">{props.t('Navbar.profile')}</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/login" onClick={logout} className="nav-link">{props.t('Navbar.logout')}</Link>
+                    <Link className="nav-link" to="/my-appointments" >My Appointments </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/login" onClick={logout} className="nav-link">Logout</Link>
                 </li>
                 
             </ul>
@@ -69,6 +72,9 @@ function Navbar(props) {
                         <li className="nav-item">
                             <Link className="nav-link mt-2" to="/home" >{props.t('Navbar.home')}</Link>
                         </li>
+
+                        
+
                         <li className="nav-item">
                             <a className="nav-link mt-2" href="http://localhost:8000/doctor/">{props.t('Navbar.doctors')}</a>
                         </li>
