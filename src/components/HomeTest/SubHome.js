@@ -35,12 +35,16 @@ function SubHome(props) {
 
   useEffect(() => {
     console.log("useEffect ...");
+
+    console.log("doctor -> ", props.data.data);
     getDoctorDegreeAPI();
-    getDoctorSubSpecialistAPI();
+    // if(props.searchPrams)
+    // getDoctorSubSpecialistAPI(props.searchPrams);
     init();
   }, []);
 
-  function getDoctorSubSpecialistAPI() {
+  function getDoctorSubSpecialistAPI(s) {
+    console.log("getDoctorSubSpecialistAPI -> search",s)
     fetch(`http://127.0.0.1:8000/api/sub-specialist`, {
       method: "GET",
     })
@@ -218,6 +222,7 @@ function SubHome(props) {
   };
   if (props.data.data) {
     if (props.data.data.length > 0) doctorCard = card(props.data.data);
+
     else {
       doctorCard = (
         <div className="alert alert-danger text-center">No doctors</div>
@@ -291,7 +296,7 @@ function SubHome(props) {
                   className="w-100 text-center"
                   placeholder="Sub Department"
                   style={{ border: "solid 1px" }}
-                  options={subSpecialist}
+                  options={props.subSpecialist}
                   onChange={onChangeHandlerSubSpecialist}
                 />
               </div>
