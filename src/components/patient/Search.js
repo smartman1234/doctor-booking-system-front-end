@@ -71,6 +71,7 @@ function Search({sendDoctorDataParent,t}) {
       .then((response) => response.json())
       .then((res) => {
         console.log("res from server => ",res);
+        console.log("res from server - size => ",res.data.length);
         setRedirect(true);
         sendDoctorDataParent(res,key);
         setDoctorData(res);
@@ -88,8 +89,7 @@ function Search({sendDoctorDataParent,t}) {
     <React.Fragment>
       <section
         className="container home-search home-page-search mb-5"
-        data-aos="fade-up"
-      >
+        data-aos="fade-up">
         <form action="#" method="get" className="search-box">
           <div className="row">
             <div className="select-form col-lg col-md-4 col-sm-12">

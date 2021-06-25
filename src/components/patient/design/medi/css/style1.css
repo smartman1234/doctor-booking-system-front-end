@@ -327,16 +327,9 @@ header .navbar .dropdown-menu a {
 
 .home-page-search {
   position: relative;
-  margin-top: -400px;     /*-400*/
-  margin-bottom: 350px !important;    /*350*/
-  z-index: 2;
-}
-
-.subhome-tico{
-  position: relative;
-  margin-top: 10px !important;     /*-400*/
+  margin-top: 10px;     /*-400*/
   margin-bottom: 10px !important;    /*350*/
-  z-index: 2;  
+  z-index: 2;
 }
 
 @media(max-width:991px) {
