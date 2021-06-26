@@ -5,10 +5,12 @@ import Pagination from "react-js-pagination";
 import { Select } from "semantic-ui-react";
 import SubHome from "./SubHome";
 import Search from "../patient/Search";
+import bg2 from '../patient/design/medi/img/slider-2.jpg';
+
 import './MainHome.css';
 function MainHome(props) {
   const [data, setData] = useState([]);
-  const [searchPrams, setSearchParams] = useState([]);
+  const [searchPrams, setSearchParams] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
   const [genderFilter, setGenderFilter] = useState('null');
   const [degreeFilter, setDegreeFilter] = useState('null');
@@ -19,11 +21,18 @@ function MainHome(props) {
   const sendDoctorDataParent = (index, searchParams) => {
     // the callback. Use a better name
     console.log("Parent | sendDoctorDataParent => ", index);
-    console.log("Parent | sendSearchParamsParent => ", searchParams);
+    console.log("Parent | sendSearchParamsParent => ", searchParams['specialty']);
 
     setData(index);
     setSearchParams(searchParams);
-    getDoctorSubSpecialistAPI(localStorage.getItem("searchParams"));
+    let s = {
+      specialty : searchParams['specialty'],
+      city      : searchParams["city"] ,
+      district  : searchParams["district"] ,
+      name      : searchParams["name"] 
+    }
+    localStorage['Params'] = JSON.stringify(s);
+    getDoctorSubSpecialistAPI(JSON.parse(localStorage.getItem('Params')).specialty);
   };
 
   const getDataForPagination = (pageNumber,path) => {
@@ -64,7 +73,7 @@ function MainHome(props) {
   },[]);
 
   function getDoctorSubSpecialistAPI(s) {
-    //console.log("getDoctorSubSpecialistAPI -> search",s['specialty']);
+    // console.log("getDoctorSubSpecialistAPI -> search",s['specialty']);
     fetch(`http://127.0.0.1:8000/api/sub-specialist/${s}`, {
       method: "GET",
     })
@@ -93,7 +102,7 @@ function MainHome(props) {
 
   const filterSearch = (key,gender_Filter,degree_Filter,subSpec_Filter) => {
     fetch(
-      `http://127.0.0.1:8000/api/filter?name=${key["name"]}&specialty=${key["specialty"]}&city=${key["city"]}&district=${key["district"]}&gender=${gender_Filter}&degree=${degree_Filter}&sub_department=${subSpec_Filter}`,
+        `http://127.0.0.1:8000/api/filter?name=${key["name"]!==undefined?key["name"]:JSON.parse(localStorage.getItem("Params")).name}&specialty=${key["specialty"]!==undefined?key["specialty"]:JSON.parse(localStorage.getItem("Params")).specialty}&city=${key["city"]!==undefined?key["city"]:JSON.parse(localStorage.getItem("Params")).city}&district=${key["district"]!==undefined?key["district"]:JSON.parse(localStorage.getItem("Params")).district}&gender=${gender_Filter}&degree=${degree_Filter}&sub_department=${subSpec_Filter}`,
       {
         method: "GET",
         
@@ -113,7 +122,7 @@ function MainHome(props) {
 
   const pagination = (pNumber,path,key,gender_Filter,degree_Filter,subSpec_Filter) => {
     fetch(
-      `${path}?name=${key["name"]}&specialty=${key["specialty"]}&city=${key["city"]}&district=${key["district"]}&gender=${gender_Filter}&degree=${degree_Filter}&sub_department=${subSpec_Filter}&page=${pNumber}`,
+      `${path}?name=${key["name"]!==undefined?key["name"]:JSON.parse(localStorage.getItem("Params")).name}&specialty=${key["specialty"]!==undefined?key["specialty"]:JSON.parse(localStorage.getItem("Params")).specialty}&city=${key["city"]!==undefined?key["city"]:JSON.parse(localStorage.getItem("Params")).city}&district=${key["district"]!==undefined?key["district"]:JSON.parse(localStorage.getItem("Params")).district}&gender=${gender_Filter}&degree=${degree_Filter}&sub_department=${subSpec_Filter}&page=${pNumber}`,
       {
         method: "GET",
         
@@ -133,10 +142,10 @@ function MainHome(props) {
 
 
   return (
-    <React.Fragment>
+    <React.Fragment >
       <title>Home</title>
-      {/* <div className="search-bar"><Search sendDoctorDataParent={sendDoctorDataParent} t={props.t}/></div> */}
-      
+      {/* backgroundImage: `url(${bg2})`, borderRadius: '85px' */}
+      <div className="search-bar"  style={{ }}><Search sendDoctorDataParent={sendDoctorDataParent} t={props.t}/></div>  
       <SubHome data={data} searchPrams={searchPrams} subSpecialist={subSpecialist} genderFilterSearch={genderFilterSearch}
       degreeFilterSearch={degreeFilterSearch} sebSpecFilterSearch={sebSpecFilterSearch}
       getDataForPagination={getDataForPagination} t={props.t}/>

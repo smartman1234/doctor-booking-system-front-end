@@ -1,12 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import loading from './design/medi/img/loading.gif'; 
 import { useAlert } from 'react-alert';
 function MyAppointments(props) {
   const alert = useAlert();
-  
-  
-
   const cancelAppointment = (book_id) =>(e)=> {
     e.preventDefault();
 

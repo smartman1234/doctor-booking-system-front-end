@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { useAlert } from 'react-alert';
 
+
 function Profile(props) {
 
     const alert = useAlert();
@@ -236,7 +237,7 @@ function Profile(props) {
         
             <React.Fragment>
                 <title>Profile</title>
-                Loading...
+                
             </React.Fragment>
                      
         )

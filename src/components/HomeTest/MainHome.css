@@ -1,6 +1,9 @@
 .search-bar {
     position: relative;
-    margin-top: 500px !important;     
-    margin-bottom: -300px !important;  
+    margin-top: 430px !important;     
+    margin-bottom: -330px !important;  
     z-index: 1;
+    border: 1px solid #ffffff !important;
+    border-radius: 70px !important;
+    background: transparent !important;
 }

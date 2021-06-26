@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useAlert } from 'react-alert';
+import Footer from '../patient/Footer';
 function Register({t}) {
     const alert = useAlert();
     const [profileImg,setProfileImg] = useState('');
@@ -221,6 +222,7 @@ function Register({t}) {
 
                 </div>
             </div>
+
 
         </React.Fragment>
     );

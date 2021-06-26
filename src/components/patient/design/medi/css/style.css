@@ -1110,12 +1110,13 @@ form .strength span {
 .booking-doctor-info .doctor-info .rating i {
   position: relative;
   color: #ffb624;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .booking-doctor-info .doctor-info .rating span {
   position: absolute;
-  top: 35%;
-  left: 32%;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -1199,12 +1200,14 @@ form .strength span {
 .rate-and-comment .previous-rating .previous-rating-content .rating i {
   position: relative;
   color: #ffb624;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .rate-and-comment .previous-rating .previous-rating-content .rating span {
   position: absolute;
-  top: 35%;
-  left: 32%;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -1253,3 +1256,4 @@ form .strength span {
 	background-color: rgb(3, 145, 240);
   color: white
 }
+
