@@ -3,6 +3,9 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Slider from "react-slick";
 import Moment from 'moment';
+import Cookies from 'universal-cookie';
+import {Link} from 'react-router-dom';
+import { useAlert } from 'react-alert';
 
 import bg from './auth-background.png'; 
 
@@ -38,14 +41,13 @@ function TimeTable(props) {
             items: 1
         }
     };
-    // const alert = useAlert(‏);
-    console.log('==========time table user==========')
-    console.log(props.user.id);
-    console.log('==========time table user==========')
 
+    const cookies = new Cookies();
+    const isAuthenticated = cookies.get("jwt");
+    const alert = useAlert();
+    //Submit form to Book a Doctor
     const submit = (index) =>(e)=> {
         e.preventDefault();
-        console.log('index', index);
         let formdata = {};
         formdata.address_id = document.getElementById("address_id"+index).value;
         formdata.doctor_id  = document.getElementById("doctor_id"+index).value;
@@ -53,38 +55,27 @@ function TimeTable(props) {
         formdata.day        = document.getElementById("day"+index).value;
         formdata.time       = document.getElementById("time"+index).value;
         formdata.fees       = document.getElementById("fees"+index).value;
-
         fetch(`http://127.0.0.1:8000/api/book/store`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-
             body: JSON.stringify(formdata)
-
         }).then((response) => response.json())
         .then( response => {
             setIsRendered(false);
-
-            console.log("response.errors",response.errors);
-            console.log('====================================')
-
-            setIsRendered(true);
-            console.log('====================================')
-            if(response.status === 201){
-                props.setAppointment(); 
-                alert.success(response.message);
-            }else{
-            }
+            props.changestate(); 
+            alert.success('Reserve Appointment sucessfully');
+            setIsRendered(true)
         }).catch(error => {
+            alert.error('Fail to reserve appointment');
             console.log("error",error);
             });
-        
     }
 
+    //Get Time Tables of Specified Doctor
     function getTimeTables(docID, addressID) {   
-
         fetch(`http://localhost:8000/api/available-time/${docID}/${addressID}`,{
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
@@ -101,39 +92,21 @@ function TimeTable(props) {
             console.log(error);
         });
     }
-
     const [times, setTimes] = useState([{}]);
     const [is_rendered, setIsRendered] = useState(false);
-
     useEffect(() => {
         getTimeTables(props.id,1);  
     }, [is_rendered]);  
-
     let times_table = times;
-
-    let x = 1;
-
     let cards =  times_table.map((item) =>  {
-        x++;
         return (    
             <div class="flex-wrap p-4">
         <div class="px-lg-5 ">
             <div class="" style={{  borderRadius: '10px', border: '1px solid rgb(43, 113, 205)', textAlign: 'center', padding: '10px',    background: 'rgb(43 113 205)', 'margin' : '0px 0px' }}>
-                 <b style={{ width:'100%', background: '#2b71cd', color: 'white', borderRadius: '4px', padding: '2px' }}> {item.day} </b><br/> 
-                 {/* <span>From {item.from} :00</span> <span>To {item.to} :00</span>
-                <p class="lead">
-                    {item.id? item.id : ''}
-                </p> 
-                <h5>
-                    <b>Fees:</b>{item.fees? item.fees : ''}
-                </h5>  */}
-
-            {/* time slots */}
+                <b style={{ width:'100%', background: '#2b71cd', color: 'white', borderRadius: '4px', padding: '2px' }}> {item.day} </b><br/> 
             {
-
             item.time_slot ? 
                 item.time_slot.map((i, index) => { 
-
                     if(!item.blocked_times.includes(i.starts)){
 
                         return ( 
@@ -147,29 +120,36 @@ function TimeTable(props) {
                                 <input type="hidden" id={"day"+index+item.day}        name="day" value={item.day} />
                                 <input type="hidden" id={"fees"+index+item.day}       name="fees" value={item.fees} />
                                 
-                                <button className="btn mb-3 btn-sm" style={{ color: 'white', fontWeight: 'bold',
-                                    border: '2px solid #ffffff',
-                                    marginTop: '10px',
-                                    borderRadius: '10px',
-                                    background: '#a99ba7',
-                            }} >{Moment(i.starts, "HH:mm").format("hh:mm A")}</button>
+                                {
+                                    (isAuthenticated === undefined) ? <Link to="/login" className="btn mb-3 btn-sm"
+                                    style={{ color: 'white', fontWeight: 'bold',
+                                        border: '2px solid #ffffff',
+                                        marginTop: '10px',
+                                        borderRadius: '10px',
+                                        background: '#a99ba7',
+                                        }} >
+                                        {Moment(i.starts, "HH:mm").format("hh:mm A")}
+                                    </Link> : 
+                                    <button className="btn mb-3 btn-sm" 
+                                    style={{ color: 'white', fontWeight: 'bold',
+                                        border: '2px solid #ffffff',
+                                        marginTop: '10px',
+                                        borderRadius: '10px',
+                                        background: '#a99ba7',
+                                        }} >{Moment(i.starts, "HH:mm").format("hh:mm A")}</button>
+                                }
                             </form>
                         </div>
 
-                        )  } ; 
+                        )  } ;
                     })      
-                :''
-
-                
+                :''      
             }
             </div>
         </div>
         </div>
         
     )});
-
-
-
     return (
         
         <section className="booking-time" style={{ backgroundImage: `url(${bg})` }}>
@@ -180,27 +160,23 @@ function TimeTable(props) {
                     </div>
                     <div className="card-body ">
                     <Carousel  style={{   maxWidth: '230px', minWidth: '230px' }}
-                            cards={cards}
-                            swipeable={false}
-                            draggable={false}
-                            showDots={true}
-                            responsive={responsive}
-                            ssr={true} // means to render carousel on server-side.
-                            infinite={true}
-                            
-                            autoPlaySpeed={1000}
-                            keyBoardControl={true}
-                            customTransition="all .5"
-                            transitionDuration={500}
-                            containerClass="carousel-container"
-                            removeArrowOnDeviceType={["tablet", "mobile"]}
-                            
-                            dotListClass="custom-dot-list-style"
-                            
-                           
-                            >
-                                {cards}
-                </Carousel>
+                        cards={cards}
+                        swipeable={false}
+                        draggable={false}
+                        showDots={true}
+                        responsive={responsive}
+                        ssr={true} // means to render carousel on server-side.
+                        infinite={true}
+                        autoPlaySpeed={1000}
+                        keyBoardControl={true}
+                        customTransition="all .5"
+                        transitionDuration={500}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        dotListClass="custom-dot-list-style"
+                        >
+                            {cards}
+                    </Carousel>
 
                 {/* <Slider {...settings} focusOnSelect={true}>
                     {cards}
