@@ -1,0 +1,88 @@
+{
+    "Navbar": {
+        "home": "Home",
+        "doctors": "Doctors",
+        "languages": "Languages",
+        "login": "Login",
+        "register" : "Register",
+        "logout": "Logout",
+        "profile": "Profile",
+        "english": "English",
+        "arabic":"Arabic"
+    },
+    "Carousel": {
+        "care": "We care for your health",
+        "healthCare": "We Provide Fully Automated Health Care System"
+    },
+    "Search": {
+        "city": "City",
+        "district": "District",
+        "department": "Department",
+        "doctor": "Doctor",
+        "doctorName":"Doctor Name"
+    },
+    "Districts": {
+        "districtName": "District Name" 
+    },
+    "Departments": {
+        "departmentName": "Department Name"
+    },
+    "Cities": {
+        "cityName": "City Name"
+    },
+    "WhyChooseUs": {
+        "choose": "WHY CHOOSE US",
+        "healthSystem": "We Provide Fully Automated Health System",
+        "paper": "No Paper",
+        "paperDesc": "No Paper Description",
+        "booking": "Easy Booking",
+        "bookingDesc": "Easy Booking Description",
+        "search": "Easy Search",
+        "searchDesc": "Easy Search Description",
+        "expert": "Expert Doctor",
+        "expertDesc": "Expert Doctor Descriprtion"
+    },
+    "HowToUse": {
+        "use": "How To Use",
+        "useDesc": "How To Use Description",
+        "search": "Search",
+        "searchExpert": "Search For Expert Doctor and Filter The Result in Different Way",
+        "choose": "Choose",
+        "chooseSuitable": "Compare and Choose How suitable For You and Choose The Best Time For You",
+        "book": "Book An Appointment",
+        "bookAppointment": " Book An Appointment and Go to the Doctor and But Your Rate"
+    },
+    "Footer": {
+        "healthCare":"We Provide Fully Automated Health Care System",
+        "DoctorsSystem": "Doctors System",
+        "contacts": "Contacts",
+        "links": "Links",
+        "policies":"Policies",
+        "email": "Email",
+        "phone":"Phone",
+        "final": "2021 Doctor Booking System",
+        "designed" : "Designed",
+        "developed" : "Developed By",
+        "team": "ITI Students Group"
+    },
+    "Register": {
+        "book" : "Book",
+        "doctor": "your Doctor",
+        "signUp": "Sign Up",
+        "name_en": "English Name",
+        "name_ar": "Arabic Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "mobile": "Mobile",
+        "dateOfBirth": "Date Of Birth",
+        "file": "Choose File",
+        "account": "Have an account"
+    },
+    "Login": {
+        "signIn" : "Sign In",
+        "remember": "Remember me",
+        "forgotPassword": "Forgot Password",
+        "account": "Create a new account"
+    }
+}

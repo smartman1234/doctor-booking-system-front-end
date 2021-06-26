@@ -8,7 +8,7 @@ import HowToUse from './HowToUse';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-function HomeSite({sendDoctorDataParentHome}) {
+function HomeSite({sendDoctorDataParentHome,t}) {
 
     const [doctorData, setDoctorData] = React.useState([]); // the lifted state
     const sendDoctorDataParent = (index,searchParams) => {
@@ -21,12 +21,13 @@ function HomeSite({sendDoctorDataParentHome}) {
         Aos.init()
         return (
         <React.Fragment>
+            <title>BookDoc</title>
             {/* <Navbar /> */}
-            <Carousel />
-            <Search sendDoctorDataParent={sendDoctorDataParent}/>
-            <WhyChooseUs />
-            <HowToUse />
-            <Footer />
+            <Carousel t={t}/>
+            <Search sendDoctorDataParent={sendDoctorDataParent} t={t}/>
+            <WhyChooseUs t={t}/>
+            <HowToUse t={t}/>
+            <Footer t={t}/>
         </React.Fragment>
 
         

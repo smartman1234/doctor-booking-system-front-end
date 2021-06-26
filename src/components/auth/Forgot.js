@@ -51,6 +51,7 @@ function Forgot() {
 
     return (
         <React.Fragment>
+            <title>Forgot</title>
             <form className="form-signin" onSubmit={submit}>
 
                 {info}

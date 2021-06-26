@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -20,11 +20,11 @@ const options = {
 
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Suspense fallback={(<div>Loading</div>)}>
     <AlertProvider template={AlertTemplate} {...options}>
     <App />
     </AlertProvider>
-  </React.StrictMode>,
+  </Suspense>,
   document.getElementById('root')
 );
 

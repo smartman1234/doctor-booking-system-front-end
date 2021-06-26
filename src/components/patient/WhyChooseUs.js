@@ -4,15 +4,15 @@ import { Link, Redirect } from 'react-router-dom';
 import img1 from './design/medi/img/img_1.jpg';
 
 
-function WhyChooseUs() {
+function WhyChooseUs({t}) {
     return (
         <React.Fragment>
             <section className="section stretch-section" data-aos="fade-up">
               <div className="container">
                 <div className="row justify-content-center mb-5">
                   <div className="col-md-8 text-center mb-5">
-                    <h2 className="text-uppercase heading border-bottom mb-4">WHY CHOOSE US</h2>
-                    <p className="mb-0 lead">We Provide Fully Automated Health System</p>
+                    <h2 className="text-uppercase heading border-bottom mb-4">{t('WhyChooseUs.choose')}</h2>
+                    <p className="mb-0 lead">{t('WhyChooseUs.healthSystem')} </p>
                   </div>
                 </div>
                 <div className="row align-items-center">
@@ -26,8 +26,8 @@ function WhyChooseUs() {
                         <div className="media d-block media-feature text-center">
                           <span className="icon fa fa-file-archive my-4"></span>
                           <div className="media-body">
-                            <h3 className="mt-0 text-black"> No Paper </h3>
-                            <p> No Paper Description </p>
+                            <h3 className="mt-0 text-black">{t('WhyChooseUs.paper')}  </h3>
+                            <p> {t('WhyChooseUs.paperDesc')}  </p>
                           </div>
                         </div>
                       </div>
@@ -35,8 +35,8 @@ function WhyChooseUs() {
                         <div className="media d-block media-feature text-center">
                           <span className="icon fa fa-calendar-alt my-4"></span>
                           <div className="media-body">
-                            <h3 className="mt-0 text-black">Easy Booking</h3>
-                            <p> Easy Booking Descriptionv</p>
+                            <h3 className="mt-0 text-black">{t('WhyChooseUs.booking')} </h3>
+                            <p>{t('WhyChooseUs.bookingDesc')} </p>
                           </div>
                         </div>
                       </div>
@@ -47,8 +47,8 @@ function WhyChooseUs() {
                         <div className="media d-block media-feature text-center">
                           <span className="icon fa fa-search my-4"></span>
                           <div className="media-body">
-                            <h3 className="mt-0 text-black">Easy Search </h3>
-                            <p>Easy Search Description</p>
+                            <h3 className="mt-0 text-black">{t('WhyChooseUs.search')} </h3>
+                            <p>{t('WhyChooseUs.searchDesc')}</p>
                           </div>
                         </div>
                       </div>
@@ -56,8 +56,8 @@ function WhyChooseUs() {
                         <div className="media d-block media-feature text-center">
                           <span className="icon fa fa-user-md my-4"></span>
                           <div className="media-body">
-                            <h3 className="mt-0 text-black"> Expert Doctor </h3>
-                            <p> Expert Doctor Descriprtion </p>
+                            <h3 className="mt-0 text-black">{t('WhyChooseUs.expert')} </h3>
+                            <p>{t('WhyChooseUs.expertDesc')} </p>
                           </div>
                         </div>
                       </div>
