@@ -19,10 +19,17 @@ function MainHome(props) {
   const sendDoctorDataParent = (index, searchParams) => {
     // the callback. Use a better name
     console.log("Parent | sendDoctorDataParent => ", index);
-    console.log("Parent | sendSearchParamsParent => ", searchParams);
+    console.log("Parent | sendSearchParamsParent => ", searchParams['specialty']);
 
     setData(index);
     setSearchParams(searchParams);
+    let s = {
+      specialty : searchParams['specialty'],
+      city      : searchParams["city"] ,
+      district  : searchParams["district"] ,
+      name      : searchParams["name"] 
+    }
+    localStorage['Params'] = JSON.stringify(s);
     getDoctorSubSpecialistAPI(JSON.parse(localStorage.getItem('Params')).specialty);
   };
 
