@@ -101,7 +101,7 @@ function SubHome(props) {
     if (data.value == "age") {
       if(props.data.data !== undefined) { 
         props.data.data.sort((item1, item2) => item1.age - item2.age);
-      } else {
+      } else if(localStorage.getItem('data')) {
         let data = JSON.parse(localStorage.getItem('data'));
         data.data.sort((item1, item2) => item1.age - item2.age);
         localStorage.setItem('data', JSON.stringify(data));
@@ -110,7 +110,7 @@ function SubHome(props) {
     } else if (data.value == "session_time") {
       if (props.data.data !== undefined) {
         props.data.data.sort((item1, item2) => item1.session_time - item2.session_time)
-      }else {
+      }else if(localStorage.getItem('data')){
         let data = JSON.parse(localStorage.getItem('data'));
         data.data.sort((item1, item2) => item1.session_time - item2.session_time);
         localStorage.setItem('data', JSON.stringify(data));
@@ -120,7 +120,7 @@ function SubHome(props) {
     } else if (data.value == "rate") {
       if (props.data.data !== undefined) {
       props.data.data.sort((item1, item2) => item2.total_rate - item1.total_rate);
-      } else {
+      } else if(localStorage.getItem('data')){
 
         let data = JSON.parse(localStorage.getItem('data'));
         data.data.sort((item1, item2) => item2.total_rate - item1.total_rate);
@@ -155,7 +155,7 @@ function SubHome(props) {
   function init() {
     console.log("res from subhome => ", props.data);
     console.log("searchPrams from subhome => ", props.searchPrams);
-    console.log("res from subhome | path => ", JSON.parse(localStorage.getItem("data")).path);
+    // console.log("res from subhome | path => ", JSON.parse(localStorage.getItem("data")).path);
     setData(props.data.data);
     setCurrent_page(props.data.current_page);
     setPer_page(props.data.per_page);
@@ -355,16 +355,16 @@ function SubHome(props) {
               <Pagination
                 activePage={props.data.current_page !== undefined?
                             props.data.current_page:
-                            JSON.parse(localStorage.getItem("data")).current_page}
+                            localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")).current_page:''}
                 itemsCountPerPage={props.data.per_page!== undefined?
                                    props.data.per_page:
-                                   JSON.parse(localStorage.getItem("data")).per_page}
+                                   localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")).per_page:''}
                 totalItemsCount={props.data.total!== undefined?
                                  props.data.total:
-                                 JSON.parse(localStorage.getItem("data")).total}
+                                 localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")).total:''}
                 onChange={(pageNumber) => getData(pageNumber, props.data.path!== undefined?
                                                               props.data.path:
-                                                              JSON.parse(localStorage.getItem("data")).path)}
+                                                              localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")).path:'')}
                 itemClass="page-item"
                 linkClass="page-link"
                 firstPageText="First"
