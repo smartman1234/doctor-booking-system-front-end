@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-function Register() {
+function Register({t}) {
     const alert = useAlert();
     const [profileImg,setProfileImg] = useState('');
 
@@ -98,19 +98,20 @@ function Register() {
 
     return (
         <React.Fragment>
+            <title>Register</title>
             <div className="login-box">
                 <div className="login-logo">
                     <span>
-                        <b>Book</b>Doc
+                        <b>{t('Register.book')}</b>{t('Register.doctor')}
                     </span>
                 </div>
                 <div className="login-box-body">
-                    <p className="login-box-msg">Sign up to enjoy our services</p>
+                    <p className="login-box-msg">{t('Register.signUp')}</p>
                     {validationErrors}
                     <form className="form-signin" onSubmit={submit}>
 
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Name in English" required
+                            <input type="text" className="form-control" placeholder={t('Register.name_en')} required
                                 onChange={(e) => setName_en(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -121,7 +122,7 @@ function Register() {
                         </div>
 
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Name in Arabic" required
+                            <input type="text" className="form-control" placeholder={t('Register.name_ar')} required
                                 onChange={(e) => setName_ar(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -132,7 +133,7 @@ function Register() {
                         </div>
 
                         <div className="input-group mb-3">
-                            <input type="email" className="form-control" placeholder="Email" required
+                            <input type="email" className="form-control" placeholder={t('Register.email')} required
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -143,7 +144,7 @@ function Register() {
                         </div>
 
                         <div className="input-group mb-3">
-                            <input type="password" className="form-control" placeholder="Password" required
+                            <input type="password" className="form-control" placeholder={t('Register.password')} required
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -154,7 +155,7 @@ function Register() {
                         </div>
 
                         <div className="input-group mb-3">
-                            <input type="password" className="form-control" placeholder="Confirm Password" required
+                            <input type="password" className="form-control" placeholder={t('Register.confirmPassword')} required
                                 onChange={(e) => setPasswordConfirm(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -165,7 +166,7 @@ function Register() {
                         </div>
 
                         <div className="input-group mb-3">
-                            <input type="test" className="form-control" placeholder="Phonr Number" required
+                            <input type="test" className="form-control" placeholder={t('Register.mobile')} required
                                 onChange={(e) => setMobile(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -176,7 +177,7 @@ function Register() {
                         </div>
 
                         <div className="input-group mb-3">
-                            <input type="date" className="form-control" placeholder="Date Of Birth" required
+                            <input type="date" className="form-control" placeholder={t('Register.dateOfBirth')} required
                                 onChange={(e) => setDate(e.target.value)}
                             />
                             <div className="input-group-append">
@@ -205,7 +206,7 @@ function Register() {
                             <div class="custom-file">
                                 <input type="file" className="custom-file-input" id="validatedCustomFile" 
                                     onChange={imageHandler}
-                                />                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                />                                <label class="custom-file-label" for="validatedCustomFile">{t('Register.file')}...</label>
                             <div class="invalid-feedback">Example invalid custom file feedback</div>
                             </div>
 
@@ -213,10 +214,10 @@ function Register() {
 
                         </div>
 
-                        <button className="btn btn-primary btn-block btn-flat" type="submit">Sign Up</button>
+                        <button className="btn btn-primary btn-block btn-flat" type="submit">{t('Register.signUp')}</button>
 
                     </form>
-                    <Link to="/login" className="login">Have an account <i className="fa fa-arrow-right"></i></Link>
+                    <Link to="/login" className="login">{t('Register.account')} <i className="fa fa-arrow-right"></i></Link>
 
                 </div>
             </div>

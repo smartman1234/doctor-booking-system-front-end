@@ -4,7 +4,7 @@ import { Select } from "semantic-ui-react";
 
 // const cities = [{ key: "dd", value: "dd", text: "AL Buheira" }];
 
-const Cities = ({sendCityIDToParent,sendDistrictsToParent}) => {
+const Cities = ({sendCityIDToParent,t}) => {
   
   var _data;
   const [cities, setData] = useState([]);
@@ -66,7 +66,7 @@ const Cities = ({sendCityIDToParent,sendDistrictsToParent}) => {
   }
   return (
     <Select
-      placeholder="Our Systems"
+      placeholder={t('Cities.cityName')}
       style={{ border: "none" }}
       options={cities}
       onChange={onChangeHandler}

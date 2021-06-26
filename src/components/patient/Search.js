@@ -4,7 +4,7 @@ import Departments from "./Departments";
 import Districts from "./Districts";
 import OurSystem from "./OurSystem";
 import { Link, Redirect } from 'react-router-dom';
-function Search({sendDoctorDataParent}) {
+function Search({sendDoctorDataParent,t}) {
   const [cityID, setCityID] = React.useState(null); // the lifted state
   const [districtID, setDistrictID] = React.useState(null); // the lifted state
   const [departmentID, setDepartmentID] = React.useState(null); // the lifted state
@@ -56,11 +56,6 @@ function Search({sendDoctorDataParent}) {
       searchParam
     );
 
-    // const el1 = document.querySelector(".test");
-    // el1.value = "";
-    // this.init();
-    // setSearchParams([cityID,districtID,departmentID,doctorName]);
-    // console.log("searchParams => ",searchParams);
     search(searchParam);
 
     event.preventDefault();
@@ -94,22 +89,21 @@ function Search({sendDoctorDataParent}) {
   return (
     <React.Fragment>
       <section
-        className="container home-search home-page-search mb-5"
-        data-aos="fade-up">
+        className="container home-search home-page-search mb-5">
         <form action="#" method="get" className="search-box">
           <div className="row">
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label>
-                <i className="fa fa-search-location"></i> City
+                <i className="fa fa-search-location"></i> {t('Search.city')}
               </label>
               <div className="nice-select" tabIndex="0">
                 <span className="current"></span>
-                <Cities sendCityIDToParent={sendCityIDToParent} />
+                <Cities sendCityIDToParent={sendCityIDToParent} t={t}/>
               </div>
             </div>
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label>
-                <i className="fa fa-search-location"></i> District
+                <i className="fa fa-search-location"></i> {t('Search.district')}
               </label>
 
               <div className="nice-select" tabIndex="0">
@@ -117,30 +111,32 @@ function Search({sendDoctorDataParent}) {
                 <Districts
                   _dis={_dis}
                   sendDistrictIDToParent={sendDistrictIDToParent}
+                  t={t}
                 />
               </div>
             </div>
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label htmlFor="department">
-                <i className="fa fa-list"></i> Department
+                <i className="fa fa-list"></i> {t('Search.department')}
               </label>
 
               <div className="nice-select" tabIndex="0">
                 <span className="current"></span>
                 <Departments
                   sendDepartmentIDToParent={sendDepartmentIDToParent}
+                  t={t}
                 />
               </div>
             </div>
             <div className="input-form col-lg col-md-8 col-sm-10">
               <label>
-                <i className="fa fa-user-md"></i> Doctor
+                <i className="fa fa-user-md"></i> {t('Search.doctor')}
               </label>
               <input
                 id="doctor"
                 type="text"
                 name="doctor"
-                placeholder="Write Doctor Name"
+                placeholder={t('Search.doctorName')}
                 onChange={searchByName}
               />
             </div>

@@ -13,6 +13,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Card from './components/DoctorCard/Card';
 import SearchBar from './components/searchbar/SearchBar';
 import MainHome from './components/HomeTest/MainHome';
+import MyAppointments from './components/patient/MyAppointments';
+
 
 export {
     BrowserRouter,
@@ -32,4 +34,5 @@ export {
     ProtectedRoute,
     MainHome,
     SearchBar,
+    MyAppointments
 }

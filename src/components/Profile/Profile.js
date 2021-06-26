@@ -105,7 +105,7 @@ function Profile(props) {
     var profileImage;
     if(profileImg === ''){
         profileImage = (
-            <img style={{width:100}} src={"http://127.0.0.1:8000/storage/patients/" + props.user.image}/>
+            <img style={{width:100}} src={"http://127.0.0.1:8000/storage/" + props.user.image}/>
             );
     }else{
         profileImage = (
@@ -126,6 +126,7 @@ function Profile(props) {
     if (props.user) {
     return (
         <React.Fragment>
+            <title>Profile</title>
                 <div className="container my-4 profile">
                     <h3 className="mb-4 font-weight-normal">Manage Profile</h3>
                     <div className="card">
@@ -234,6 +235,7 @@ function Profile(props) {
         return (
         
             <React.Fragment>
+                <title>Profile</title>
                 Loading...
             </React.Fragment>
                      

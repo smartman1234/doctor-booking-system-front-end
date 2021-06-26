@@ -1,0 +1,6 @@
+.search-bar {
+    position: relative;
+    margin-top: 500px !important;     
+    margin-bottom: -300px !important;  
+    z-index: 1;
+}

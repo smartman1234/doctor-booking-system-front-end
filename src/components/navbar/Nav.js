@@ -37,7 +37,7 @@ function Nav(props) {
         links = (
             <ul className="navbar-nav my-2 my-lg-0">
                 <li className="nav-item">
-                <img style={{ width: 50, height: 50 }} alt="profile pic" src={"http://127.0.0.1:8000/storage/patients/" + props.user.image}/>
+                <img style={{ width: 50, height: 50 }} alt="profile pic" src={"http://127.0.0.1:8000/storage/" + props.user.image}/>
                     <Link style={{ display: "inline-block" }} to="/profile" className="nav-link">Profile</Link>
                 </li>
                 <li className="nav-item">

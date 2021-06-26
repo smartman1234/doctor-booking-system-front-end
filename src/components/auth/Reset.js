@@ -37,6 +37,7 @@ function Reset(props) {
 
     return (
         <React.Fragment>
+            <title>Reset</title>
             <form className="form-signin" onSubmit={submit}>
 
 
