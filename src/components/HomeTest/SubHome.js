@@ -98,17 +98,25 @@ function SubHome(props) {
 
   const onChangeHandler = (e, data) => {
     if (data.value == "age") {
-      props.data.data.sort((item1, item2) => item1.age - item2.age);
+      if(props.data.data !== undefined) { 
+        props.data.data.sort((item1, item2) => item1.age - item2.age);
+      } else {
+        JSON.parse(localStorage.getItem('data')).data.sort((item1, item2) => item1.age - item2.age);
+      }
       forceUpdate();
     } else if (data.value == "session_time") {
-      props.data.data.sort(
-        (item1, item2) => item1.session_time - item2.session_time
-      );
+      if (data.value !== undefined) {
+        props.data.data.sort((item1, item2) => item1.session_time - item2.session_time)
+      }else {
+        JSON.parse(localStorage.getItem('data')).data.sort((item1, item2) => item1.session_time - item2.session_time);
+      }
       forceUpdate();
     } else if (data.value == "rate") {
-      props.data.data.sort(
-        (item1, item2) => item2.total_rate - item1.total_rate
-      );
+      if (data.value !== undefined) {
+      props.data.data.sort((item1, item2) => item2.total_rate - item1.total_rate);
+      } else {
+        JSON.parse(localStorage.getItem('data')).data.sort((item1, item2) => item1.rate - item2.rate);
+      }
       forceUpdate();
     }
   };
