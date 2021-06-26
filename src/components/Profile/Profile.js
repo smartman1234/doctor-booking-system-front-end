@@ -117,7 +117,7 @@ function Profile(props) {
     var validationErrors;
     if(JSON.stringify(errors) != JSON.stringify({}))
     {
-        console.log("errors",errors)
+        
         validationErrors = (<ul className="alert alert-danger">
         {Object.keys(errors).map(function(key) { return <li key={errors[key]}>{errors[key][0]}</li>})}
         </ul>);
