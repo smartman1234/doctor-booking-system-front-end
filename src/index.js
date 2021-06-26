@@ -8,6 +8,8 @@ import AlertTemplate from 'react-alert-template-basic'
 import 'react-toastify/dist/ReactToastify.css';
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
 import 'semantic-ui-css/semantic.min.css'
+import loading from './components/patient/design/medi/img/loading.gif'; 
+
 
 const options = {
   // you can also just use 'bottom center'
@@ -20,7 +22,7 @@ const options = {
 
 
 ReactDOM.render(
-  <Suspense fallback={(<div>Loading</div>)}>
+  <Suspense fallback={(<img src={loading} width="100" />)}>
     <AlertProvider template={AlertTemplate} {...options}>
     <App />
     </AlertProvider>

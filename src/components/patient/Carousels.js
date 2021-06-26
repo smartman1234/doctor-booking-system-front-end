@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';import bg1 from './design/medi/img/slider-2.jpg'; 
+import 'react-multi-carousel/lib/styles.css';
+import bg1 from './design/medi/img/slider-2.jpg'; 
 import bg2 from './design/medi/img/slider-1.jpg';
 // import 'react-multi-carousel/lib/styles.css'; 
 

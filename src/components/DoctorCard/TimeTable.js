@@ -4,12 +4,14 @@ import 'react-multi-carousel/lib/styles.css';
 import Slider from "react-slick";
 import Moment from 'moment';
 import Cookies from 'universal-cookie';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { useAlert } from 'react-alert';
 
 import bg from './auth-background.png'; 
 
 function TimeTable(props) {
+  const [redirect, setRedirect] = useState(false);
+
 
     const settings = {
         dots: true,
@@ -64,15 +66,19 @@ function TimeTable(props) {
             body: JSON.stringify(formdata)
         }).then((response) => response.json())
         .then( response => {
+            setRedirect(true);
             setIsRendered(false);
             props.changestate(); 
             alert.success('Reserve Appointment sucessfully');
+            
             setIsRendered(true)
         }).catch(error => {
             alert.error('Fail to reserve appointment');
             console.log("error",error);
             });
     }
+
+    
 
     //Get Time Tables of Specified Doctor
     function getTimeTables(docID, addressID) {   
@@ -150,6 +156,9 @@ function TimeTable(props) {
         </div>
         
     )});
+    if(redirect){
+        return <Redirect to="/my-appointments" />;
+    }
     return (
         
         <section className="booking-time" style={{ backgroundImage: `url(${bg})` }}>

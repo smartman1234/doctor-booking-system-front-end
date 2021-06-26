@@ -5,6 +5,8 @@ import Pagination from "react-js-pagination";
 import { Select } from "semantic-ui-react";
 import SubHome from "./SubHome";
 import Search from "../patient/Search";
+import bg2 from '../patient/design/medi/img/slider-2.jpg';
+
 import './MainHome.css';
 function MainHome(props) {
   const [data, setData] = useState([]);
@@ -140,13 +142,10 @@ function MainHome(props) {
 
 
   return (
-    <React.Fragment>
-    <React.Fragment>
+    <React.Fragment >
       <title>Home</title>
-      <div className="search-bar"><Search sendDoctorDataParent={sendDoctorDataParent} t={props.t}/></div>
-      </React.Fragment>
-     
-      
+      {/* backgroundImage: `url(${bg2})`, borderRadius: '85px' */}
+      <div className="search-bar"  style={{ }}><Search sendDoctorDataParent={sendDoctorDataParent} t={props.t}/></div>  
       <SubHome data={data} searchPrams={searchPrams} subSpecialist={subSpecialist} genderFilterSearch={genderFilterSearch}
       degreeFilterSearch={degreeFilterSearch} sebSpecFilterSearch={sebSpecFilterSearch}
       getDataForPagination={getDataForPagination} t={props.t}/>
