@@ -42,14 +42,14 @@ function Review(props) {
     
     return (
         <React.Fragment>
-            <section class="store-rate-comment">
-                <div id="ratingModal"  aria-hidden="true" role="dialog" >
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">eee</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
+
+            <section class="rate-and-comment">
+                <div class="container">
+                    <div class="card mb-5">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0"><i class="fa fa-star-half-alt"></i> Add Review and Comment</h5>
+                        </div>
+                        <div class="card-body">
                             <form name="review" action="http://127.0.0.1:8000/api/feedbacks" onSubmit={submit} method="POST">
                                 <div class="modal-body modal-rating">
                                     <div class="rating">
@@ -71,6 +71,8 @@ function Review(props) {
                     </div>
                 </div>
             </section>
+
+            
         </React.Fragment>
     );
 }
