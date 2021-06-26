@@ -7,7 +7,7 @@ import { TransitionGroup } from 'react-transition-group';
 function Footer({t}) {
 
     return (
-            <footer className="site-footer pb-5" role="contentinfo" style={{ maxWidth: '100%', overflowX: 'hidden' }} data-aos="fade-up">
+            <footer className="site-footer pb-5" role="contentinfo" style={{ maxWidth: '100%', overflowX: 'hidden' }} >
                 <div className="container">
                     <div className="row">
                         <div className="col-md-4 mb-3">

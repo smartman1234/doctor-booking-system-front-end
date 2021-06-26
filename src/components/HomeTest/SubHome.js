@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 import { Select } from "semantic-ui-react";
-import Search from "../patient/Search";
+import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 
 function SubHome(props) {
+  const cookies = new Cookies();
+  const isAuthenticated = cookies.get("jwt");
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
 
@@ -219,9 +220,10 @@ function SubHome(props) {
                           </div>
                           <div className="booking">
                             <div className="text-center">
-                              <Link to={"doctors/" + doctor.id} className="btn">
-                                Book
-                              </Link>
+                            {
+                              (isAuthenticated === undefined) ? <Link to="/login" className="btn mb-3 btn-sm"> book </Link> : <Link to={"doctors/" + doctor.id} className="btn">Book</Link>
+                            }
+                              
                             </div>
                           </div>
                         </div>

@@ -27,7 +27,7 @@ function HomeSite({sendDoctorDataParentHome,t}) {
             <Search  sendDoctorDataParent={sendDoctorDataParent} t={t}/>
             <WhyChooseUs t={t}/>
             <HowToUse t={t}/>
-            <Footer t={t}/>
+            
         </React.Fragment>
 
         
