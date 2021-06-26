@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import loading from './design/medi/img/loading.gif'; 
 
 function MyAppointments(props) {
-
-  props.setAppointment();
+  console.log('=================ihffhif===========')
+  console.log(props.setAppointment());
+  console.log('=================ihffhif===========')
 
   const cancelAppointment = (book_id) =>(e)=> {
     e.preventDefault();

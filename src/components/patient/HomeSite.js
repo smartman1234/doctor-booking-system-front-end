@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Search from './Search';
-import Carousel from './Carousel';
+import Carousels from './Carousels';
 import WhyChooseUs from './WhyChooseUs';
 import HowToUse from './HowToUse';
 import Aos from 'aos';
@@ -23,13 +23,11 @@ function HomeSite({sendDoctorDataParentHome,t}) {
         <React.Fragment>
             <title>BookDoc</title>
             {/* <Navbar /> */}
-            <Carousel t={t}/>
+            <Carousels t={t}/>
             <Search sendDoctorDataParent={sendDoctorDataParent} t={t}/>
             <WhyChooseUs t={t}/>
             <HowToUse t={t}/>
-            <Footer t={t}/>
         </React.Fragment>
-
         
     );
 }

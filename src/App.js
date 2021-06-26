@@ -19,6 +19,7 @@ import {
   MainHome,
   MyAppointments
 } from './imports';
+import Footer from './components/patient/Footer';
 
 function App() {
 
@@ -81,6 +82,8 @@ function App() {
         <Route path="/reset/:token" component={Reset}/>
         <ProtectedRoute path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
         <Route path="/doctors/:id" component={() => <Card user={user} setAppointment={() => setAppointment(false)} />}   />
+        <Footer user={user} setUser={setUser} setLogin={() => setLogin(false)} sendLangToParent={sendLangToParent} t={t}/>  
+
     </BrowserRouter>
   );
 }

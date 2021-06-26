@@ -1,6 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import Slider from "react-slick";
+import Moment from 'moment';
+
+import bg from './auth-background.png'; 
+
 function TimeTable(props) {
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+    };
+
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5,
+            slidesToSlide: 5 
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3,
+            slidesToSlide: 3 ,
+            partialVisibilityGutter: 30
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
     // const alert = useAlert(‏);
     console.log('==========time table user==========')
     console.log(props.user.id);
@@ -79,16 +116,17 @@ function TimeTable(props) {
     let cards =  times_table.map((item) =>  {
         x++;
         return (    
-            <div class="slider-item col-4">
-        <div class="px-lg-5 py-3">
-            <div class="slider-item-content px-lg-5">
-                <b> {item.day} </b><br/> <span>From {item.from} :00</span> <span>To {item.to} :00</span>
+            <div class="flex-wrap p-4">
+        <div class="px-lg-5 ">
+            <div class="" style={{  borderRadius: '10px', border: '1px solid rgb(43, 113, 205)', textAlign: 'center', padding: '10px',    background: 'rgb(43 113 205)', 'margin' : '0px 0px' }}>
+                 <b style={{ width:'100%', background: '#2b71cd', color: 'white', borderRadius: '4px', padding: '2px' }}> {item.day} </b><br/> 
+                 {/* <span>From {item.from} :00</span> <span>To {item.to} :00</span>
                 <p class="lead">
                     {item.id? item.id : ''}
                 </p> 
                 <h5>
                     <b>Fees:</b>{item.fees? item.fees : ''}
-                </h5>
+                </h5>  */}
 
             {/* time slots */}
             {
@@ -98,9 +136,9 @@ function TimeTable(props) {
 
                     if(!item.blocked_times.includes(i.starts)){
 
-                        return ( <h5><b>{i.starts}</b>
+                        return ( 
                         
-                        <div class="time">
+                        <div className="time">
                             <form className="" onSubmit={submit(index+item.day)}>
                                 <input type="hidden" id="index"  name="index" value={index+item.day} />
                                 <input type="hidden" id={"doctor_id"+index+item.day}  name="doctor_id" value={props.id} />
@@ -109,11 +147,16 @@ function TimeTable(props) {
                                 <input type="hidden" id={"day"+index+item.day}        name="day" value={item.day} />
                                 <input type="hidden" id={"fees"+index+item.day}       name="fees" value={item.fees} />
                                 
-                                <button className="btn mb-3 btn-sm" >book</button>
+                                <button className="btn mb-3 btn-sm" style={{ color: 'white', fontWeight: 'bold',
+                                    border: '2px solid #ffffff',
+                                    marginTop: '10px',
+                                    borderRadius: '10px',
+                                    background: '#a99ba7',
+                            }} >{Moment(i.starts, "HH:mm").format("hh:mm A")}</button>
                             </form>
                         </div>
 
-                        </h5> )  } ; 
+                        )  } ; 
                     })      
                 :''
 
@@ -129,19 +172,47 @@ function TimeTable(props) {
 
     return (
         
-        <section class="booking-time">
-            <div class="container">
-                <div class="card mb-5">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0"><i class="fa fa-calendar-alt"></i> Time Slots</h5>
+        <section className="booking-time" style={{ backgroundImage: `url(${bg})` }}>
+            <div className="container">
+                <div className="card mb-5">
+                    <div className="card-header">
+                        <h5 className="card-title mb-0"><i className="fa fa-calendar-alt"></i> Time Slots</h5>
                     </div>
-                    <div class="card-body">
-                        <div class="booking-slider owl-carousel row">
-                            {cards} 
-                        </div>
+                    <div className="card-body ">
+                    <Carousel  style={{   maxWidth: '230px', minWidth: '230px' }}
+                            cards={cards}
+                            swipeable={false}
+                            draggable={false}
+                            showDots={true}
+                            responsive={responsive}
+                            ssr={true} // means to render carousel on server-side.
+                            infinite={true}
+                            
+                            autoPlaySpeed={1000}
+                            keyBoardControl={true}
+                            customTransition="all .5"
+                            transitionDuration={500}
+                            containerClass="carousel-container"
+                            removeArrowOnDeviceType={["tablet", "mobile"]}
+                            
+                            dotListClass="custom-dot-list-style"
+                            
+                           
+                            >
+                                {cards}
+                </Carousel>
+
+                {/* <Slider {...settings} focusOnSelect={true}>
+                    {cards}
+                </Slider> */}
+
                     </div>
                 </div>
             </div>
+
+
+            
+
         </section>
     );
 }

@@ -135,7 +135,8 @@ function Search({sendDoctorDataParent,t}) {
                 id="doctor"
                 type="text"
                 name="doctor"
-                placeholder={t('Search.doctorName')}
+                // placeholder={t('Search.doctorName')}
+                placeholder={'...'}
                 onChange={searchByName}
               />
             </div>
