@@ -70,7 +70,7 @@ function Navbar(props) {
                     <div className="collapse navbar-collapse" id="navbarsExample05">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link mt-2" to="/home" >{props.t('Navbar.home')}</Link>
+                            <Link className="nav-link mt-2" to="/" >{props.t('Navbar.home')}</Link>
                         </li>
 
                         

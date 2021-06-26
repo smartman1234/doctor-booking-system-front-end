@@ -5,6 +5,7 @@ import loading from './design/medi/img/loading.gif';
 function MyAppointments(props) {
 
   props.setAppointment();
+  
 
   const cancelAppointment = (book_id) =>(e)=> {
     e.preventDefault();
@@ -29,7 +30,7 @@ function MyAppointments(props) {
               <td>{item.time}</td>
               <td>{item.fees}</td>
               <td>{item.confirm? <span className="badge badge-success">Confirmed</span> :<span className="badge badge-warning">Pending</span>  }</td>
-              <td> <i className="fa fa-trash text-danger" style={{ fontSize: '22px' }} onClick={cancelAppointment(item.id)}></i> </td>
+              <td> <i className="fa fa-trash text-danger delete-appointment" style={{ fontSize: '22px' }} onClick={cancelAppointment(item.id)}></i> </td>
             </tr> )}) : '';
 
   return (

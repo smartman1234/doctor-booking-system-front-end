@@ -29,14 +29,14 @@ function TimeTable(props) {
         }).then((response) => response.json())
         .then( response => {
             setIsRendered(false);
-
-            console.log("response.errors",response.errors);
+            props.setAppointment(); 
+            // console.log("response.errors",response.errors);
             console.log('====================================')
 
             setIsRendered(true);
             console.log('====================================')
             if(response.status === 201){
-                props.setAppointment(); 
+                
                 alert.success(response.message);
             }else{
             }
