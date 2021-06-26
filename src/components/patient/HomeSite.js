@@ -24,7 +24,7 @@ function HomeSite({sendDoctorDataParentHome,t}) {
             <title>BookDoc</title>
             {/* <Navbar /> */}
             <Carousel t={t}/>
-            <Search sendDoctorDataParent={sendDoctorDataParent} t={t}/>
+            <Search  sendDoctorDataParent={sendDoctorDataParent} t={t}/>
             <WhyChooseUs t={t}/>
             <HowToUse t={t}/>
             

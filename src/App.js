@@ -20,6 +20,7 @@ import {
   MainHome,
   MyAppointments
 } from './imports';
+import SubHome from './components/HomeTest/SubHome';
 
 function App() {
 
@@ -48,7 +49,15 @@ function App() {
         setDoctorData(index);
         setSearchParams(searchParams);
         localStorage.setItem('data', JSON.stringify(index));
-    localStorage.setItem('searchParams', searchParams['specialty']);
+        localStorage.setItem('searchParams', searchParams['specialty']);
+        let s = {
+          specialty : searchParams['specialty'],
+          city      : searchParams["city"] ,
+          district  : searchParams["district"] ,
+          name      : searchParams["name"] 
+        }
+        localStorage['Params'] = JSON.stringify(s);
+    // localStorage.setItem('Params', JSON.stringify(searchParams));
       };
   //start
   

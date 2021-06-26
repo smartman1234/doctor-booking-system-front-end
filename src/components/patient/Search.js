@@ -3,8 +3,10 @@ import Cities from "./Cities";
 import Departments from "./Departments";
 import Districts from "./Districts";
 import OurSystem from "./OurSystem";
-import { Link, Redirect } from 'react-router-dom';
-function Search({sendDoctorDataParent,t}) {
+import { Link, Redirect } from "react-router-dom";
+function Search({ sendDoctorDataParent, t }) {
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
   const [cityID, setCityID] = React.useState(null); // the lifted state
   const [districtID, setDistrictID] = React.useState(null); // the lifted state
   const [departmentID, setDepartmentID] = React.useState(null); // the lifted state
@@ -15,7 +17,7 @@ function Search({sendDoctorDataParent,t}) {
   const [doctorData, setDoctorData] = React.useState([]); // the lifted state
 
   const [_dis, setDistricts] = React.useState(null); // the lifted state
-  const [redirect,setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const sendCityIDToParent = (index, data) => {
     // the callback. Use a better name
@@ -43,17 +45,12 @@ function Search({sendDoctorDataParent,t}) {
 
   const handleSubmit = (event) => {
     let searchParam = [];
-    searchParam["specialty"] =
-      departmentID != null ? departmentID : null;
+    searchParam["specialty"] = departmentID != null ? departmentID : null;
     searchParam["city"] = cityID != null ? cityID : null;
     searchParam["district"] = districtID != null ? districtID : null;
-    searchParam["name"] =
-      doctorName != null ? doctorName : null;
+    searchParam["name"] = doctorName != null ? doctorName : null;
 
-    console.log(
-      "searchParam => ",
-      searchParam
-    );
+    console.log("searchParam => ", searchParam);
 
     search(searchParam);
 
@@ -65,44 +62,46 @@ function Search({sendDoctorDataParent,t}) {
       `http://127.0.0.1:8000/api/search?name=${key["name"]}&specialty=${key["specialty"]}&city=${key["city"]}&district=${key["district"]}`,
       {
         method: "GET",
-        
       }
     )
       .then((response) => response.json())
       .then((res) => {
-        console.log("res from server => ",res);
-        console.log("res from server - size => ",res.data.length);
+        console.log("res from server => ", res);
+        console.log("res from server - size => ", res.data.length);
         setRedirect(true);
-        sendDoctorDataParent(res,key);
+        sendDoctorDataParent(res, key);
         setDoctorData(res);
-
-        
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+  if (redirect) {
+    if(window.location.href.search("/home") > 0){
+      
+      console.log("Reloading ... ")
+    }else{
+
+      return <Redirect to="/home" />;
+    }
   }
-  if(redirect) {
-    return <Redirect to="/home" />
-}
   return (
     <React.Fragment>
-      <section
-        className="container home-search home-page-search mb-5">
+      <section className="container home-search home-page-search mb-5">
         <form action="#" method="get" className="search-box">
           <div className="row">
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label>
-                <i className="fa fa-search-location"></i> {t('Search.city')}
+                <i className="fa fa-search-location"></i> {t("Search.city")}
               </label>
               <div className="nice-select" tabIndex="0">
                 <span className="current"></span>
-                <Cities sendCityIDToParent={sendCityIDToParent} t={t}/>
+                <Cities sendCityIDToParent={sendCityIDToParent} t={t} />
               </div>
             </div>
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label>
-                <i className="fa fa-search-location"></i> {t('Search.district')}
+                <i className="fa fa-search-location"></i> {t("Search.district")}
               </label>
 
               <div className="nice-select" tabIndex="0">
@@ -116,7 +115,7 @@ function Search({sendDoctorDataParent,t}) {
             </div>
             <div className="select-form col-lg col-md-4 col-sm-12">
               <label htmlFor="department">
-                <i className="fa fa-list"></i> {t('Search.department')}
+                <i className="fa fa-list"></i> {t("Search.department")}
               </label>
 
               <div className="nice-select" tabIndex="0">
@@ -129,13 +128,13 @@ function Search({sendDoctorDataParent,t}) {
             </div>
             <div className="input-form col-lg col-md-8 col-sm-10">
               <label>
-                <i className="fa fa-user-md"></i> {t('Search.doctor')}
+                <i className="fa fa-user-md"></i> {t("Search.doctor")}
               </label>
               <input
                 id="doctor"
                 type="text"
                 name="doctor"
-                placeholder={t('Search.doctorName')}
+                placeholder={t("Search.doctorName")}
                 onChange={searchByName}
               />
             </div>
