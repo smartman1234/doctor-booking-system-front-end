@@ -55,8 +55,8 @@ function DoctorInfo (props) {
                                             <React.Fragment>
                                                 <h6>
                                                     <i class="fa fa-search-location"></i>
-                                                    {address.district.city.name_en} - 
-                                                    {address.district.name_en} - 
+                                                    {address.district? address.district.city.name_en : ''} - 
+                                                    {address.district? address.district.name_en : ''} - 
                                                     {address.address_en}
                                                 </h6>
                                                 <h6>
