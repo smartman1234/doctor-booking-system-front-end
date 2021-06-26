@@ -19,6 +19,7 @@ import {
   MainHome,
   MyAppointments
 } from './imports';
+import SubHome from './components/HomeTest/SubHome';
 
 function App() {
 
@@ -82,6 +83,7 @@ function App() {
         <Navbar user={user} setUser={setUser} setLogin={() => setLogin(false)} sendLangToParent={sendLangToParent} t={t}/>  
         <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome} t={t}/>}/>
         <Route path="/home" exact component={() => <MainHome user={doctorData} searchParams={searchParams} t={t}/>}/>
+       
         <Route path="/my-appointments" component={() => <MyAppointments user={user} setAppointment={() => setAppointment(true)} />}/>
         <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)} t={t}/>}/>
         <Route path="/register" component={() => <Register  t={t}/>}/>
