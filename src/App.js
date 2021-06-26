@@ -63,14 +63,26 @@ function App() {
   
   //end
   useEffect(() => {
-    fetch('http://localhost:8000/api/patientUser', {
+    var url;
+    if(!!+process.env.REACT_APP_MODE)
+    {
+      url = `${process.env.REACT_APP_DEVELOPING_URL}api/patientUser`
+    }
+    else
+    {
+      url = `${process.env.REACT_APP_PRODUCTION_URL}api/patientUser`;
+    }
+    
+    fetch(url , {
         method: 'GET',
         mode: 'cors',
         headers: {'Content-Type': 'application/json','Access-Control-Allow-Origin':'http://localhost:3000','Access-Control-Allow-Credentials':'true'},
         credentials: 'include',
     }).then( response => response.json())
     .then(user => {
-      console.log(user);
+      console.log("==================================");
+      console.log(url);
+      console.log("==================================");
         setUser(user);
     }
     )

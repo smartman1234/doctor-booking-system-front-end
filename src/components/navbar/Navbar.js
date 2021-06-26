@@ -55,6 +55,16 @@ function Navbar(props) {
         );
     }
 
+    var url;
+    if(!!+process.env.REACT_APP_MODE)
+    {
+      url = `${process.env.REACT_APP_DEVELOPING_URL}doctor/`
+    }
+    else
+    {
+      url = `${process.env.REACT_APP_PRODUCTION_URL}doctor/`;
+    }
+
     return (
         <React.Fragment>
             <header>
@@ -76,7 +86,7 @@ function Navbar(props) {
                         
 
                         <li className="nav-item">
-                            <a className="nav-link mt-2" href="http://localhost:8000/doctor/">{props.t('Navbar.doctors')}</a>
+                            <a className="nav-link mt-2" href={url}>{props.t('Navbar.doctors')}</a>
                         </li>
                         <li className="dropdown nav-item">
                         <span className="nav-link"> <i className="fa fa-globe"></i> <Languages sendLangToParent={props.sendLangToParent} t={props.t}/> </span>
