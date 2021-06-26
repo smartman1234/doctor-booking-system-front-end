@@ -32,7 +32,7 @@ function DoctorCard(props) {
             <DoctorInfo id={id}/>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal" onClick={handleShow}>Launch demo modal</button>   
             <Review show={show} id={id}/>
-            <TimeTable id={id} setAppointment={props.setAppointment} user={props.user}  />
+            <TimeTable id={id} changestate={props.changestate} user={props.user}  />
             <Reviews id={id}/>
         </React.Fragment>
     )

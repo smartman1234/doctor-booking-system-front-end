@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 
 import loading from './design/medi/img/loading.gif'; 
-
+import { useAlert } from 'react-alert';
 function MyAppointments(props) {
-
-  props.setAppointment();
+  const alert = useAlert();
+  
+  
 
   const cancelAppointment = (book_id) =>(e)=> {
     e.preventDefault();
@@ -14,8 +15,12 @@ function MyAppointments(props) {
         credentials: 'include',
     }).then( response => {
         console.log("response",response);
+        //props.setdelAppointment();
+        props.changestate();
+        alert.success('Cancel Appointment sucessfully');
     }).catch(error => {
         console.log("error",error);
+        alert.error('fail to Cancel Appointment');
     });
 }
 
@@ -29,7 +34,7 @@ function MyAppointments(props) {
               <td>{item.time}</td>
               <td>{item.fees}</td>
               <td>{item.confirm? <span className="badge badge-success">Confirmed</span> :<span className="badge badge-warning">Pending</span>  }</td>
-              <td> <i className="fa fa-trash text-danger" style={{ fontSize: '22px' }} onClick={cancelAppointment(item.id)}></i> </td>
+              <td> <i className="fa fa-trash text-danger delete-appointment" style={{ fontSize: '22px' }} onClick={cancelAppointment(item.id)}></i> </td>
             </tr> )}) : '';
 
   return (

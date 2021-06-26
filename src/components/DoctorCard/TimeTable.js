@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Cookies from 'universal-cookie';
 import {Link} from 'react-router-dom';
+import { useAlert } from 'react-alert';
 function TimeTable(props) {
     const cookies = new Cookies();
     const isAuthenticated = cookies.get("jwt");
-
+    const alert = useAlert();
     //Submit form to Book a Doctor
     const submit = (index) =>(e)=> {
         e.preventDefault();
@@ -25,13 +26,11 @@ function TimeTable(props) {
         }).then((response) => response.json())
         .then( response => {
             setIsRendered(false);
-            setIsRendered(true);
-            if(response.status === 201){
-                props.setAppointment(); 
-                alert.success(response.message);
-            }else{
-            }
+            props.changestate(); 
+            alert.success('Reserve Appointment sucessfully');
+            setIsRendered(true)
         }).catch(error => {
+            alert.error('Fail to reserve appointment');
             console.log("error",error);
             });
     }
