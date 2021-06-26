@@ -1,15 +1,23 @@
 import React, {useState} from 'react';
-import { Link, Redirect } from 'react-router-dom';
 
-
+import loading from './design/medi/img/loading.gif'; 
 
 function MyAppointments(props) {
 
-  console.log('======my appointment user')
-  console.log(props.user);
-  console.log('======my appointment user')
-
   props.setAppointment();
+
+  const cancelAppointment = (book_id) =>(e)=> {
+    e.preventDefault();
+
+    fetch(`http://127.0.0.1:8000/api/cancelAppointment/${book_id}`, {
+        method: 'GET',
+        credentials: 'include',
+    }).then( response => {
+        console.log("response",response);
+    }).catch(error => {
+        console.log("error",error);
+    });
+}
 
   let books_rows =  props.user.books? props.user.books.map((item, index) =>  {
     return ( <tr>
@@ -21,7 +29,7 @@ function MyAppointments(props) {
               <td>{item.time}</td>
               <td>{item.fees}</td>
               <td>{item.confirm? <span className="badge badge-success">Confirmed</span> :<span className="badge badge-warning">Pending</span>  }</td>
-          
+              <td> <i className="fa fa-trash text-danger" style={{ fontSize: '22px' }} onClick={cancelAppointment(item.id)}></i> </td>
             </tr> )}) : '';
 
   return (
@@ -41,6 +49,7 @@ function MyAppointments(props) {
                     <th scope="col">Time</th>
                     <th scope="col">Fees</th>
                     <th scope="col">Status</th>
+                    <th scope="col"> Cancel </th>
                   </tr>
                 </thead>
                   <tbody>
@@ -48,10 +57,11 @@ function MyAppointments(props) {
                 </tbody>
               </table>
             </div>
-          </section> : <div className="alert alert-danger text-center mt-5 container">There is no appointments!</div>
+          </section> :  books_rows == undefined ?
+          <img src={loading} style={{ marginLeft: '530px' }} width="150" alt="doctor-booking" /> :
+          <div className="alert alert-danger text-center">There is no appointments!</div>
 }
 
-          
         </React.Fragment>
 );
 }
