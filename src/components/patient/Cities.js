@@ -29,13 +29,18 @@ const Cities = ({sendCityIDToParent,t}) => {
       .then((response) => response.json())
       .then((res) => {
         console.log("Res => ", res);
-        let cities = res.map((city) => {
+
+        var cities = [
+          { key: "cit", value: "null", text: "City" },
+        ];
+        let _cities = res.map((city) => {
           return {
             key: city["id"],
             value: city["id"],
             text: city["name_en"],
           };
         });
+        _cities.forEach((i) => cities.push(i));
         setData(cities);
       })
 
@@ -50,13 +55,19 @@ const Cities = ({sendCityIDToParent,t}) => {
       .then((res) => {
         console.log("Res => ", res);
         
-        let districts = res.map((district) => {
+        var districts = [
+          { key: "dis", value: "null", text: "District" },
+        ];
+        
+        let _districts = res.map((district) => {
           return {
             key: district["id"],
             value: district["id"],
             text: district["name_en"],
           };
         });
+        
+        _districts.forEach((i) => districts.push(i));
         return districts;
       })
 

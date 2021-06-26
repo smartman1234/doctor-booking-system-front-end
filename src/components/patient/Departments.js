@@ -23,13 +23,21 @@ const Departments = ({sendDepartmentIDToParent,t}) => {
       .then((response) => response.json())
       .then((res) => {
         console.log("Res => ", res);
-        let departments = res.map((department) => {
+
+        var departments = [
+          { key: "dept", value: "null", text: "Department" },
+        ];
+   
+        
+        
+        let _departments = res.map((department) => {
           return {
             key: department["id"],
             value: department["id"],
             text: department["name_en"],
           };
         });
+        _departments.forEach((i) => departments.push(i));
         setData(departments);
       })
 
