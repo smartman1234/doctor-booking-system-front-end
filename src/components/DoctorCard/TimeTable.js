@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
+import Cookies from 'universal-cookie';
+import {Link} from 'react-router-dom';
 function TimeTable(props) {
-    // const alert = useAlert(‏);
-    console.log('==========time table user==========')
-    console.log(props.user.id);
-    console.log('==========time table user==========')
+    const cookies = new Cookies();
+    const isAuthenticated = cookies.get("jwt");
 
+    //Submit form to Book a Doctor
     const submit = (index) =>(e)=> {
         e.preventDefault();
-        console.log('index', index);
         let formdata = {};
         formdata.address_id = document.getElementById("address_id"+index).value;
         formdata.doctor_id  = document.getElementById("doctor_id"+index).value;
@@ -16,16 +15,13 @@ function TimeTable(props) {
         formdata.day        = document.getElementById("day"+index).value;
         formdata.time       = document.getElementById("time"+index).value;
         formdata.fees       = document.getElementById("fees"+index).value;
-
         fetch(`http://127.0.0.1:8000/api/book/store`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-
             body: JSON.stringify(formdata)
-
         }).then((response) => response.json())
         .then( response => {
             setIsRendered(false);
@@ -43,11 +39,10 @@ function TimeTable(props) {
         }).catch(error => {
             console.log("error",error);
             });
-        
     }
 
+    //Get Time Tables of Specified Doctor
     function getTimeTables(docID, addressID) {   
-
         fetch(`http://localhost:8000/api/available-time/${docID}/${addressID}`,{
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
@@ -64,20 +59,13 @@ function TimeTable(props) {
             console.log(error);
         });
     }
-
     const [times, setTimes] = useState([{}]);
     const [is_rendered, setIsRendered] = useState(false);
-
     useEffect(() => {
         getTimeTables(props.id,1);  
     }, [is_rendered]);  
-
     let times_table = times;
-
-    let x = 1;
-
     let cards =  times_table.map((item) =>  {
-        x++;
         return (    
             <div class="slider-item col-4">
         <div class="px-lg-5 py-3">
@@ -89,17 +77,12 @@ function TimeTable(props) {
                 <h5>
                     <b>Fees:</b>{item.fees? item.fees : ''}
                 </h5>
-
             {/* time slots */}
             {
-
             item.time_slot ? 
                 item.time_slot.map((i, index) => { 
-
                     if(!item.blocked_times.includes(i.starts)){
-
                         return ( <h5><b>{i.starts}</b>
-                        
                         <div class="time">
                             <form className="" onSubmit={submit(index+item.day)}>
                                 <input type="hidden" id="index"  name="index" value={index+item.day} />
@@ -108,25 +91,20 @@ function TimeTable(props) {
                                 <input type="hidden" id={"time"+index+item.day}       name="time" value={i.starts} />
                                 <input type="hidden" id={"day"+index+item.day}        name="day" value={item.day} />
                                 <input type="hidden" id={"fees"+index+item.day}       name="fees" value={item.fees} />
-                                
-                                <button className="btn mb-3 btn-sm" >book</button>
+                                {
+                                   isAuthenticated ? <Link to="/login" className="btn mb-3 btn-sm"> book </Link> : <button className="btn mb-3 btn-sm" >book</button> 
+                                }
                             </form>
                         </div>
-
                         </h5> )  } ; 
                     })      
-                :''
-
-                
+                :''      
             }
             </div>
         </div>
         </div>
         
     )});
-
-
-
     return (
         
         <section class="booking-time">
