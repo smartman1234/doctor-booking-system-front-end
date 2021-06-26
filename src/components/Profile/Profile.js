@@ -91,7 +91,7 @@ function Profile(props) {
             if(response.status === 200){
                 setErrors({});
                 alert.success(response.message);
-                props.setprofile();
+                props.changestate();
             }else{
                 setErrors(response.errors);
                 alert.error(response.message); 

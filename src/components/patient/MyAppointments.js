@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 
 import loading from './design/medi/img/loading.gif'; 
-
+import { useAlert } from 'react-alert';
 function MyAppointments(props) {
-
-  props.setAppointment();
+  const alert = useAlert();
+  
   
 
   const cancelAppointment = (book_id) =>(e)=> {
@@ -15,8 +15,12 @@ function MyAppointments(props) {
         credentials: 'include',
     }).then( response => {
         console.log("response",response);
+        //props.setdelAppointment();
+        props.changestate();
+        alert.success('Cancel Appointment sucessfully');
     }).catch(error => {
         console.log("error",error);
+        alert.error('fail to Cancel Appointment');
     });
 }
 
