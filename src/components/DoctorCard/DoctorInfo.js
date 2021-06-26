@@ -1,4 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+
+const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+  </GoogleMap>
+))
+
 
 function DoctorInfo (props) { 
     console.log(props.id);
@@ -79,7 +90,13 @@ function DoctorInfo (props) {
             </div>
             <div className="col-lg-5 col-sm-12 py-4 px-4">
                     <div className="location">
-                        map
+                        <MyMapComponent
+                            isMarkerShown
+                            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{ height: `300px` }} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+                        />
                     </div>
                 </div>
             </React.Fragment>
