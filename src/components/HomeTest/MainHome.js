@@ -7,7 +7,7 @@ import SubHome from "./SubHome";
 import Search from "../patient/Search";
 function MainHome(props) {
   const [data, setData] = useState([]);
-  const [searchPrams, setSearchParams] = useState([]);
+  const [searchPrams, setSearchParams] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
   const [genderFilter, setGenderFilter] = useState('null');
   const [degreeFilter, setDegreeFilter] = useState('null');
@@ -61,7 +61,7 @@ function MainHome(props) {
   },[]);
 
   function getDoctorSubSpecialistAPI(s) {
-    console.log("getDoctorSubSpecialistAPI -> search",s['specialty']);
+    // console.log("getDoctorSubSpecialistAPI -> search",s['specialty']);
     fetch(`http://127.0.0.1:8000/api/sub-specialist/${s}`, {
       method: "GET",
     })
@@ -90,7 +90,10 @@ function MainHome(props) {
 
   const filterSearch = (key,gender_Filter,degree_Filter,subSpec_Filter) => {
     fetch(
-      `http://127.0.0.1:8000/api/filter?name=${key["name"]}&specialty=${key["specialty"]}&city=${key["city"]}&district=${key["district"]}&gender=${gender_Filter}&degree=${degree_Filter}&sub_department=${subSpec_Filter}`,
+
+
+
+        `http://127.0.0.1:8000/api/filter?name=${key["name"]!==undefined?key["name"]:JSON.parse(localStorage.getItem("Params")).name}&specialty=${key["specialty"]!==undefined?key["specialty"]:JSON.parse(localStorage.getItem("Params")).specialty}&city=${key["city"]!==undefined?key["city"]:JSON.parse(localStorage.getItem("Params")).city}&district=${key["district"]!==undefined?key["district"]:JSON.parse(localStorage.getItem("Params")).district}&gender=${gender_Filter}&degree=${degree_Filter}&sub_department=${subSpec_Filter}`,
       {
         method: "GET",
         

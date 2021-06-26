@@ -49,6 +49,7 @@ function Search({sendDoctorDataParent}) {
     searchParam["district"] = districtID != null ? districtID : null;
     searchParam["name"] =
       doctorName != null ? doctorName : null;
+      
 
     console.log(
       "searchParam => ",

@@ -34,7 +34,15 @@ function App() {
         setUser(index);
         setSearchParams(searchParams);
         localStorage.setItem('data', JSON.stringify(index));
-    localStorage.setItem('searchParams', searchParams['specialty']);
+        localStorage.setItem('searchParams', searchParams['specialty']);
+        let s = {
+          specialty : searchParams['specialty'],
+          city      : searchParams["city"] ,
+          district  : searchParams["district"] ,
+          name      : searchParams["name"] 
+        }
+        localStorage['Params'] = JSON.stringify(s);
+    // localStorage.setItem('Params', JSON.stringify(searchParams));
       };
   //start
   const sendDataToParent = (index) => { // the callback. Use a better name

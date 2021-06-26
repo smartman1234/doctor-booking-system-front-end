@@ -235,7 +235,9 @@ function SubHome(props) {
         <div className="alert alert-danger text-center">No doctors</div>
       );
     }
-  }else {
+  }
+  else {
+
     if(JSON.parse(localStorage.getItem("data")).data.length > 0){
       doctorCard = card(JSON.parse(localStorage.getItem("data")).data);
     }else{
