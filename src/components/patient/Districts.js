@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Select } from "semantic-ui-react";
 
-const Districts = ({ _dis,sendDistrictIDToParent}) => {
+const Districts = ({ _dis,sendDistrictIDToParent,t}) => {
 
   const onChangeHandler = (e, data) => {
     console.log(data.value);

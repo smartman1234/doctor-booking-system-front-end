@@ -75,11 +75,11 @@ function App() {
         
         <Route path="/" exact component={() => <HomeSite sendDoctorDataParentHome={sendDoctorDataParentHome} t={t}/>}/>
         {/* <Route path="/home" component={() => <Home user={user} searchParams={searchParams} />}/> */}
-        <Route path="/home" exact component={() => <MainHome user={doctorData} searchParams={searchParams} />}/>
+        <Route path="/home" exact component={() => <MainHome user={doctorData} searchParams={searchParams} t={t}/>}/>
         <Route path="/my-appointments" component={() => <MyAppointments user={user} setAppointment={() => setAppointment(true)} />}/>
 
-        <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)}/>}/>
-        <Route path="/register" component={Register}/>
+        <Route path="/login" component={() => <Login setUser={setUser} setLogin={() => setLogin(true)} t={t}/>}/>
+        <Route path="/register" component={() => <Register  t={t}/>}/>
         <Route path="/forgot" component={Forgot}/>
         <Route path="/reset/:token" component={Reset}/>
         <ProtectedRoute path="/profile" component={() => <Profile user={user} setprofile={() => setprofile(true)}/>}/>
