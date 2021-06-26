@@ -22,7 +22,7 @@ const options = {
 
 
 ReactDOM.render(
-  <Suspense fallback={(<img src={loading} width="100" />)}>
+  <Suspense fallback={(<div style={{ textAlign: 'center' }}><img src={loading} width="100" style={{ marginTop: '200px' }} /></div>)}>
     <AlertProvider template={AlertTemplate} {...options}>
     <App />
     </AlertProvider>

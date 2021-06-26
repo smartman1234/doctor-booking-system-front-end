@@ -202,19 +202,7 @@ function Register({t}) {
                             </div>
                         </div>
 
-                        <div className="input-group mb-3">
-                            
-                            <div class="custom-file">
-                                <input type="file" className="custom-file-input" id="validatedCustomFile" 
-                                    onChange={imageHandler}
-                                />                                <label class="custom-file-label" for="validatedCustomFile">{t('Register.file')}...</label>
-                            <div class="invalid-feedback">Example invalid custom file feedback</div>
-                            </div>
-
-                            {profileImage}
-
-                        </div>
-
+                     
                         <button className="btn btn-primary btn-block btn-flat" type="submit">{t('Register.signUp')}</button>
 
                     </form>
