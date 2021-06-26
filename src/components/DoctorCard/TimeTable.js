@@ -25,12 +25,7 @@ function TimeTable(props) {
         }).then((response) => response.json())
         .then( response => {
             setIsRendered(false);
-
-            console.log("response.errors",response.errors);
-            console.log('====================================')
-
             setIsRendered(true);
-            console.log('====================================')
             if(response.status === 201){
                 props.setAppointment(); 
                 alert.success(response.message);
@@ -92,7 +87,7 @@ function TimeTable(props) {
                                 <input type="hidden" id={"day"+index+item.day}        name="day" value={item.day} />
                                 <input type="hidden" id={"fees"+index+item.day}       name="fees" value={item.fees} />
                                 {
-                                   isAuthenticated ? <Link to="/login" className="btn mb-3 btn-sm"> book </Link> : <button className="btn mb-3 btn-sm" >book</button> 
+                                   (isAuthenticated === undefined) ? <Link to="/login" className="btn mb-3 btn-sm"> book </Link> : <button className="btn mb-3 btn-sm" >book</button> 
                                 }
                             </form>
                         </div>
