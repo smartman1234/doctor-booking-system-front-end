@@ -1,6 +1,5 @@
 import React,{useState} from "react";
 import Cookies from 'universal-cookie';
-import jwt_decode from 'jwt-decode' // import dependency
 
 
 function Review(props) { 
