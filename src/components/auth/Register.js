@@ -75,7 +75,7 @@ function Register({t}) {
     var profileImage;
     if(profileImg === ''){
         profileImage = (
-            <img style={{width:100}} src={"http://127.0.0.1:8000/storage/patients/default.png"}/>
+            <img style={{width:100}} src={"http://127.0.0.1:8000/storage/images/patients/default.png"}/>
             );
     }else{
         profileImage = (
