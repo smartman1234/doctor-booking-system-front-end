@@ -8,7 +8,8 @@
         "logout": "Logout",
         "profile": "Profile",
         "english": "English",
-        "arabic":"Arabic"
+        "arabic":"Arabic",
+        "appointments":"My Appointments"
     },
     "Carousels": {
         "care": "We care for your health",

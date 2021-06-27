@@ -7,12 +7,12 @@ import DoctorInfo from './DoctorInfo';
 // import "bootstrap/dist/css/bootstrap.css";
 
 function DoctorCard(props) {
-    // const [user, setUser] = useState({});
+    const [feedback, setFeedback] = useState(false);
 
-
-    // useEffect(() => {
-    //     setUser(props.user);
-    // },[]);
+    const changeState = () => {
+        setFeedback(true);
+        setFeedback(false);
+    };
 
     const [show, setShow] = useState(false);
     const { id } = useParams();
@@ -31,9 +31,9 @@ function DoctorCard(props) {
             <title>Doctors</title>
             <DoctorInfo id={id}/>
             {/* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal" onClick={handleShow}>Launch demo modal</button>    */}
-            <Review show={show} id={id}/>
+            <Review show={show} id={id} changeState={changeState} />
             <TimeTable id={id} changestate={props.changestate} user={props.user}  />
-            <Reviews id={id}/>
+            <Reviews id={id} feedback={feedback}/>
         </React.Fragment>
     )
 }

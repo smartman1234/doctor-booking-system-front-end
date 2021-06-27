@@ -34,6 +34,7 @@ function Review(props) {
 
             body: JSON.stringify(formdata)
         }).then( response => {
+            props.changeState();
             console.log("response",response);
         }).catch(error => {
             console.log("error",error);

@@ -45,10 +45,10 @@ function Navbar(props) {
                     <Link style={{ display: "inline-block" }} to="/profile" className="nav-link">{props.t('Navbar.profile')}</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/my-appointments" >My Appointments </Link>
+                    <Link className="nav-link" to="/my-appointments" >{props.t('Navbar.appointments')}</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/login" onClick={logout} className="nav-link">Logout</Link>
+                    <Link to="/login" onClick={logout} className="nav-link">{props.t('Navbar.logout')}</Link>
                 </li>
                 
             </ul>

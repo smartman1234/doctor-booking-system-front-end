@@ -7,7 +7,7 @@ function Reviews(props) {
     
     useEffect(() => {
         getFeedbacks(props.id);
-     }, []);
+     }, [props.feedback]);
     
     //Return All Feedback on Doctor
     function getFeedbacks(docID) {    
