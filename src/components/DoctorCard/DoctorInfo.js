@@ -44,7 +44,7 @@ function DoctorInfo (props) {
 
                 <div className="rating mt-4 text-center">
                     <i className="fas fa-star fa-3x">
-                        <span>{doctor_info[0].total_rate}</span>
+                        <span>{doctor_info[0].total_rate|0}</span>
                     </i>
                 </div>
 

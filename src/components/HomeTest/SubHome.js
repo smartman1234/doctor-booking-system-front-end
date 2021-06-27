@@ -215,7 +215,7 @@ function SubHome(props) {
                         <div>
                           <div className="rating mb-3 text-center">
                             <i className="fas fa-star fa-3x">
-                              <span>{doctor.total_rate}</span>
+                              <span>{doctor.total_rate|0}</span>
                             </i>
                           </div>
                           <div className="booking">
