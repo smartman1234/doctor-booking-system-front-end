@@ -76,7 +76,7 @@ function App() {
     fetch(url , {
         method: 'GET',
         mode: 'cors',
-        headers: {'Content-Type': 'application/json','Access-Control-Allow-Origin':'http://localhost:3000','Access-Control-Allow-Credentials':'true'},
+        headers: {'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true'},
         credentials: 'include',
     }).then( response => response.json())
     .then(user => {
