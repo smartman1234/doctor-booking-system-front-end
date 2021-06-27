@@ -112,19 +112,7 @@ function Login(props) {
                         <Link to="/forgot" className="forget">{props.t('Login.forgotPassword')}?</Link>
                     </div>
 
-                    <div className="hr-container">
-                        <hr/>
-                        <label>Or</label>
-                    </div>
-                
-                    <div className="social row">
-                        <div className="col-sm-12">
-                            <a href="" className="btn-google m-b-10">
-                                <i className="fab fa-google-plus-square"></i>
-                                Continue With Google
-                            </a>
-                        </div>
-                    </div>
+                   
 
                     <Link to="/register" className="register">{props.t('Login.account')}<i class="fa fa-arrow-right"></i></Link>
 

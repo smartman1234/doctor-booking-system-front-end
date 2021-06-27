@@ -106,11 +106,11 @@ function Profile(props) {
     var profileImage;
     if(profileImg === ''){
         profileImage = (
-            <img style={{width:100}} src={"http://127.0.0.1:8000/storage/" + props.user.image}/>
+            <img className="rounded-circle img-thumbnail" style={{width:130, height: 130}} src={"http://127.0.0.1:8000/storage/" + props.user.image}/>
             );
     }else{
         profileImage = (
-            <img style={{width:100}} src={profileImg}/>
+            <img className="rounded-circle img-thumbnail" style={{width:130, height: 130}} src={profileImg}/>
             );
     }
     
@@ -138,6 +138,9 @@ function Profile(props) {
                             {validationErrors}
                             <form className="form-signin" onSubmit={submit}>
 
+                                <div style={{ textAlign: 'center' }}> 
+                                    {profileImage}
+                                </div>
                                 <div className="row">
 
                                     <div className="form-group col-lg-4 col-md-6">
@@ -216,10 +219,6 @@ function Profile(props) {
                                     </div>
 
                                 </div>
-                                
-                                
-                                {profileImage}
-                                <br/>
 
                                 <button className="btn btn-lg btn-primary btn-block" >Update Profile</button>
                             </form>
