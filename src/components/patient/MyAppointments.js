@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 
 import loading from './design/medi/img/loading.gif'; 
 import { useAlert } from 'react-alert';
+import Loader from 'react-loader-spinner';
+
 function MyAppointments(props) {
   const alert = useAlert();
   const cancelAppointment = (book_id) =>(e)=> {
@@ -26,7 +28,7 @@ function MyAppointments(props) {
               <th scope="row">{ index + 1 }</th>
               <td>{item.address? item.address.address_en : ''}</td>
               <td>{item.doctor.name_en}</td>
-              <td>{item.date}</td>
+              {/* <td>{item.date}</td> */}
               <td>{item.day}</td>
               <td>{item.time}</td>
               <td>{item.fees}</td>
@@ -35,6 +37,7 @@ function MyAppointments(props) {
             </tr> )}) : '';
 
   return (
+        
         <React.Fragment>
           {
             books_rows.length > 0 ? 
@@ -46,7 +49,7 @@ function MyAppointments(props) {
                     <th scope="col">#</th>
                     <th scope="col">Address</th>
                     <th scope="col">Doctor</th>
-                    <th scope="col">Date</th>
+                    {/* <th scope="col">Date</th> */}
                     <th scope="col">day</th>
                     <th scope="col">Time</th>
                     <th scope="col">Fees</th>
